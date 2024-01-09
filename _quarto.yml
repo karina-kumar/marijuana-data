@@ -1,13 +1,16 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "Marijuana Data Analysis"
-  navbar:
-    left:
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
       - href: index.qmd
         text: Home
-      - 01-Cleaning.qmd
+      - 01-Cleaning-AmarilloCity.qmd
       - 02-Cleaning-Carson-County.qmd
       - 03-Cleaning-Howard.qmd
       - 04-Cleaning-MidlandCity.qmd

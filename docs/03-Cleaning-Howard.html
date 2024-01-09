@@ -74,11 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -101,99 +101,146 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Marijuana Data Analysis</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
-  </li>  
-  <li class="dropdown-header">
- <span class="menu-text">01-Cleaning.qmd</span></li>
-  <li class="nav-item">
-    <a class="nav-link" href="./02-Cleaning-Carson-County.html" rel="" target="">
- <span class="menu-text">Cleaning - Carson County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./03-Cleaning-Howard.html" rel="" target="" aria-current="page">
- <span class="menu-text">Cleaning - Howard County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./04-Cleaning-MidlandCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Midland City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./05-Cleaning-Lubbock-County.html" rel="" target="">
- <span class="menu-text">Cleaning - Lubbock County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./06-Cleaning-MonahansCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Monahans City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./07-Cleaning-MooreCounty.html" rel="" target="">
- <span class="menu-text">Cleaning - Moore County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./08-Cleaning-NolanCounty.html" rel="" target="">
- <span class="menu-text">Cleaning - Nolan County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./09-Cleaning-OdessaCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Odessa City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./10-Cleaning-PecosCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Pecos City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./11-Cleaning-PlainviewCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Plainview City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./12-Cleaning-RandallCounty.html" rel="" target="">
- <span class="menu-text">Cleaning - Randall County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./13-Cleaning-SlatonCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Slaton City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./14-Cleaning-SnyderCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Snyder City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./15-Cleaning-WheelerCounty.html" rel="" target="">
- <span class="menu-text">Cleaning - Wheeler County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./02-analysis.html" rel="" target="">
- <span class="menu-text">Analysis</span></a>
-  </li>  
-</ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
-          </div> <!-- /navcollapse -->
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-Cleaning-Howard.html">Cleaning - Howard County</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Marijuana Data Analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Cleaning-AmarilloCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Amarillo City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Cleaning-Carson-County.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Carson County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Cleaning-Howard.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Cleaning - Howard County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Cleaning-MidlandCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Midland City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Cleaning-Lubbock-County.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Lubbock County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Cleaning-MonahansCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Monahans City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Cleaning-MooreCounty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Moore County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Cleaning-NolanCounty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Nolan County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-Cleaning-OdessaCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Odessa City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Cleaning-PecosCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Pecos City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Cleaning-PlainviewCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Plainview City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Cleaning-RandallCounty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Randall County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Cleaning-SlatonCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Slaton City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Cleaning-SnyderCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Snyder City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Cleaning-WheelerCounty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Wheeler County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analysis</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">

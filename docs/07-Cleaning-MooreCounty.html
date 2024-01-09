@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Marijuana Data Analysis - Cleaning - Pecos City</title>
+<title>Marijuana Data Analysis - Cleaning - Moore County</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -74,11 +74,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -101,99 +101,146 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Marijuana Data Analysis</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
-  </li>  
-  <li class="dropdown-header">
- <span class="menu-text">01-Cleaning.qmd</span></li>
-  <li class="nav-item">
-    <a class="nav-link" href="./02-Cleaning-Carson-County.html" rel="" target="">
- <span class="menu-text">Cleaning - Carson County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./03-Cleaning-Howard.html" rel="" target="">
- <span class="menu-text">Cleaning - Howard County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./04-Cleaning-MidlandCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Midland City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./05-Cleaning-Lubbock-County.html" rel="" target="">
- <span class="menu-text">Cleaning - Lubbock County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./06-Cleaning-MonahansCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Monahans City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./07-Cleaning-MooreCounty.html" rel="" target="">
- <span class="menu-text">Cleaning - Moore County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./08-Cleaning-NolanCounty.html" rel="" target="">
- <span class="menu-text">Cleaning - Nolan County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./09-Cleaning-OdessaCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Odessa City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./10-Cleaning-PecosCity.html" rel="" target="" aria-current="page">
- <span class="menu-text">Cleaning - Pecos City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./11-Cleaning-PlainviewCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Plainview City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./12-Cleaning-RandallCounty.html" rel="" target="">
- <span class="menu-text">Cleaning - Randall County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./13-Cleaning-SlatonCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Slaton City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./14-Cleaning-SnyderCity.html" rel="" target="">
- <span class="menu-text">Cleaning - Snyder City</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./15-Cleaning-WheelerCounty.html" rel="" target="">
- <span class="menu-text">Cleaning - Wheeler County</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./02-analysis.html" rel="" target="">
- <span class="menu-text">Analysis</span></a>
-  </li>  
-</ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
-          </div> <!-- /navcollapse -->
-      </div> <!-- /container-fluid -->
-    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-Cleaning-MooreCounty.html">Cleaning - Moore County</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Marijuana Data Analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Cleaning-AmarilloCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Amarillo City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Cleaning-Carson-County.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Carson County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-Cleaning-Howard.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Howard County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Cleaning-MidlandCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Midland City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Cleaning-Lubbock-County.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Lubbock County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Cleaning-MonahansCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Monahans City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Cleaning-MooreCounty.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Cleaning - Moore County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Cleaning-NolanCounty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Nolan County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-Cleaning-OdessaCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Odessa City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Cleaning-PecosCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Pecos City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Cleaning-PlainviewCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Plainview City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Cleaning-RandallCounty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Randall County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Cleaning-SlatonCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Slaton City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Cleaning-SnyderCity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Snyder City</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Cleaning-WheelerCounty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cleaning - Wheeler County</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analysis</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -212,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Cleaning - Pecos City</h1>
+<h1 class="title">Cleaning - Moore County</h1>
 </div>
 
 
@@ -260,41 +307,45 @@ The following objects are masked from 'package:stats':
 <h2 class="anchored" data-anchor-id="import">Import</h2>
 <p>Same process as before</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pecos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data-raw/PecosCity.xls"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pecos <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>moore <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data-raw/MooreCounty.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 62 Columns: 7
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (7): name, race, sex, address_arrest, date_arrest, time_arrest, charges
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>moore <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 70
-Columns: 8
-$ officer         &lt;chr&gt; "MARQUEZ, AA", "MARQUEZ, AA", "MARQUEZ, AA", "MARQUEZ,…
-$ datetime_arrest &lt;chr&gt; "01/15/2018 10:47", "01/19/2018 16:39", "01/20/2018 07…
-$ charge_desc     &lt;chr&gt; "POSSESSION OF MARIJUANA", "TRAFFIC STOP/VIOLATION", "…
-$ address_arrest  &lt;chr&gt; "300 S ROSS BOULEVARD", "1200 S PLUM", "2600 STATE HIG…
-$ city_zip        &lt;chr&gt; "PECOS, TX 79772", "PECOS, TX 79772", "PECOS, TX 79772…
-$ charges         &lt;chr&gt; "POSS MARIJ &lt;2OZ", "POSS MARIJ &lt;2OZ", "POSS MARIJ &lt;2OZ…
-$ offense_status  &lt;chr&gt; "ACTIVE", "ACTIVE", "ACTIVE", "ACTIVE", "ACTIVE", "ACT…
-$ case_status     &lt;chr&gt; NA, "ACTIVE", "ACTIVE", "ACTIVE", "ACTIVE", "CLEARED B…</code></pre>
+<pre><code>Rows: 62
+Columns: 7
+$ name           &lt;chr&gt; "Jesus Rodriguez", "Julian Carrasco", "Billy Massengale…
+$ race           &lt;chr&gt; "WH", "WH", "w", "WH", "WH", "w.", "B", "w", "WH", "w",…
+$ sex            &lt;chr&gt; "M", "M", "M", "M", "M", "M", "M", "F", "M", "M", "M", …
+$ address_arrest &lt;chr&gt; "us 87/ 287 79029.", "608 Elm St 79029", "396 Mitchell …
+$ date_arrest    &lt;chr&gt; "4/21/18", "7/22/18", "8/3/18", "8/20/18", "8/31/18", "…
+$ time_arrest    &lt;chr&gt; "11:21pm", "7:32am", "11:59pm", "7:10pm", "3:18am", "1:…
+$ charges        &lt;chr&gt; "Poss Marij &gt;4oz&lt;=5lbs", "Poss Marij u/2oz", "Poss Drug…</code></pre>
 </div>
 </div>
 </section>
 <section id="clean" class="level2">
 <h2 class="anchored" data-anchor-id="clean">Clean</h2>
-<p>Change datetime_arrest to datetime object. Get rid of columns officer, offense_status, case_status.</p>
+<p>Change date and time to correct types.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pecos_clean <span class="ot">&lt;-</span> pecos <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">datetime_arrest =</span> <span class="fu">mdy_hm</span>(datetime_arrest)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">select</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span>officer,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span>offense_status,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span>case_status</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>pecos_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>moore_clean <span class="ot">&lt;-</span> moore <span class="sc">|&gt;</span> <span class="fu">mutate</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">datetime_arrest =</span> <span class="fu">paste</span>(date_arrest,time_arrest),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">datetime_arrest =</span> <span class="fu">mdy_hm</span>(datetime_arrest)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">select</span> (<span class="sc">-</span>date_arrest, <span class="sc">-</span>time_arrest)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>moore_clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["datetime_arrest"],"name":[1],"type":["dttm"],"align":["right"]},{"label":["charge_desc"],"name":[2],"type":["chr"],"align":["left"]},{"label":["address_arrest"],"name":[3],"type":["chr"],"align":["left"]},{"label":["city_zip"],"name":[4],"type":["chr"],"align":["left"]},{"label":["charges"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"2018-01-15 10:47:00","2":"POSSESSION OF MARIJUANA","3":"300 S ROSS BOULEVARD","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-01-19 16:39:00","2":"TRAFFIC STOP/VIOLATION","3":"1200 S PLUM","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-01-20 07:11:00","2":"POSSESSION OF MARIJUANA","3":"2600 STATE HIGHWAY 17 HIGHWAY","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-01-24 12:59:00","2":"TRAFFIC STOP/VIOLATION","3":"814 E 10TH STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2019-01-12 16:01:00","2":"DISTURBANCE","3":"5TH & PLUM","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2020-01-10 18:54:00","2":"PCS  Theft of firearm","3":"172 RAUL FLOREZ BOULEVARD","4":"PECOS, TX 79772","5":"THEFT OF FIREARM  23a, THEFT OF FIREARM  23a, POSS CS PG 3 < 28G, POSS CS PG 1A <20AU, POSS MARIJ >2OZ<=4OZ"},{"1":"2020-01-26 01:21:00","2":"UNWANTED SUBJECT","3":"5204 S CEDAR","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2021-01-03 22:17:00","2":"POSSESSION OF MARIHUANA","3":"HACKBERRY AND F ST","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-02-07 15:27:00","2":"ASSAULT FAMILY VIOLENCE/ POSSESSION OF MARIJUANA","3":"708 S CEDAR STREET","4":"PECOS, TX 79772","5":"ASSAULT CAUSES BODILY INJURY, FAMILY VIOLENCE  13a, POSS MARIJ <2OZ"},{"1":"2018-02-17 16:05:00","2":"FIGHT/POSSESSION OF MARIJUANA","3":"1200 BLK S JOHNSON","4":"PECOS, TX 79772","5":"PROH WEAPON, SWITCHBLADE/KNUCKLES, POSS MARIJ <2OZ, EVADING ARREST DETENTION"},{"1":"2019-02-20 23:18:00","2":"DISTURBANCE","3":"100 W 1ST","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2020-02-13 11:53:00","2":"TRAFFIC STOP/VIOLATION","3":"VETERANS AND SCOTT","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2020-02-28 23:08:00","2":"SUSPICIOUS /UNWANTED VEHICLE","3":"1501 S CEDAR","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2022-02-15 15:25:00","2":"PUBLIC INTOXICATION","3":"2783 S CEDAR","4":"PECOS, TX 79772","5":"PUBLIC INTOXICATION, POSS MARIJ >4OZ<=5LBS"},{"1":"2018-03-03 16:31:00","2":"NARCOTICS","3":"1607 S PARK","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-03-07 15:54:00","2":"POSSESSION","3":"3RD & ROSS","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ, POSS CS PG 1 <1G"},{"1":"2018-03-07 15:58:00","2":"TRAFFIC","3":"300 BLK S ELM","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-03-16 12:18:00","2":"POSSESSION OF MARIJUANA","3":"500 BLK E 7TH","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-03-17 02:08:00","2":"FIGHT","3":"2409 S TOLIVER STREET","4":"PECOS, TX 79772","5":"TAMPER/FABRICATE PHYSICAL EVIDENCE, PROH SUB CORR FACIL-ATTEMPT, PUBLIC INTOXICATION, PROH WEAPON, SWITCHBLADE/KNUCKLES, POSS MARIJ <2OZ, POSS CS PG 1 <1G"},{"1":"2018-03-22 11:43:00","2":"WARRANT SERVICE","3":"2028 E EDDY STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ, EXECUTION OF CAPIAS WARRANT"},{"1":"2018-03-26 12:47:00","2":"TRAFFIC, VIOLATION/POSSESSION OF\\nMARIJUANA","3":"800 W 3RD STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-03-30 11:12:00","2":"POSSESSION OF MARIJUANA/TAMPERING W/\\nEVIDENCE/ WARRANT SERVICE","3":"2100 S CACTUS","4":"PECOS, TX 79772","5":"TAMPER/FABRICATE PHYS EVID, POSS MARIJ <2OZ, EXECUTION OF CAPIAS WARRANT"},{"1":"2019-03-03 13:26:00","2":"WELFARE CHECK","3":"924 S EDDY","4":"PECOS, TX 79772","5":"PUBLIC INTOXICATION, POSS MARIJ <2OZ"},{"1":"2019-03-20 12:36:00","2":"INFORMATION","3":"1201 S PARK STREET","4":"PECOS, TX 79772","5":"DEL CS/MARIJ TO MINOR"},{"1":"2019-03-31 14:28:00","2":"MISCELLANEOUS","3":"172 RAUL FLOREZ BOULEVARD","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-04-05 15:52:00","2":"NARCOTICS VIOLATION CALL","3":"4002 S CEDAR STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-04-13 13:08:00","2":"POSSESSION OF MARIJUANA/ HIGH SCHOOL STUDENTS","3":"1201 S PARK","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-04-20 23:53:00","2":"VEHICLE DRIVING COMPLAINT","3":"W 3RD","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-04-22 06:09:00","2":"DISTURBANCE","3":"805 S HICKORY STREET","4":"PECOS, TX 79772","5":"ASSAULT CAUSES BODILY INJURY, FAMILY VIOLENCE  13a, POSS MARIJ <2OZ, EXECUTION OF CAPIAS WARRANT"},{"1":"2018-04-23 12:09:00","2":"TRAFFIC STOP/VIOLATION","3":"2232 S EDDY STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-04-27 17:18:00","2":"TRAFFIC STOP/VIOLATION","3":"400 W 12TH STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-04-29 14:38:00","2":"TRAFFIC ACCIDENT","3":"800 PALMER","4":"PECOS, TX 79772","5":"POSS CS PG 3 < 28G, POSS MARIJ <2OZ"},{"1":"2019-04-03 15:30:00","2":"TRAFFIC STOP/VIOLATION","3":"EDDY AND YUCCA","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ, POSS CS PG 1 <1G, POSS CS PG 2 < 1G"},{"1":"2019-04-05 02:54:00","2":"FIGHT/NARCOTICS","3":"203 S WALNUT STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2019-04-15 19:33:00","2":"AMBULANCE CALL","3":"1926 W ADAMS","4":"PECOS, TX 79772","5":"POSS MARIJ >2OZ<=4OZ"},{"1":"2018-05-07 22:33:00","2":"TRAFFIC ACCIDENT","3":"1313 S CEDAR STREET","4":"PECOS, TX 79772","5":"DRIVING WHILE INTOXICATED, POSS MARIJ <2OZ"},{"1":"2018-05-10 00:14:00","2":"PEDESTRIAN STOP/NARCOTICS","3":"7TH AND MESQUITE","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-05-11 07:02:00","2":"UNWANTED SUBJECT / POSSESSION OF MARIJUANA","3":"1701 W JACKSON BOULEVARD","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-05-11 09:42:00","2":"SUSPICIOIUS/ UNWANTED","3":"600 E 5TH STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-05-21 17:08:00","2":"DISTURBANCE","3":"1802 S OLIVE STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-05-21 18:09:00","2":"FIGHT","3":"505 W 3RD STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ, DISORDERLY CONDUCT"},{"1":"2018-05-22 19:19:00","2":"FOLLOW UP","3":"1001 E 11TH STREET APARTMENT B","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2020-05-08 14:40:00","2":"INFORMATION","3":"1516 COWAN","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2020-05-26 00:28:00","2":"TRAFFIC STOP/VIOLATION","3":"2ND AND WILLOW","4":"PECOS, TX 79772","5":"POSS CS PG 3 < 28G, POSS MARIJ <2OZ"},{"1":"2018-06-10 04:54:00","2":"WELFARE CHECK","3":"2232 S EDDY STREET","4":"PECOS, TX 79772","5":"PROH SUB CORR, FACIL-ALCOHOL/DRUG/PHONE/TOBACCO, PUBLIC INTOXICATION, POSS MARIJ <2OZ, POSS CS PG 1 <1G"},{"1":"2018-06-22 07:01:00","2":"SUSPICIOUS /UNWANTED VEHICLE","3":"1749 W JACKSON BOULEVARD","4":"PECOS, TX 79772","5":"UNAUTH USE OF VEHICLE  270, POSS MARIJ <2OZ"},{"1":"2018-06-25 23:15:00","2":"UNWANTED SUBJECT/POM","3":"4002 S CEDAR STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2019-06-05 02:45:00","2":"TRAFFIC STOP/VIOLATION","3":"NA","4":"PECOS, TX 79772","5":"POSS DANGEROUS DRUG, POSS MARIJ <2OZ"},{"1":"2019-06-28 08:10:00","2":"TRAFFIC STOP/VIOLATION","3":"VETERANS AND TEXAS","4":"PECOS, TX 79772","5":"POSS MARIJ >2OZ<=4OZ"},{"1":"2018-07-06 22:48:00","2":"DISTURBANCE","3":"1802 S OLIVE STREET","4":"PECOS, TX 79772","5":"ASSAULT CAUSES BODILY INJURY, FAMILY VIOLENCE  13a, ASSAULT FAM/HOUSE MEM IMPEDE BREATH/CIRCULAT  13a, POSS MARIJ <2OZ"},{"1":"2018-07-14 21:57:00","2":"BURGLARY OF A VEHICLE","3":"141 S FRONTAGE ROAD","4":"PECOS, TX 79772","5":"ROBBERY, THEFT OF FIREARM  23a, BURGLARY OF VEHICLE  23f, POSS MARIJ <2OZ"},{"1":"2018-08-20 16:00:00","2":"POSSESSION OF MARIJUANA","3":"8TH AND OLEANDER","4":"PECOS, TX 79772","5":"TAMPER/FABRICATE PHYS EVID W/INTENT TO IMPAIR  290, TAMPER/FABRICATE PHYS EVID W/INTENT TO IMPAIR  290, POSS DANGEROUS DRUG, POSS MARIJ <2OZ"},{"1":"2018-08-22 13:46:00","2":"BURGLARY OF A HABITATION","3":"1200 E 3RD STREET","4":"PECOS, TX 79772","5":"BURGLARY OF HABITATION, PROH WEAPON, SWITCHBLADE/KNUCKLES, POSS MARIJ <2OZ"},{"1":"2018-08-27 12:31:00","2":"TRAFFIC STOP/VIOLATION","3":"4101 S CEDAR STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2019-08-01 02:31:00","2":"TRAFFIC STOP/VIOLATION","3":"6TH & CHERRY","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2019-08-08 10:28:00","2":"TRAFFIC STOP/VIOLATION","3":"2028 E EDDY STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ, SEX OFFENDERS DUTY TO REGISTER 10YRS"},{"1":"2019-08-13 23:21:00","2":"TRAFFIC ACCIDENT","3":"3RD  & CEDAR","4":"PECOS, TX 79772","5":"POSS DANGEROUS DRUG, POSS DANGEROUS DRUG, DRIVING WHILE INTOXICATED/OPEN ALCH CONTAINER, POSS MARIJ <2OZ"},{"1":"2019-08-18 00:11:00","2":"VEHICLE DRIVING COMPLAINT","3":"2232 S EDDY STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2020-08-02 23:34:00","2":"TRAFFIC STOP/VIOLATION","3":"WALNUT AND 3RD","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ, POSS CS PG 2 >= 4G<400G, POSS CS PG 2 >= 4G<400G, EVADING ARREST DET W/VEH"},{"1":"2018-09-06 00:27:00","2":"UNWANTED SUBJECT","3":"5202 S CEDAR","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2018-09-14 20:26:00","2":"TRAFFIC STOP/VIOLATION","3":"LINCOLN & EDDY","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2019-09-18 17:02:00","2":"DISTURBANCE","3":"2203 W 3RD","4":"PECOS, TX 79772","5":"UNL CARRYING WEAPON, POSS MARIJ <2OZ"},{"1":"2019-10-10 14:51:00","2":"TRAFFIC STOP/VIOLATION","3":"C AND OAK","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2020-10-07 06:44:00","2":"TRAFFIC STOP/VIOLATION","3":"14TH & CEDAR","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2020-10-20 22:13:00","2":"TRAFFIC STOP/VIOLATION","3":"2ND CEDAR STREET","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2019-11-17 01:02:00","2":"WELFARE CHECK","3":"100 E PINEHURST","4":"PECOS, TX 79772","5":"POSS MARIJ >4OZ<=5LBS, POSS CS PG 2 >= 4G<400G, POSS CS PG 2 >= 4G<400G"},{"1":"2019-11-27 12:44:00","2":"TRAFFIC STOP/VIOLATION","3":"300 DAGGETT","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ, EXPIRED REGISTRATION, TAMPER/FABRICATE PHYSCIAL EVIDENCE (90Z)"},{"1":"2020-11-01 10:42:00","2":"WELFARE CHECK/PUBLIC INTOX OTHER THAN ALCOHOL","3":"401 N CEDAR","4":"PECOS, TX 79772","5":"PUBLIC INTOXICATION, POSS MARIJ <2OZ"},{"1":"2019-12-15 00:00:00","2":"NA","3":"1604 W WASHINGTON","4":"PECOS, TX 79772","5":"POSS MARIJ <2OZ"},{"1":"2022-12-20 12:40:00","2":"TRAFFIC STOP/VIOLATION","3":"2232 S EDDY STREET","4":"PECOS, TX 79772","5":"POSS MARIJ >4OZ<=5LBS"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["race"],"name":[2],"type":["chr"],"align":["left"]},{"label":["sex"],"name":[3],"type":["chr"],"align":["left"]},{"label":["address_arrest"],"name":[4],"type":["chr"],"align":["left"]},{"label":["charges"],"name":[5],"type":["chr"],"align":["left"]},{"label":["datetime_arrest"],"name":[6],"type":["dttm"],"align":["right"]}],"data":[{"1":"Jesus Rodriguez","2":"WH","3":"M","4":"us 87/ 287 79029.","5":"Poss Marij >4oz<=5lbs","6":"2018-04-21 23:21:00"},{"1":"Julian Carrasco","2":"WH","3":"M","4":"608 Elm St 79029","5":"Poss Marij u/2oz","6":"2018-07-22 07:32:00"},{"1":"Billy Massengale","2":"w","3":"M","4":"396 Mitchell 79036","5":"Poss Drug Para","6":"2018-08-03 23:59:00"},{"1":"Cesar Ortiz","2":"WH","3":"M","4":"County Rd R 79029","5":"Poss Marij >4oz<=5lbs","6":"2018-08-20 19:10:00"},{"1":"Dominique Sosa","2":"WH","3":"M","4":"us W 87 79029","5":"Poss Marij >4oz<=5lbs","6":"2018-08-31 03:18:00"},{"1":"Matthew Cole","2":"w.","3":"M","4":"N Hunt Rd 79029","5":"Poss Marij >2oz<4oz","6":"2018-09-23 13:20:00"},{"1":"Tmmnie Britton","2":"B","3":"M","4":"N Hunt Rd 79029.","5":"Poss Marij >2oz<4oz","6":"2018-09-23 13:20:00"},{"1":"Jaysona Gregg","2":"w","3":"F","4":"FM 152 79029","5":"Poss Marij u/2oz","6":"2018-10-04 02:19:00"},{"1":"Abraham Delatorre","2":"WH","3":"M","4":"100 Oak 79029","5":"Poss Marij >4oz<=5lbs","6":"2018-12-20 06:30:00"},{"1":"Shawn Fuller","2":"w","3":"M","4":"US Hwy 87 79029","5":"Poss Marij u/2oz","6":"2018-12-25 15:36:00"},{"1":"Robert Kendrick","2":"w","3":"M","4":"W87 /287 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-01-21 21:27:00"},{"1":"Shay-Lah Wright","2":"B","3":"F","4":"N US Hwy287 79029","5":"Poss Marij >2oz<4oz","6":"2019-03-14 15:31:00"},{"1":"Jake Locke","2":"w","3":"M","4":"305 W 1st 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-05-04 13:15:00"},{"1":"Mathew Harrison","2":"w","3":"M","4":"305 W 1st 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-05-04 13:15:00"},{"1":"Chrissy Massey","2":"w","3":"M","4":"305 W 1st 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-05-04 13:15:00"},{"1":"Jerred Johnson","2":"w","3":"M","4":"305 W 1st 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-05-04 13:15:00"},{"1":"Braylon Chandler","2":"B","3":"M","4":"S287 Weigh Station","5":"Poss Marij >4oz<=5lbs","6":"2022-07-03 08:22:00"},{"1":"Alexis Jinkins","2":"w","3":"F","4":"US Hwy 97 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-07-07 01:12:00"},{"1":"Gloria Robles","2":"WH","3":"F","4":"US Hwy 87 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-07-07 01:12:00"},{"1":"Michael McCoy","2":"w","3":"M","4":"US Hwy 87 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-07-07 01:12:00"},{"1":"Juan Loya","2":"WH","3":"M","4":"US Hwy 87 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-07-07 01:12:00"},{"1":"Nivek McCollum","2":"w","3":"M","4":"W 87/2589 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-07-08 13:49:00"},{"1":"Brianna Wilder","2":"w","3":"F","4":"115 W 1st 79029","5":"Poss Marij >5lbs<=50lbs","6":"2019-07-14 13:43:00"},{"1":"Zachary Williams","2":"w","3":"M","4":"200 Blk E 1st 79029","5":"Poss Marij >4oz<=5 lbs","6":"2019-07-29 21:18:00"},{"1":"Megan Crisp","2":"w","3":"M","4":"200 Blk E l st 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-07-29 21:08:00"},{"1":"Joe West brook","2":"w","3":"M","4":"200 Blk E l st 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-07-29 21:18:00"},{"1":"Darrien Lashbrook","2":"w","3":"M","4":"201 W 1st 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-08-20 15:02:00"},{"1":"Jopaul Scroggins","2":"w","3":"M","4":"201 W I st 79029","5":"Poss Marij >4oz<=5 lbs","6":"2019-08-20 15:02:00"},{"1":"Garrett Carter","2":"w","3":"M","4":"400 Blk E 1st 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-08-22 18:56:00"},{"1":"Bradley Beckstead","2":"w","3":"M","4":"1712 S Dumas 79029","5":"Poss Marij >5lbs<=50lbs","6":"2019-08-23 15:43:00"},{"1":"Teresa Sowell","2":"w","3":"F","4":"US W87 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-09-06 16:18:00"},{"1":"Nolan Clayton","2":"B","3":"M","4":"us 287 79029","5":"Del Marij 114oz - 5lbs","6":"2019-09-07 15:27:00"},{"1":"Kenneth Bronson","2":"w","3":"M","4":"324 S Dumas 79029","5":"Poss Marij >4oz<=5lbs","6":"2019-11-21 16:46:00"},{"1":"James Cole","2":"w","3":"M","4":"US Hwy 87 79029","5":"Del Marij 114oz - 5lbs","6":"2019-12-28 14:38:00"},{"1":"Nancy Hines","2":"w","3":"M","4":"US HWY 87 79029","5":"Poss Marij >4oz<=5lbs","6":"2020-02-17 18:54:00"},{"1":"Willie Sarmiento","2":"WH","3":"M","4":"100 Blk E 4th 79029","5":"Poss Marij u/2oz","6":"2022-02-22 20:28:00"},{"1":"Brady Maravilla","2":"w","3":"M","4":"us 287 79029","5":"Poss Marij u/2oz","6":"2020-03-12 22:24:00"},{"1":"Antonio Kirkland","2":"B","3":"M","4":"2589/Hwy 87 79029","5":"Poss Marij >4oz<=5lbs","6":"2020-06-28 02:18:00"},{"1":"Emily Mckiernan","2":"w","3":"F","4":"2589/Hwy 87 79029","5":"Poss Marij >4oz<=5lbs","6":"2020-06-28 02:18:00"},{"1":"Christopher Parrish","2":"B","3":"M","4":"Hwy 287 /Rd R 79029","5":"Poss Marij >4oz<=5lbs","6":"2020-07-01 20:49:00"},{"1":"Elwin Cardenas","2":"WH","3":"M","4":"Hwy 287 /Rd R 79029","5":"Poss Marij >4oz<=5lbs","6":"2020-07-01 20:49:00"},{"1":"J ordyn Kamil","2":"w","3":"F","4":"1000 Blk E 1st 79029","5":"Poss Marij >2oz<4oz","6":"2020-07-18 13:13:00"},{"1":"John Von-Kennel","2":"w","3":"M","4":"Hwy 287/FMI 19 79029","5":"Poss Marij >4oz<=5lbs","6":"2020-07-20 21:10:00"},{"1":"Beronica Chavez","2":"WH","3":"F","4":"Lollis&Birch","5":"Poss Marij u/2oz","6":"2020-08-10 12:06:00"},{"1":"Brittany Hensely","2":"B","3":"F","4":"US Hwy 287 79029","5":"Poss Marij >4oz<=5lbs","6":"2020-09-17 18:40:00"},{"1":"Sky Nguyen","2":"A","3":"F","4":"US Hwy 287 79029","5":"Poss Marij u/2oz","6":"2020-09-17 18:40:00"},{"1":"Sheik Kamara","2":"B","3":"M","4":"715 E 1st 79029","5":"Poss Marij >4oz<=5lbs","6":"2022-09-27 08:08:00"},{"1":"John Ryan","2":"w","3":"M","4":"715 E 1st 79029","5":"Poss Marij >4oz<=5lbs","6":"2022-09-27 08:08:00"},{"1":"Jonathon Ventura","2":"WH","3":"M","4":"S 287 79029","5":"Poss Marij >5lbs<=50lbs","6":"2020-10-01 21:27:00"},{"1":"Raul Garibay","2":"WH","3":"M","4":"Cnty Rd E 79029","5":"Poss Marij U/2oz","6":"2020-11-26 22:46:00"},{"1":"OD Matthews","2":"B","3":"M","4":"US Hwy 287 79029","5":"Poss Marij >2oz<4oz","6":"2020-02-15 02:34:00"},{"1":"Thinh Than","2":"A","3":"M","4":"us 87/ 287 79029","5":"Poss Marij u/2oz","6":"2021-01-13 02:49:00"},{"1":"Shana Crochet","2":"w","3":"F","4":"403 N Dumas 79029","5":"Poss Marij >4oz<=5 lbs","6":"2021-03-08 21:36:00"},{"1":"Miguel Zubia","2":"WH","3":"M","4":"TX 152/FM1284 79029","5":"Poss Marij >5lbs<=50lbs","6":"2021-03-31 21:24:00"},{"1":"David Zubia","2":"WH","3":"M","4":"TX 152/FM1284 79029","5":"Poss Marij >5lbs<=50lbs","6":"2021-03-31 21:24:00"},{"1":"Matthew Mew","2":"B","3":"M","4":"W87 /Cnty Rd 8 79029","5":"Poss Marij >4oz<=5lbs","6":"2021-05-21 00:58:00"},{"1":"Donald Gray","2":"w","3":"M","4":"us 287 79013","5":"Poss Marij >4oz<=5lbs","6":"2021-08-03 16:45:00"},{"1":"Israel Puga","2":"WH","3":"M","4":"N 1st St 79029","5":"Poss Marij u/2oz","6":"2022-01-29 00:10:00"},{"1":"Aroldo Garcia","2":"WH","3":"M","4":"US Hwy 87 79029","5":"Poss Marij >4oz<=5lbs","6":"2022-03-13 16:29:00"},{"1":"Zackery Boggess","2":"w","3":"M","4":"US Hwy 87 79029","5":"Poss Marij >4oz<=5lbs","6":"2022-03-13 16:29:00"},{"1":"Adonica Garcia","2":"WH","3":"M","4":"US Hwy 87 79029","5":"Poss Marij >4oz<=5lbs","6":"2022-03-13 16:29:00"},{"1":"Robert Azure","2":"WH","3":"M","4":"5842 US Hwy 79029","5":"Poss Marij >4oz<=5lbs","6":"2022-05-09 14:44:00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -303,7 +354,7 @@ $ case_status     &lt;chr&gt; NA, "ACTIVE", "ACTIVE", "ACTIVE", "ACTIVE", "CLEAR
 <section id="export" class="level2">
 <h2 class="anchored" data-anchor-id="export">Export</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pecos_clean <span class="sc">|&gt;</span> <span class="fu">write_rds</span>(<span class="st">"data-processed/01-PecosCity.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>moore_clean <span class="sc">|&gt;</span> <span class="fu">write_rds</span>(<span class="st">"data-processed/01-MooreCounty.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
