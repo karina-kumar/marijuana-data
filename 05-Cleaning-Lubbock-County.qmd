@@ -1,0 +1,47 @@
+---
+title: "Cleaning - Lubbock County"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+lubbock <- read_excel("data-raw/LubbockCounty.xlsx")
+
+lubbock |> glimpse()
+```
+
+## Cleaning
+
+Just removing first two columns and making dates actual date types. 
+
+```{r}
+lubbock_clean <- lubbock |> select( 
+  -"1",
+  -"2"
+) |> mutate(
+  date_arrest = ymd(date_arrest),
+  date_released = ymd(date_released)
+)
+
+lubbock_clean
+```
+
+## Export
+
+```{r}
+lubbock_clean |> write_rds("data-processed/01-LubbockCounty.rds")
+```
+
+

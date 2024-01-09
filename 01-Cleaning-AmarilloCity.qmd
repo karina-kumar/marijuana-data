@@ -1,0 +1,67 @@
+---
+title: "Cleaning - Amarillo City"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import Excel Sheet
+
+First, we will start with Amarillo City data to test out the process. 
+
+```{r amarillo-read}
+amarillo <- read_excel("data-raw/AmarilloCity.xlsx")
+
+amarillo
+```
+
+It worked! read_excel() is the best!
+
+## Clean up columns
+
+Now I want to clean up the columns so the date and times are separate and there is no extra columns. 
+First change the date/time to a date type.
+
+```{r chanage-date}
+amarillo_date <- amarillo |> mutate (
+  datetime_arrest = mdy_hm(datetime_arrest)
+)
+
+amarillo_date |> glimpse()
+```
+
+Done!
+
+Now I want to get rid of the Incident #'s column and make the date and time separate columns.
+
+```{r}
+amarillo_clean <- amarillo_date |>  select(
+  -'Incident #s'
+)
+
+amarillo_clean |> glimpse()
+
+```
+
+How do I get the date separated??? Try pasting the separate pieces together. 
+
+
+
+## Export
+
+```{r}
+amarillo_clean |> write_rds("data-processed/01-AmarilloCity.rds")
+```
+
+
+
+
+
+

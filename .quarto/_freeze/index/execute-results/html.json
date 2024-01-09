@@ -1,0 +1,14 @@
+{
+  "hash": "a7c8e22d7b8800249ae8d7cf50f14c83",
+  "result": {
+    "markdown": "---\ntitle: \"Testing Quarto\"\n---\n\n\nThis is a Quarto website.\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n\n## My upper dating age\n\nThe following section details the [socially-acceptable maximum age of anyone you should date](https://www.psychologytoday.com/us/blog/meet-catch-and-keep/201405/who-is-too-young-or-too-old-you-date).\n\nThe math works like this:\n\n- Take your age\n- subtract 7\n- Double the result \n\n::: {.cell}\n\n```{.r .cell-code}\nage <- 57\n(age - 7) * 2\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 100\n```\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n(age - 7) / 2\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 25\n```\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

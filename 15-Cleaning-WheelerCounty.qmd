@@ -1,0 +1,51 @@
+---
+title: "Cleaning - Wheeler County"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+wheeler <- read_excel("data-raw/WheelerCounty.xlsx")
+
+wheeler |> glimpse()
+```
+
+## Clean
+
+```{r}
+wheeler_clean <- wheeler |> mutate(
+  date_arrest = dmy_hms(date_arrest)
+) |> select(
+  -inc_index,
+  -incident_no,
+  -other_no,
+  -event_no,
+  -time_arrest,
+  -offense,
+  -date_1,
+  -suffix,
+  -geox,
+  -geoy,
+)
+wheeler_clean
+```
+
+## Export
+
+```{r}
+wheeler_clean |> write_rds("data-processed/01-WheelerCounty.rds")
+```
+
+

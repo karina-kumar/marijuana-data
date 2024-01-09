@@ -1,0 +1,50 @@
+---
+title: "Cleaning - Howard County"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+howard <- read_excel("data-raw/HowardCounty.xls")
+
+howard |> glimpse()
+```
+
+## Clean Columns 
+
+putting together the date and time and getting rid of the blank column
+
+```{r}
+howard_col <- howard |> mutate(
+  datetime_arrest = paste(date_arrest, paste(hour(time_arrest), minute(time_arrest), second(time_arrest), sep = ":"))
+)
+
+howard_clean <- howard_col |> mutate(
+  datetime_arrest = ymd_hms(datetime_arrest)
+) |> select(
+  -date_arrest,
+  -time_arrest,
+  -...4
+)
+
+howard_clean
+```
+
+## Export
+
+```{r}
+howard_clean |> write_rds("data-processed/01-HowardCounty.rds")
+```
+

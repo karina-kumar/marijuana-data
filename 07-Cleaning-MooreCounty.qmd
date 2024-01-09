@@ -1,0 +1,43 @@
+---
+title: "Cleaning - Moore County"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+moore <- read_csv("data-raw/MooreCounty.csv")
+
+moore |> glimpse()
+```
+
+## Clean
+
+Change date and time to correct types.
+
+```{r}
+moore_clean <- moore |> mutate(
+  datetime_arrest = paste(date_arrest,time_arrest),
+  datetime_arrest = mdy_hm(datetime_arrest)
+) |> select (-date_arrest, -time_arrest)
+
+moore_clean
+```
+
+## Export
+
+```{r}
+moore_clean |> write_rds("data-processed/01-MooreCounty.rds")
+```
+

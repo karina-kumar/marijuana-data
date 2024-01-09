@@ -1,0 +1,45 @@
+---
+title: "Cleaning - Midland City"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+midland <- read_excel("data-raw/MidlandCity.xlsx")
+
+midland |> glimpse()
+```
+
+## Select Columns
+
+```{r}
+midland_clean <- midland |> select(
+  -officer,
+  -reportarea,
+  -arr_chrg,
+  -chrg_cnt,
+  -ucr_code,
+  -ibr_code,
+  -name_id
+)
+
+midland_clean
+```
+
+## Export
+```{r}
+midland_clean |> write_rds("data-processed/01-MidlandCity.rds")
+```
+

@@ -1,0 +1,44 @@
+---
+title: "Cleaning - Monahans City"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+monahans <- read_excel("data-raw/MonahansCity.xls")
+
+monahans |> glimpse()
+```
+
+## Clean
+
+Change date_arrest to a date type and split race_sex column into two. 
+
+```{r}
+monahans_clean <- monahans |> mutate(
+  race = substr(race_sex, 1, 1),
+  sex = substr(race_sex, 3, 3),
+  date_arrest = mdy(date_arrest)
+  ) |> select( -race_sex)
+
+monahans_clean
+```
+
+
+## Export
+
+```{r}
+monahans_clean |> write_rds("data-processed/01-MonahansCity.rds")
+```

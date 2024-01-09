@@ -1,0 +1,31 @@
+---
+title: "Cleaning - Nolan County"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+nolan <- read_excel("data-raw/NolanCounty.xlsx")
+
+nolan |> glimpse()
+```
+## Export
+
+Nothing to clean, now we export. 
+
+```{r}
+nolan |> write_rds("data-processed/01-NolanCounty.rds")
+```
+

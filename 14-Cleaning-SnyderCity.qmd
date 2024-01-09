@@ -1,0 +1,38 @@
+---
+title: "Cleaning - Snyder City"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+snyder <- read_excel("data-raw/SnyderCity.xls")
+
+snyder |> glimpse()
+```
+
+## Clean
+
+```{r}
+snyder_clean <- snyder |> mutate(
+  datetime_arrest = mdy_hm(datetime_arrest)
+)
+snyder_clean
+```
+
+## Export 
+
+```{r}
+snyder_clean |> write_rds("data-processed/01-SnyderCity.rds")
+```

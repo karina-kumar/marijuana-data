@@ -1,0 +1,42 @@
+---
+title: "Cleaning - Slaton City"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+slaton <- read_excel("data-raw/SlatonCity.xls")
+
+slaton |> glimpse()
+```
+
+## Clean
+
+Just need to change dates to dttm types. 
+
+```{r}
+slaton_clean <- slaton |> mutate(
+  date_arrest = mdy(date_arrest),
+  DOB = mdy(DOB))
+
+slaton_clean
+```
+
+## Export 
+
+```{r}
+slaton_clean |> write_rds("data-processed/01-SlatonCity.rds")
+```
+

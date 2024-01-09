@@ -1,0 +1,62 @@
+{
+  "index.qmd": {
+    "index.html": "bca6100f"
+  },
+  "about.qmd": {
+    "about.html": "378e6b15"
+  },
+  "01-Cleaning.qmd": {
+    "01-Cleaning.html": "d5985457"
+  },
+  "02-Cleaning-Carson-County.qmd": {
+    "02-Cleaning-Carson-County.html": "feb129f6"
+  },
+  "03-Cleaning-Howard.qmd": {
+    "03-Cleaning-Howard.html": "051b6ab4"
+  },
+  "04-Cleaning-MidlandCity.qmd": {
+    "04-Cleaning-MidlandCity.html": "5da15abd"
+  },
+  "05-Cleaning-Lubbock-County.qmd": {
+    "05-Cleaning-Lubbock-County.html": "eb589aac"
+  },
+  "Cleaning.qmd": {
+    "Cleaning.html": "ebe353f4"
+  },
+  "06-Cleaning-MonahansCity.qmd": {
+    "06-Cleaning-MonahansCity.html": "566c9049"
+  },
+  "09-Cleaning-OdessaCity.qmd": {
+    "09-Cleaning-OdessaCity.html": "f7449a82"
+  },
+  "10-Cleaning-PecosCity.qmd": {
+    "10-Cleaning-PecosCity.html": "821b472c"
+  },
+  "14-Cleaning-SnyderCity.qmd": {
+    "14-Cleaning-SnyderCity.html": "0f8a9f67"
+  },
+  "08-Cleaning-NolanCounty.qmd": {
+    "08-Cleaning-NolanCounty.html": "e6cf3519"
+  },
+  "07-Cleaning-MooreCounty.qmd": {
+    "07-Cleaning-MooreCounty.html": "7fff5b33"
+  },
+  "11-Cleaning-PlainviewCity.qmd": {
+    "11-Cleaning-PlainviewCity.html": "4dca08e9"
+  },
+  "12-Cleaning-RandallCounty.qmd": {
+    "12-Cleaning-RandallCounty.html": "60d80f38"
+  },
+  "13-Cleaning-SlatonCity.qmd": {
+    "13-Cleaning-SlatonCity.html": "6cfd3d35"
+  },
+  "15-Cleaning-WheelerCounty.qmd": {
+    "15-Cleaning-WheelerCounty.html": "9794011c"
+  },
+  "02-analysis.qmd": {
+    "02-analysis.html": "7058db29"
+  },
+  "01-Cleaning-AmarilloCity.qmd": {
+    "01-Cleaning-AmarilloCity.html": "e024fd1a"
+  }
+}

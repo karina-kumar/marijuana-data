@@ -1,0 +1,51 @@
+---
+title: "Cleaning - Carson County"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Import the excel sheet
+
+```{r}
+carson <- read_excel("data-raw/CarsonCounty.xlsx", col_types = c("date","guess","guess","date", "guess", "guess", "guess", "guess", "skip"))
+
+carson
+```
+
+I had to import the data with col_types described so that the date and time didn't mess up badly. 
+
+Now I want to combine the date and time into one column and make it Dttm.
+
+## Rearranging Columns
+
+```{r}
+carson_col <- carson |> mutate(
+  datetime_arrest = paste(date_arrest, paste(hour(time_arrest), minute(time_arrest), second(time_arrest), sep = ":"))
+)
+
+carson_clean <- carson_col |> mutate(
+  datetime_arrest = ymd_hms(datetime_arrest)
+) |> select(
+  -date_arrest,
+  -time_arrest
+)
+
+carson_clean
+```
+
+## Export
+
+```{r}
+carson_clean |> write_rds("data-processed/01-CarsonCounty.rds")
+```
+

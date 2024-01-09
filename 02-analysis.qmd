@@ -1,0 +1,202 @@
+---
+title: "Analysis"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import
+
+Read in all the cleaned data from cities/counties. 
+
+```{r}
+amarillo <- read_rds("data-processed/01-AmarilloCity.rds")
+carson <- read_rds("data-processed/01-CarsonCounty.rds")
+howard <- read_rds("data-processed/01-HowardCounty.rds")
+midland <- read_rds("data-processed/01-MidlandCity.rds")
+lubbock <- read_rds("data-processed/01-LubbockCounty.rds")
+monahans <- read_rds("data-processed/01-MonahansCity.rds")
+moore <- read_rds("data-processed/01-MooreCounty.rds")
+nolan <- read_rds("data-processed/01-NolanCounty.rds")
+odessa <- read_rds("data-processed/01-OdessaCity.rds")
+pecos <- read_rds("data-processed/01-PecosCity.rds")
+plainview <- read_rds("data-processed/01-PlainviewCity.rds")
+randall <- read_rds("data-processed/01-RandallCounty.rds")
+slaton <- read_rds("data-processed/01-SlatonCity.rds")
+snyder <- read_rds("data-processed/01-SnyderCity.rds")
+wheeler <- read_rds("data-processed/01-WheelerCounty.rds")
+
+```
+
+## Nolan County
+
+```{r}
+nolan_age <- nolan |> group_by(age) |> 
+  summarize(appearances = n()) |> 
+  arrange(desc(appearances))
+
+nolan_age
+
+nolan_sex <- nolan |> group_by(sex) |> 
+  summarize(appearances = n())
+
+nolan_sex
+
+nolan_race <- nolan |> group_by(race) |> 
+  summarize(appearances = n())
+
+nolan_race
+
+```
+
+## Plainview City
+
+```{r}
+plainview_age <- plainview |> group_by(age) |> 
+  summarize(appearances = n()) |> 
+  arrange(desc(appearances))
+plainview_age
+
+plainview_sex <- plainview |> group_by(sex) |> 
+  summarize(appearances = n())
+plainview_sex
+
+plainview_race <- plainview |> group_by(race) |> 
+  summarize(appearances = n())
+plainview_race
+
+```
+
+## Slaton City
+
+```{r}
+slaton_sex <- slaton |> group_by(sex) |> 
+  summarize(appearances = n())
+slaton_sex
+
+slaton_race <- slaton |> group_by(race) |> 
+  summarize(appearances = n())
+slaton_race
+  
+```
+
+## Carson County
+
+```{r}
+carson_age <- carson |> group_by(age) |> 
+  summarize(appearances = n()) |> 
+  arrange(desc(appearances))
+carson_age
+
+carson_sex <- carson |> group_by(sex) |> 
+  summarize(appearances = n())
+carson_sex
+
+carson_race <- carson |> group_by(race) |> 
+  summarize(appearances = n())
+carson_race
+
+```
+
+## Howard County
+
+```{r}
+howard_age <- howard |> group_by(age) |> 
+  summarize(appearances = n()) |> 
+  arrange(desc(appearances))
+howard_age
+
+howard_sex <- howard |> group_by(sex) |> 
+  summarize(appearances = n())
+howard_sex
+
+```
+
+## Midland City
+
+```{r}
+midland_age <- midland |> group_by(age) |> 
+  summarize(appearances = n()) |> 
+  arrange(desc(appearances))
+midland_age
+
+midland_sex <- midland |> group_by(sex) |> 
+  summarize(appearances = n())
+midland_sex
+
+midland_race <- midland |> group_by(race) |> 
+  summarize(appearances = n())
+midland_race
+```
+
+## Monahans City
+
+```{r}
+monahans_age <- monahans |> group_by(age) |> 
+  summarize(appearances = n()) |> 
+  arrange(desc(appearances))
+monahans_age
+
+monahans_sex <- monahans |> group_by(sex) |> 
+  summarize(appearances = n())
+monahans_sex
+
+monahans_race <- monahans |> group_by(race) |> 
+  summarize(appearances = n())
+monahans_race
+```
+
+## Moore County
+
+```{r}
+
+moore_sex <- moore |> group_by(sex) |> 
+  summarize(appearances = n())
+moore_sex
+
+moore_race <- moore |> group_by(race) |> 
+  summarize(appearances = n())
+moore_race
+```
+
+## Randall County
+
+```{r}
+randall_age <- randall |> group_by(age) |> 
+  summarize(appearances = n()) |> 
+  arrange(desc(appearances))
+randall_age
+
+randall_sex <- randall |> group_by(sex) |> 
+  summarize(appearances = n())
+randall_sex
+
+randall_race <- randall |> group_by(race) |> 
+  summarize(appearances = n())
+randall_race
+```
+
+## Odessa City
+
+```{r}
+odessa_race <- odessa |> group_by(race) |> 
+  summarize(appearances = n()) |> 
+  arrange(desc(appearances))
+odessa_race
+
+odessa_sex <- odessa |> group_by(sex) |> 
+  summarize(appearances = n())
+odessa_sex
+
+odessa_ethnicity <- odessa |> group_by(ethnicity) |> 
+  summarize(appearances = n())
+odessa_ethnicity
+```
+

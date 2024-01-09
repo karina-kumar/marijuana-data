@@ -1,0 +1,44 @@
+---
+title: "Cleaning - Odessa City"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+odessa <- read_excel("data-raw/OdessaCity.xlsx")
+
+odessa |> glimpse()
+```
+
+## Clean
+
+Need to change date_arrest to date type. Need to get rid of extra words in race and sex. And fet rid of Case No altogether. 
+
+```{r}
+odessa_clean <- odessa |> mutate(
+  date_arrest = mdy(date_arrest),
+  race = substr(race, 1, 1),
+  sex = substr(sex, 1, 1)
+) |> select(-"Case No")
+
+odessa_clean
+```
+
+## Export
+
+```{r}
+odessa_clean |> write_rds("data-processed/01-OdessaCity.rds")
+```
+

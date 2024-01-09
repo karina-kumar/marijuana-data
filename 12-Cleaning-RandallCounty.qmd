@@ -1,0 +1,49 @@
+---
+title: "Cleaning - Randall County"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+randall <- read_excel("data-raw/RandallCounty.xlsx")
+
+randall |> glimpse()
+```
+
+## Clean
+
+Get rid of extra columns and make date_arrest and time_arrest into one column. 
+
+```{r}
+randall_clean <- randall |> mutate(
+  datetime_arrest = paste(date_arrest,substr(time_arrest,12,19)),
+  datetime_arrest = ymd_hms(datetime_arrest)
+) |> select(
+  -"SO #",
+  -date_arrest,
+  -time_arrest,
+  -agency_arrest,
+  -warrant_ref
+)
+
+randall_clean
+```
+
+## Export
+
+```{r}
+randall_clean |> write_rds("data-processed/01-RandallCounty.rds")
+```
+

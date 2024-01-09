@@ -1,0 +1,34 @@
+project:
+  type: website
+
+website:
+  title: "Marijuana Data Analysis"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - 01-Cleaning.qmd
+      - 02-Cleaning-Carson-County.qmd
+      - 03-Cleaning-Howard.qmd
+      - 04-Cleaning-MidlandCity.qmd
+      - 05-Cleaning-Lubbock-County.qmd
+      - 06-Cleaning-MonahansCity.qmd
+      - 07-Cleaning-MooreCounty.qmd
+      - 08-Cleaning-NolanCounty.qmd
+      - 09-Cleaning-OdessaCity.qmd
+      - 10-Cleaning-PecosCity.qmd
+      - 11-Cleaning-PlainviewCity.qmd
+      - 12-Cleaning-RandallCounty.qmd
+      - 13-Cleaning-SlatonCity.qmd
+      - 14-Cleaning-SnyderCity.qmd
+      - 15-Cleaning-WheelerCounty.qmd
+      - 02-analysis.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+df-print: paged

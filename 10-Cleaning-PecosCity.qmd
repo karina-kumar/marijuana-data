@@ -1,0 +1,46 @@
+---
+title: "Cleaning - Pecos City"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(readxl)
+library(lubridate)
+```
+
+## Import 
+
+Same process as before
+
+```{r}
+pecos <- read_excel("data-raw/PecosCity.xls")
+
+pecos |> glimpse()
+```
+
+## Clean
+
+Change datetime_arrest to datetime object. Get rid of columns officer, offense_status, case_status. 
+
+```{r}
+pecos_clean <- pecos |> mutate(
+  datetime_arrest = mdy_hm(datetime_arrest)
+) |> select(
+  -officer,
+  -offense_status,
+  -case_status
+)
+
+pecos_clean
+```
+
+## Export
+
+```{r}
+pecos_clean |> write_rds("data-processed/01-PecosCity.rds")
+```
+
