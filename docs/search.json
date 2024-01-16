@@ -621,5 +621,96 @@
     "title": "Wheeler County",
     "section": "Export",
     "text": "Export\n\nwheeler_clean |&gt; write_rds(\"data-processed/Wheeler-County.rds\")"
+  },
+  {
+    "objectID": "16-analysis-1.html",
+    "href": "16-analysis-1.html",
+    "title": "Analysis v1",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "16-analysis-1.html#setup",
+    "href": "16-analysis-1.html#setup",
+    "title": "Analysis v1",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "16-analysis-1.html#import",
+    "href": "16-analysis-1.html#import",
+    "title": "Analysis v1",
+    "section": "Import",
+    "text": "Import\nRead in all the cleaned data from cities/counties.\n\namarillo &lt;- read_rds(\"data-processed/Amarillo-City.rds\")\ncarson &lt;- read_rds(\"data-processed/Carson-County.rds\")\nhoward &lt;- read_rds(\"data-processed/Howard-County.rds\")\nmidland &lt;- read_rds(\"data-processed/Midland-City.rds\")\nlubbock &lt;- read_rds(\"data-processed/Lubbock-County.rds\")\nmonahans &lt;- read_rds(\"data-processed/Monahans-City.rds\")\nmoore &lt;- read_rds(\"data-processed/Moore-County.rds\")\nnolan &lt;- read_rds(\"data-processed/Nolan-County.rds\")\nodessa &lt;- read_rds(\"data-processed/Odessa-City.rds\")\npecos &lt;- read_rds(\"data-processed/Pecos-City.rds\")\nplainview &lt;- read_rds(\"data-processed/Plainview-City.rds\")\nrandall &lt;- read_rds(\"data-processed/Randall-County.rds\")\nslaton &lt;- read_rds(\"data-processed/Slaton-City.rds\")\nsnyder &lt;- read_rds(\"data-processed/Snyder-City.rds\")\nwheeler &lt;- read_rds(\"data-processed/Wheeler-County.rds\")"
+  },
+  {
+    "objectID": "16-analysis-1.html#nolan-county",
+    "href": "16-analysis-1.html#nolan-county",
+    "title": "Analysis v1",
+    "section": "Nolan County",
+    "text": "Nolan County\n\nnolan_age &lt;- nolan |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\n\nnolan_age\n\n\n\n  \n\n\nnolan_sex &lt;- nolan |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\n\nnolan_sex\n\n\n\n  \n\n\nnolan_race &lt;- nolan |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\n\nnolan_race"
+  },
+  {
+    "objectID": "16-analysis-1.html#plainview-city",
+    "href": "16-analysis-1.html#plainview-city",
+    "title": "Analysis v1",
+    "section": "Plainview City",
+    "text": "Plainview City\n\nplainview_age &lt;- plainview |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nplainview_age\n\n\n\n  \n\n\nplainview_sex &lt;- plainview |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nplainview_sex\n\n\n\n  \n\n\nplainview_race &lt;- plainview |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nplainview_race"
+  },
+  {
+    "objectID": "16-analysis-1.html#slaton-city",
+    "href": "16-analysis-1.html#slaton-city",
+    "title": "Analysis v1",
+    "section": "Slaton City",
+    "text": "Slaton City\n\nslaton_sex &lt;- slaton |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nslaton_sex\n\n\n\n  \n\n\nslaton_race &lt;- slaton |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nslaton_race"
+  },
+  {
+    "objectID": "16-analysis-1.html#carson-county",
+    "href": "16-analysis-1.html#carson-county",
+    "title": "Analysis v1",
+    "section": "Carson County",
+    "text": "Carson County\n\ncarson_age &lt;- carson |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\ncarson_age\n\n\n\n  \n\n\ncarson_sex &lt;- carson |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\ncarson_sex\n\n\n\n  \n\n\ncarson_race &lt;- carson |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\ncarson_race"
+  },
+  {
+    "objectID": "16-analysis-1.html#howard-county",
+    "href": "16-analysis-1.html#howard-county",
+    "title": "Analysis v1",
+    "section": "Howard County",
+    "text": "Howard County\n\nhoward_age &lt;- howard |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nhoward_age\n\n\n\n  \n\n\nhoward_sex &lt;- howard |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nhoward_sex"
+  },
+  {
+    "objectID": "16-analysis-1.html#midland-city",
+    "href": "16-analysis-1.html#midland-city",
+    "title": "Analysis v1",
+    "section": "Midland City",
+    "text": "Midland City\n\nmidland_age &lt;- midland |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nmidland_age\n\n\n\n  \n\n\nmidland_sex &lt;- midland |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nmidland_sex\n\n\n\n  \n\n\nmidland_race &lt;- midland |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nmidland_race"
+  },
+  {
+    "objectID": "16-analysis-1.html#monahans-city",
+    "href": "16-analysis-1.html#monahans-city",
+    "title": "Analysis v1",
+    "section": "Monahans City",
+    "text": "Monahans City\n\nmonahans_age &lt;- monahans |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nmonahans_age\n\n\n\n  \n\n\nmonahans_sex &lt;- monahans |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nmonahans_sex\n\n\n\n  \n\n\nmonahans_race &lt;- monahans |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nmonahans_race"
+  },
+  {
+    "objectID": "16-analysis-1.html#moore-county",
+    "href": "16-analysis-1.html#moore-county",
+    "title": "Analysis v1",
+    "section": "Moore County",
+    "text": "Moore County\n\nmoore_sex &lt;- moore |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nmoore_sex\n\n\n\n  \n\n\nmoore_race &lt;- moore |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nmoore_race"
+  },
+  {
+    "objectID": "16-analysis-1.html#randall-county",
+    "href": "16-analysis-1.html#randall-county",
+    "title": "Analysis v1",
+    "section": "Randall County",
+    "text": "Randall County\n\nrandall_age &lt;- randall |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nrandall_age\n\n\n\n  \n\n\nrandall_sex &lt;- randall |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nrandall_sex\n\n\n\n  \n\n\nrandall_race &lt;- randall |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nrandall_race"
+  },
+  {
+    "objectID": "16-analysis-1.html#odessa-city",
+    "href": "16-analysis-1.html#odessa-city",
+    "title": "Analysis v1",
+    "section": "Odessa City",
+    "text": "Odessa City\n\nodessa_race &lt;- odessa |&gt; group_by(race) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nodessa_race\n\n\n\n  \n\n\nodessa_sex &lt;- odessa |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nodessa_sex\n\n\n\n  \n\n\nodessa_ethnicity &lt;- odessa |&gt; group_by(ethnicity) |&gt; \n  summarize(appearances = n())\nodessa_ethnicity"
   }
 ]
