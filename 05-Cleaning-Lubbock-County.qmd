@@ -1,5 +1,5 @@
 ---
-title: "Cleaning - Lubbock County"
+title: "Lubbock County"
 ---
 
 ## Setup
@@ -41,7 +41,7 @@ lubbock_clean
 ## Export
 
 ```{r}
-lubbock_clean |> write_rds("data-processed/01-LubbockCounty.rds")
+lubbock_clean |> write_rds("data-processed/Lubbock-County.rds")
 ```
 
 

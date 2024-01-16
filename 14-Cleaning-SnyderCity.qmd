@@ -1,5 +1,5 @@
 ---
-title: "Cleaning - Snyder City"
+title: "Snyder City"
 ---
 
 ## Setup
@@ -34,5 +34,5 @@ snyder_clean
 ## Export 
 
 ```{r}
-snyder_clean |> write_rds("data-processed/01-SnyderCity.rds")
+snyder_clean |> write_rds("data-processed/Snyder-City.rds")
 ```

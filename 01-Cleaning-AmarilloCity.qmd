@@ -1,5 +1,5 @@
 ---
-title: "Cleaning - Amarillo City"
+title: "Amarillo City"
 ---
 
 ## Setup
@@ -57,7 +57,7 @@ How do I get the date separated??? Try pasting the separate pieces together.
 ## Export
 
 ```{r}
-amarillo_clean |> write_rds("data-processed/01-AmarilloCity.rds")
+amarillo_clean |> write_rds("data-processed/Amarillo-City.rds")
 ```
 
 

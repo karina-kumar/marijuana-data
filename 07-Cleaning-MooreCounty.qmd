@@ -1,5 +1,5 @@
 ---
-title: "Cleaning - Moore County"
+title: "Moore County"
 ---
 
 ## Setup
@@ -38,6 +38,6 @@ moore_clean
 ## Export
 
 ```{r}
-moore_clean |> write_rds("data-processed/01-MooreCounty.rds")
+moore_clean |> write_rds("data-processed/Moore-County.rds")
 ```
 

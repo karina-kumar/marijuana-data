@@ -1,5 +1,5 @@
 ---
-title: "Cleaning - Nolan County"
+title: "Nolan County"
 ---
 
 ## Setup
@@ -26,6 +26,6 @@ nolan |> glimpse()
 Nothing to clean, now we export. 
 
 ```{r}
-nolan |> write_rds("data-processed/01-NolanCounty.rds")
+nolan |> write_rds("data-processed/Nolan-County.rds")
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: "Cleaning - Carson County"
+title: "Carson County"
 ---
 
 ## Setup
@@ -46,6 +46,6 @@ carson_clean
 ## Export
 
 ```{r}
-carson_clean |> write_rds("data-processed/01-CarsonCounty.rds")
+carson_clean |> write_rds("data-processed/Carson-County.rds")
 ```
 

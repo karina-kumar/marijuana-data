@@ -1,5 +1,5 @@
 ---
-title: "Cleaning - Wheeler County"
+title: "Wheeler County"
 ---
 
 ## Setup
@@ -45,7 +45,7 @@ wheeler_clean
 ## Export
 
 ```{r}
-wheeler_clean |> write_rds("data-processed/01-WheelerCounty.rds")
+wheeler_clean |> write_rds("data-processed/Wheeler-County.rds")
 ```
 
 

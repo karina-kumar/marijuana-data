@@ -1,5 +1,5 @@
 ---
-title: "Cleaning - Randall County"
+title: "Randall County"
 ---
 
 ## Setup
@@ -44,6 +44,6 @@ randall_clean
 ## Export
 
 ```{r}
-randall_clean |> write_rds("data-processed/01-RandallCounty.rds")
+randall_clean |> write_rds("data-processed/Randall-County.rds")
 ```
 

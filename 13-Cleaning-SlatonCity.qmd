@@ -1,5 +1,5 @@
 ---
-title: "Cleaning - Slaton City"
+title: "Slaton City"
 ---
 
 ## Setup
@@ -37,6 +37,6 @@ slaton_clean
 ## Export 
 
 ```{r}
-slaton_clean |> write_rds("data-processed/01-SlatonCity.rds")
+slaton_clean |> write_rds("data-processed/Slaton-City.rds")
 ```
 

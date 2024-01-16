@@ -25,7 +25,7 @@ website:
       - 13-Cleaning-SlatonCity.qmd
       - 14-Cleaning-SnyderCity.qmd
       - 15-Cleaning-WheelerCounty.qmd
-      - 02-analysis.qmd
+      - 16-analysis-1.qmd
 
 format:
   html:

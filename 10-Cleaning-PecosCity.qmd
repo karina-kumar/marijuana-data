@@ -1,5 +1,5 @@
 ---
-title: "Cleaning - Pecos City"
+title: "Pecos City"
 ---
 
 ## Setup
@@ -41,6 +41,6 @@ pecos_clean
 ## Export
 
 ```{r}
-pecos_clean |> write_rds("data-processed/01-PecosCity.rds")
+pecos_clean |> write_rds("data-processed/Pecos-City.rds")
 ```
 
