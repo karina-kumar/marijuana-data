@@ -10,6 +10,7 @@ library(tidyverse)
 library(janitor)
 library(readxl)
 library(lubridate)
+library(eeptools)
 ```
 
 ## Import 
@@ -29,14 +30,17 @@ Just need to change dates to dttm types.
 ```{r}
 slaton_clean <- slaton |> mutate(
   date_arrest = mdy(date_arrest),
-  DOB = mdy(DOB))
+  DOB = mdy(DOB),
+  age = age_calc(DOB, enddate = date_arrest,units = "years", precise = TRUE)) |> select(
+    -DOB
+  ) |> cbind(datetime_arrest = NA, agency_arrest = NA, ethnicity = NA)
 
-slaton_clean
+slaton_clean |> glimpse()
 ```
 
 ## Export 
 
 ```{r}
-slaton_clean |> write_rds("data-processed/Slaton-City.rds")
+slaton_clean |> write_csv("data-processed/Slaton-City.csv")
 ```
 

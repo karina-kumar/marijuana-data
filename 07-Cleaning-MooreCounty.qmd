@@ -29,15 +29,17 @@ Change date and time to correct types.
 ```{r}
 moore_clean <- moore |> mutate(
   datetime_arrest = paste(date_arrest,time_arrest),
-  datetime_arrest = mdy_hm(datetime_arrest)
-) |> select (-date_arrest, -time_arrest)
+  datetime_arrest = mdy_hm(datetime_arrest),
+  date_arrest = mdy(date_arrest)
+) |> select (-time_arrest) |> 
+  cbind(age = NA, agency_arrest = NA, ethnicity = NA)
 
-moore_clean
+moore_clean |> glimpse()
 ```
 
 ## Export
 
 ```{r}
-moore_clean |> write_rds("data-processed/Moore-County.rds")
+moore_clean |> write_csv("data-processed/Moore-County.csv")
 ```
 

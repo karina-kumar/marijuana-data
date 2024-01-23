@@ -30,22 +30,20 @@ Now I want to combine the date and time into one column and make it Dttm.
 
 ```{r}
 carson_col <- carson |> mutate(
-  datetime_arrest = paste(date_arrest, paste(hour(time_arrest), minute(time_arrest), second(time_arrest), sep = ":"))
-)
+  datetime_arrest = paste(date_arrest, paste(hour(time_arrest), minute(time_arrest), second(time_arrest), sep = ":")))
 
 carson_clean <- carson_col |> mutate(
   datetime_arrest = ymd_hms(datetime_arrest)
 ) |> select(
-  -date_arrest,
   -time_arrest
-)
+) |> cbind(agency_arrest = NA, ethnicity = NA)
 
-carson_clean
+carson_clean |> glimpse()
 ```
 
 ## Export
 
 ```{r}
-carson_clean |> write_rds("data-processed/Carson-County.rds")
+carson_clean |> write_csv("data-processed/Carson-County.csv")
 ```
 

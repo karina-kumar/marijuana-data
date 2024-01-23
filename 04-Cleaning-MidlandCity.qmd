@@ -25,21 +25,40 @@ midland |> glimpse()
 ## Select Columns
 
 ```{r}
-midland_clean <- midland |> select(
+midland_clean <- midland |> mutate(
+  datetime_arrest = paste(date_arrest, time_arrest), 
+  name = paste(firstname, lastname)) |> select(
   -officer,
   -reportarea,
   -arr_chrg,
   -chrg_cnt,
   -ucr_code,
   -ibr_code,
-  -name_id
-)
+  -name_id,
+  -district,
+  -age_group,
+  -charge_desc,
+  -fel_misd,
+  -gangaffil,
+  -height,
+  -hair,
+  -weight,
+  -time_arrest,
+  -firstname,
+  -lastname,
+  -middlename,
+  -street,
+  -streetnbr,
+  -gangrelat,
+  -geox,
+  -geoy
+) |> cbind(address_arrest = NA, agency_arrest = NA, ethnicity = NA)
 
-midland_clean
+midland_clean |> glimpse()
 ```
 
 ## Export
 ```{r}
-midland_clean |> write_rds("data-processed/Midland-City.rds")
+midland_clean |> write_csv("data-processed/Midland-City.csv")
 ```
 

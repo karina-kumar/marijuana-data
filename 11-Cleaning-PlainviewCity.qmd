@@ -32,18 +32,20 @@ plainview_clean <- plainview |> mutate(
   ) |> select(
     -"UCR/NCIC", 
     -"Event Number", 
-    -date_arrest, 
     -time_arrest,
     -"Dispatch Dispo",
-    -case_status
-) |> mutate( datetime_arrest = ymd_hms(datetime_arrest))
+    -case_status,
+    -geox,
+    -geoy,
+) |> mutate( datetime_arrest = ymd_hms(datetime_arrest)) |> 
+  cbind(agency_arrest = NA, ethnicity = NA)
 
-plainview_clean
+plainview_clean |> glimpse()
 ```
 
 ## Export
 
 ```{r}
-plainview_clean |> write_rds("data-processed/Plainview-City.rds")
+plainview_clean |> write_csv("data-processed/Plainview-City.csv")
 ```
 

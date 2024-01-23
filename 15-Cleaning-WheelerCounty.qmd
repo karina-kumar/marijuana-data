@@ -26,7 +26,8 @@ wheeler |> glimpse()
 
 ```{r}
 wheeler_clean <- wheeler |> mutate(
-  date_arrest = dmy_hms(date_arrest)
+  date_arrest = dmy_hms(date_arrest),
+  address_arrest = paste(streetnbr, street_prfx, street, street_type)
 ) |> select(
   -inc_index,
   -incident_no,
@@ -38,14 +39,24 @@ wheeler_clean <- wheeler |> mutate(
   -suffix,
   -geox,
   -geoy,
-)
-wheeler_clean
+  -officer_id,
+  -dispo,
+  -streetnbr,
+  -street_prfx,
+  -street,
+  -street_type,
+  -city,
+  -zip_code,
+  -state
+) |> cbind(datetime_arrest = NA, age = NA, race = NA, sex = NA, ethnicity = NA, name = NA)
+
+wheeler_clean |> glimpse()
 ```
 
 ## Export
 
 ```{r}
-wheeler_clean |> write_rds("data-processed/Wheeler-County.rds")
+wheeler_clean |> write_csv("data-processed/Wheeler-County.csv")
 ```
 
 

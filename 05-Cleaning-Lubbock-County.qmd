@@ -29,19 +29,19 @@ Just removing first two columns and making dates actual date types.
 ```{r}
 lubbock_clean <- lubbock |> select( 
   -"1",
-  -"2"
+  -"2",
+  -date_released
 ) |> mutate(
-  date_arrest = ymd(date_arrest),
-  date_released = ymd(date_released)
-)
+  date_arrest = ymd(date_arrest)
+) |> cbind(datetime_arrest = NA, charges = NA, address_arrest = NA, age = NA, race = NA, sex = NA, ethnicity = NA)
 
-lubbock_clean
+lubbock_clean |> glimpse()
 ```
 
 ## Export
 
 ```{r}
-lubbock_clean |> write_rds("data-processed/Lubbock-County.rds")
+lubbock_clean |> write_csv("data-processed/Lubbock-County.csv")
 ```
 
 

@@ -34,17 +34,16 @@ howard_col <- howard |> mutate(
 howard_clean <- howard_col |> mutate(
   datetime_arrest = ymd_hms(datetime_arrest)
 ) |> select(
-  -date_arrest,
   -time_arrest,
   -...4
-)
+) |> cbind(ethnicity = NA, race = NA, address_arrest = NA)
 
-howard_clean
+howard_clean |> glimpse()
 ```
 
 ## Export
 
 ```{r}
-howard_clean |> write_rds("data-processed/Howard-County.rds")
+howard_clean |> write_csv("data-processed/Howard-County.csv")
 ```
 

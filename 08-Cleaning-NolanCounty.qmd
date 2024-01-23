@@ -21,11 +21,20 @@ nolan <- read_excel("data-raw/NolanCounty.xlsx")
 
 nolan |> glimpse()
 ```
+## Clean
+
+```{r}
+nolan_clean <- nolan |> cbind(datetime_arrest = NA, agency_arrest = NA, ethnicity = NA)
+
+nolan_clean |> glimpse()
+```
+
+
 ## Export
 
 Nothing to clean, now we export. 
 
 ```{r}
-nolan |> write_rds("data-processed/Nolan-County.rds")
+nolan_clean |> write_csv("data-processed/Nolan-County.csv")
 ```
 

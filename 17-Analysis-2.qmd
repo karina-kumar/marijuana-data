@@ -1,0 +1,51 @@
+---
+title: "Analysis v2"
+---
+
+## Setup
+
+```{r}
+
+library(tidyverse)
+library(janitor)
+library(clipr)
+
+```
+
+## Import and Combine
+
+We will use list.files(), map() and list_rbind() to import and combine our files in one fell swoop. 
+
+First I am making a list of all my files from the data processed folder. 
+
+```{r}
+wx_files_list <- list.files(
+  "data-processed",
+  pattern = "\\.csv",
+  full.names = TRUE
+)
+
+wx_files_list
+```
+
+Now I am going to combine all the files into one tibble using rbind.
+
+```{r}
+wx_all <- wx_files_list |> 
+  set_names(basename) |> #what does this do?
+  map(
+  read_csv, 
+  col_select = c(name, charges, address_arrest, age, race, sex, agency_arrest, date_arrest, ethnicity)
+  )|> 
+    list_rbind(names_to = "source") |> #names_to gives me a column with the source file so I can parse it later
+    clean_names()
+
+wx_all
+```
+
+Now I am going to break up the source column so I have a column with the city or county name and if it's a city or county. 
+
+
+
+
+

@@ -42,9 +42,10 @@ Done!
 Now I want to get rid of the Incident #'s column and make the date and time separate columns.
 
 ```{r}
-amarillo_clean <- amarillo_date |>  select(
-  -'Incident #s'
-)
+amarillo_clean <- amarillo_date |>  mutate(
+  date_arrest = date(datetime_arrest)) |> select(
+  -'Incident #s') |> cbind(
+    age = NA, race = NA, sex = NA, agency_arrest = NA,  ethnicity = NA)
 
 amarillo_clean |> glimpse()
 
@@ -57,7 +58,7 @@ How do I get the date separated??? Try pasting the separate pieces together.
 ## Export
 
 ```{r}
-amarillo_clean |> write_rds("data-processed/Amarillo-City.rds")
+amarillo_clean |> write_csv("data-processed/Amarillo-City.csv")
 ```
 
 

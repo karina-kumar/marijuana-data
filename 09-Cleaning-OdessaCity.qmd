@@ -31,14 +31,15 @@ odessa_clean <- odessa |> mutate(
   date_arrest = mdy(date_arrest),
   race = substr(race, 1, 1),
   sex = substr(sex, 1, 1)
-) |> select(-"Case No")
+) |> select(-"Case No") |> 
+  cbind(datetime_arrest = NA, agency_arrest = NA, age = NA)
 
-odessa_clean
+odessa_clean |> glimpse()
 ```
 
 ## Export
 
 ```{r}
-odessa_clean |> write_rds("data-processed/Odessa-City.rds")
+odessa_clean |> write_csv("data-processed/Odessa-City.csv")
 ```
 

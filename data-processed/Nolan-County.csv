@@ -1,0 +1,39 @@
+name,age,race,sex,date_arrest,charges,address_arrest,datetime_arrest,agency_arrest,ethnicity
+Michael Glen Mulleneaux Jr,33,W,M,2018-08-21T00:00:00Z,Possession Marijuana > 2oz < 4oz,"2926 N Highway 70, 79556",NA,NA,NA
+Christopher Gonzalez,24,H,M,2020-05-16T00:00:00Z,Possession Marijuana < 2oz,"CR 175 and Hwy 153, 79537",NA,NA,NA
+Anthony Paul Dominguez,21,H,M,2020-06-17T00:00:00Z,Possession Marijuana < 2oz,"IH 20 MM 246, 79556",NA,NA,NA
+Fortunato Barrientes Jr,26,H,M,2020-06-17T00:00:00Z,Possession Marijuana < 2oz,"IH 20 MM 246, 79556",NA,NA,NA
+Seth Alexander Hays,18,W,M,2020-07-24T00:00:00Z,Possession Marijuana < 2oz,"500 Block of CR 247, 79556",NA,NA,NA
+Steven Allen Fenley,17,W,M,2020-07-24T00:00:00Z,Possession Marijuana < 2oz,"500 Block of CR 247, 79556",NA,NA,NA
+Josiah Zane Crain,19,W,M,2020-10-30T00:00:00Z,Possession Marijuana < 2oz,"2105 B Lamar St, 79556",NA,NA,NA
+Cody Noel Hernandez,29,H,M,2020-12-28T00:00:00Z,Possession Marijuana < 2oz,"1800 Block of Dent St, 79556",NA,NA,NA
+Nina Nicole Alaniz,25,W,F,2021-02-04T00:00:00Z,Possession Marijuana < 2oz,"824 Stanley St, 79556",NA,NA,NA
+Dezirey Grace Contreras,27,W,F,2021-03-29T00:00:00Z,Possession Marijuana < 2oz,"Hwy 84, 79545",NA,NA,NA
+Jonathan Lee Gonzales,28,W,M,2021-08-14T00:00:00Z,Possession Marijuana < 2oz,"IH 20 mm 233 WB, 79545",NA,NA,NA
+Andrea Yvette Villanueva,37,H,F,2021-10-05T00:00:00Z,Possession Marijuana < 2oz,"1601 Grand, 79556",NA,NA,NA
+Ashton Gregory Ponzer,24,W,M,2021-10-21T00:00:00Z,Possession Marijuana < 2oz,"300 E Broadway Ave, 79556",NA,NA,NA
+Matthew Villa,25,H,M,2021-11-13T00:00:00Z,Possession Marijuana < 2oz,"1300 Block W Broadway Ave, 79556",NA,NA,NA
+Howard Ray Capps,56,W,M,2022-09-06T00:00:00Z,Possession Marijuana < 2oz,"304 W New Mexico St, 79556",NA,NA,NA
+Derrick Alexander Cunningham,37,B,M,2022-10-25T00:00:00Z,Possession Marijuana < 2oz,"IH 20 MM 258 EB, 79561",NA,NA,NA
+Adon Che Reyna,45,H,M,2022-12-16T00:00:00Z,Possession Marijuana < 2oz,"209 E New Mexico, 79556",NA,NA,NA
+Kristopher William Cuellar-Garcia,22,H,M,2018-01-22T00:00:00Z,Possession Marijuana < 2oz,"500 Block of Avenue A, 79556",NA,NA,NA
+Anthony Dylan Bentley,25,W,M,2018-03-27T00:00:00Z,Possession Marijuana < 2oz,"200 West Arkansas, 79556",NA,NA,NA
+Anessa Shea Hulme,18,W,F,2018-11-04T00:00:00Z,Possession Marijuana < 2oz,"Eskota Rd and CR 109, 79556",NA,NA,NA
+Justin Marshall Walker,36,W,M,2019-01-17T00:00:00Z,Possession Marijuana < 2oz,"100 Block of East Arizona, 79556",NA,NA,NA
+Jesse Leroy Dooley,39,W,M,2019-02-19T00:00:00Z,Possession Marijuana < 2oz,"317 CR 370, 79556",NA,NA,NA
+Jack Fabian Salas,19,W,M,2019-02-20T00:00:00Z,Possession Marijuana < 2oz,"1500 Blcok of Lamar St., 79556",NA,NA,NA
+Kendall Deshawn Galloway,21,B,M,2019-02-26T00:00:00Z,Possession Marijuana < 2oz,"IH 20 MM 241 WB, 79556",NA,NA,NA
+Noah Mathew Flores,18,W,M,2019-03-20T00:00:00Z,Possession Marijuana < 2oz,"Hwy 84 and CR 169, 79545",NA,NA,NA
+Jacoby Tennil Rivera,25,H,M,2019-04-26T00:00:00Z,Possession Marijuana < 2oz,"IH 20 S Service Rd and FM 1856, 79556",NA,NA,NA
+Daniel Heredia,17,W,M,2019-10-21T00:00:00Z,Possession Marijuana < 2oz,"CR 304 and IH 20 N Service Rd, 79556",NA,NA,NA
+Lynzi Marie Franz,21,W,F,2020-02-01T00:00:00Z,Possession Marijuana < 2oz,"Hwy 70 South of FM 1809, 79556",NA,NA,NA
+Charles Michael Pitterman,34,W,M,2020-02-13T00:00:00Z,Possession Marijuana < 2oz,"Hwy 153 and S of CR 173, 79537",NA,NA,NA
+Jonathan Ryan Castor,21,W,M,2020-03-16T00:00:00Z,Possession Marijuana < 2oz,"341 CR 252, 79556",NA,NA,NA
+Jcorey Danielle Amos,21,B,M,2020-03-16T00:00:00Z,Possession Marijuana < 2oz,"341 CR 252, 79556",NA,NA,NA
+Keevin Malik-Tjuan Houston,20,B,M,2020-03-16T00:00:00Z,Possession Marijuana < 2oz,"341 CR 252, 79556",NA,NA,NA
+Lowell Aaron Lee Williams,21,B,M,2020-03-16T00:00:00Z,Possession Marijuana < 2oz,"341 CR 252, 79556",NA,NA,NA
+Aretha Fontella Black,50,B,F,2020-04-06T00:00:00Z,Possession Marijuana < 2oz,"306 Haskell St, 79556",NA,NA,NA
+Jerry Lane Black,57,B,M,2020-04-06T00:00:00Z,Possession Marijuana < 2oz,"306 Haskell St, 79556",NA,NA,NA
+Ricky Rivera Jr,27,H,M,2018-06-21T00:00:00Z,Possession Marijuana < 2oz Drug Free Zone,"El Paso and Ave B, 79556",NA,NA,NA
+Justis Michael Gutierrez,22,H,M,2018-06-21T00:00:00Z,Possession Marijuana < 2oz Drug Free Zone,"El Paso and Ave B, 79556",NA,NA,NA
+Samuel Trey Cornutt,25,W,M,2020-03-29T00:00:00Z,Possession Marijuana < 2oz,"FM 1230 South of IH 20, 79556",NA,NA,NA

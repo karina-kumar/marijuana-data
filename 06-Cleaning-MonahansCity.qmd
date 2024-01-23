@@ -31,14 +31,15 @@ monahans_clean <- monahans |> mutate(
   race = substr(race_sex, 1, 1),
   sex = substr(race_sex, 3, 3),
   date_arrest = mdy(date_arrest)
-  ) |> select( -race_sex)
+  ) |> select( -race_sex, -city_zip) |> 
+  cbind(datetime_arrest = NA, agency_arrest = NA, ethnicity = NA)
 
-monahans_clean
+monahans_clean |> glimpse()
 ```
 
 
 ## Export
 
 ```{r}
-monahans_clean |> write_rds("data-processed/Monahans-City.rds")
+monahans_clean |> write_csv("data-processed/Monahans-City.csv")
 ```

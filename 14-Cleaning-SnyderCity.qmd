@@ -26,13 +26,19 @@ snyder |> glimpse()
 
 ```{r}
 snyder_clean <- snyder |> mutate(
-  datetime_arrest = mdy_hm(datetime_arrest)
-)
-snyder_clean
+  datetime_arrest = mdy_hm(datetime_arrest),
+  date_arrest = date(datetime_arrest)
+) |> select(
+  -officer,
+  -charge_desc,
+  -city_zip
+) |> cbind(age = NA, race = NA, sex = NA, ethnicity = NA, agency_arrest = NA)
+
+snyder_clean |> glimpse()
 ```
 
 ## Export 
 
 ```{r}
-snyder_clean |> write_rds("data-processed/Snyder-City.rds")
+snyder_clean |> write_csv("data-processed/Snyder-City.csv")
 ```

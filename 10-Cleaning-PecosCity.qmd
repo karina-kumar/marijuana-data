@@ -28,19 +28,21 @@ Change datetime_arrest to datetime object. Get rid of columns officer, offense_s
 
 ```{r}
 pecos_clean <- pecos |> mutate(
-  datetime_arrest = mdy_hm(datetime_arrest)
+  datetime_arrest = mdy_hm(datetime_arrest),
+  date_arrest = date(datetime_arrest)
 ) |> select(
   -officer,
   -offense_status,
-  -case_status
-)
+  -case_status,
+  -charge_desc,-city_zip
+) |> cbind(name = NA, age = NA, race = NA, sex = NA, ethnicity = NA, agency_arrest = NA)
 
-pecos_clean
+pecos_clean |> glimpse()
 ```
 
 ## Export
 
 ```{r}
-pecos_clean |> write_rds("data-processed/Pecos-City.rds")
+pecos_clean |> write_csv("data-processed/Pecos-City.csv")
 ```
 
