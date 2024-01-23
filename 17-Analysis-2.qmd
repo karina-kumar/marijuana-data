@@ -43,8 +43,54 @@ wx_all <- wx_files_list |>
 wx_all
 ```
 
-Now I am going to break up the source column so I have a column with the city or county name and if it's a city or county. 
+Now I am going to break up the source column so I have a column with the city or county name and if it's a city or county, and I will make the date_arrest column a date type. 
 
+```{r}
+all_data <- wx_all |> mutate(
+  city_county_name = str_split_i(source, "-", 1),
+  city_county1 = str_split_i(source,"-", -1),
+  city_county = if_else(city_county1 == "City.csv", "City", "County"),
+  date_arrest = date(date_arrest)
+  ) |> select(-city_county1, -source)
+
+all_data
+```
+
+## Analysis
+
+Now we get to do the analysis of all the data together. First, I am going to group by each month. 
+
+```{r}
+all_data_month <- all_data |> group_by(month = floor_date(date_arrest, 'month')) |> 
+  summarize(arrests = n())
+
+all_data_month
+
+```
+
+Now I want to graph this. 
+
+```{r}
+all_data_month |> 
+  ggplot(aes(x = month, y = arrests)) +
+  geom_point() 
+```
+
+```{r}
+all_data_region <- all_data |> group_by(city_county_name, date_arrest) |> 
+  summarize(arrests = n())
+
+all_data_region
+```
+
+```{r}
+all_data_region |> 
+  ggplot(aes(x = date_arrest, y = arrests)) +
+  geom_point(size = 0.25) +
+  ylim(0,20) +
+  facet_wrap(~city_county_name)
+  
+```
 
 
 

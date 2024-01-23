@@ -233,8 +233,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-analysis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analysis</span></a>
+  <a href="./16-analysis-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analysis v1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Analysis-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analysis v2</span></a>
   </div>
 </li>
     </ul>
@@ -249,6 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#import" id="toc-import" class="nav-link" data-scroll-target="#import">Import</a></li>
+  <li><a href="#clean" id="toc-clean" class="nav-link" data-scroll-target="#clean">Clean</a></li>
   <li><a href="#export" id="toc-export" class="nav-link" data-scroll-target="#export">Export</a></li>
   </ul>
 </nav>
@@ -322,11 +329,33 @@ $ address_arrest &lt;chr&gt; "2926 N Highway 70, 79556", "CR 175 and Hwy 153, 79
 </div>
 </div>
 </section>
+<section id="clean" class="level2">
+<h2 class="anchored" data-anchor-id="clean">Clean</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nolan_clean <span class="ot">&lt;-</span> nolan <span class="sc">|&gt;</span> <span class="fu">cbind</span>(<span class="at">datetime_arrest =</span> <span class="cn">NA</span>, <span class="at">agency_arrest =</span> <span class="cn">NA</span>, <span class="at">ethnicity =</span> <span class="cn">NA</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>nolan_clean <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 38
+Columns: 10
+$ name            &lt;chr&gt; "Michael Glen Mulleneaux Jr", "Christopher Gonzalez", …
+$ age             &lt;dbl&gt; 33, 24, 21, 26, 18, 17, 19, 29, 25, 27, 28, 37, 24, 25…
+$ race            &lt;chr&gt; "W", "H", "H", "H", "W", "W", "W", "H", "W", "W", "W",…
+$ sex             &lt;chr&gt; "M", "M", "M", "M", "M", "M", "M", "M", "F", "F", "M",…
+$ date_arrest     &lt;dttm&gt; 2018-08-21, 2020-05-16, 2020-06-17, 2020-06-17, 2020-…
+$ charges         &lt;chr&gt; "Possession Marijuana &gt; 2oz &lt; 4oz", "Possession Mariju…
+$ address_arrest  &lt;chr&gt; "2926 N Highway 70, 79556", "CR 175 and Hwy 153, 79537…
+$ datetime_arrest &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</code></pre>
+</div>
+</div>
+</section>
 <section id="export" class="level2">
 <h2 class="anchored" data-anchor-id="export">Export</h2>
 <p>Nothing to clean, now we export.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nolan <span class="sc">|&gt;</span> <span class="fu">write_rds</span>(<span class="st">"data-processed/Nolan-County.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nolan_clean <span class="sc">|&gt;</span> <span class="fu">write_csv</span>(<span class="st">"data-processed/Nolan-County.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

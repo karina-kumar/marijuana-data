@@ -234,7 +234,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16-analysis-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Analysis</span></a>
+ <span class="menu-text">Analysis v1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Analysis-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analysis v2</span></a>
   </div>
 </li>
     </ul>
@@ -343,18 +349,25 @@ $ address_arrest  &lt;chr&gt; "7200 SW 34TH AVE, AMAR", "SE 10TH AVE / ROSS ST, 
 <p>Done!</p>
 <p>Now I want to get rid of the Incident #’s column and make the date and time separate columns.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>amarillo_clean <span class="ot">&lt;-</span> amarillo_date <span class="sc">|&gt;</span>  <span class="fu">select</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="st">'Incident #s'</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>amarillo_clean <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>amarillo_clean <span class="ot">&lt;-</span> amarillo_date <span class="sc">|&gt;</span>  <span class="fu">mutate</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">date_arrest =</span> <span class="fu">date</span>(datetime_arrest)) <span class="sc">|&gt;</span> <span class="fu">select</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="st">'Incident #s'</span>) <span class="sc">|&gt;</span> <span class="fu">cbind</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="cn">NA</span>, <span class="at">race =</span> <span class="cn">NA</span>, <span class="at">sex =</span> <span class="cn">NA</span>, <span class="at">agency_arrest =</span> <span class="cn">NA</span>,  <span class="at">ethnicity =</span> <span class="cn">NA</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>amarillo_clean <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 649
-Columns: 4
+Columns: 10
 $ datetime_arrest &lt;dttm&gt; 2022-12-21 15:39:00, 2022-12-16 18:37:00, 2022-12-11 …
 $ name            &lt;chr&gt; "GUEVARA, LAURA", "TOLER, NICHOLAS DON", "CARRILLO SAL…
 $ charges         &lt;chr&gt; "POSS MARIJ &lt; 2OZDRUG PARA-POSS CL C", "WARRANT-HOLD F…
-$ address_arrest  &lt;chr&gt; "7200 SW 34TH AVE, AMAR", "SE 10TH AVE / ROSS ST, AMAR…</code></pre>
+$ address_arrest  &lt;chr&gt; "7200 SW 34TH AVE, AMAR", "SE 10TH AVE / ROSS ST, AMAR…
+$ date_arrest     &lt;date&gt; 2022-12-21, 2022-12-16, 2022-12-11, 2022-12-10, 2022-…
+$ age             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ race            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ sex             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</code></pre>
 </div>
 </div>
 <p>How do I get the date separated??? Try pasting the separate pieces together.</p>
@@ -362,7 +375,7 @@ $ address_arrest  &lt;chr&gt; "7200 SW 34TH AVE, AMAR", "SE 10TH AVE / ROSS ST, 
 <section id="export" class="level2">
 <h2 class="anchored" data-anchor-id="export">Export</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>amarillo_clean <span class="sc">|&gt;</span> <span class="fu">write_rds</span>(<span class="st">"data-processed/Amarillo-City.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>amarillo_clean <span class="sc">|&gt;</span> <span class="fu">write_csv</span>(<span class="st">"data-processed/Amarillo-City.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

@@ -25,28 +25,28 @@
     "href": "02-Cleaning-Carson-County.html#rearranging-columns",
     "title": "Carson County",
     "section": "Rearranging Columns",
-    "text": "Rearranging Columns\n\ncarson_col &lt;- carson |&gt; mutate(\n  datetime_arrest = paste(date_arrest, paste(hour(time_arrest), minute(time_arrest), second(time_arrest), sep = \":\"))\n)\n\ncarson_clean &lt;- carson_col |&gt; mutate(\n  datetime_arrest = ymd_hms(datetime_arrest)\n) |&gt; select(\n  -date_arrest,\n  -time_arrest\n)\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `datetime_arrest = ymd_hms(datetime_arrest)`.\nCaused by warning:\n!  43 failed to parse.\n\ncarson_clean"
+    "text": "Rearranging Columns\n\ncarson_col &lt;- carson |&gt; mutate(\n  datetime_arrest = paste(date_arrest, paste(hour(time_arrest), minute(time_arrest), second(time_arrest), sep = \":\")))\n\ncarson_clean &lt;- carson_col |&gt; mutate(\n  datetime_arrest = ymd_hms(datetime_arrest)\n) |&gt; select(\n  -time_arrest\n) |&gt; cbind(agency_arrest = NA, ethnicity = NA)\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `datetime_arrest = ymd_hms(datetime_arrest)`.\nCaused by warning:\n!  43 failed to parse.\n\ncarson_clean |&gt; glimpse()\n\nRows: 729\nColumns: 10\n$ date_arrest     &lt;dttm&gt; NA, NA, 2021-01-01, 2021-01-03, 2021-01-05, 2021-01-0…\n$ address_arrest  &lt;chr&gt; NA, NA, \"I40 MM 103\", \"4TH & MAIN, WHITE DEER\", \"I40 M…\n$ charges         &lt;chr&gt; NA, NA, \"481.121 (b) (1)\", \"481.121 (b (1)\", \"481.121 …\n$ name            &lt;chr&gt; NA, NA, \"Sutherland, Jason\", \"Chaney, Jasper\", \"Rosita…\n$ age             &lt;dbl&gt; NA, NA, 25, 20, 53, 23, 24, 29, 28, 25, 27, 30, 31, 26…\n$ race            &lt;chr&gt; NA, NA, \"B\", \"W\", \"H\", \"B\", \"B\", \"B\", \"W\", \"W\", \"H\", \"…\n$ sex             &lt;chr&gt; NA, NA, \"M\", \"M\", \"F\", \"M\", \"F\", \"M\", \"F\", \"M\", \"F\", \"…\n$ datetime_arrest &lt;dttm&gt; NA, NA, 2021-01-01 11:40:00, 2021-01-03 04:00:00, 202…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
   },
   {
     "objectID": "02-Cleaning-Carson-County.html#export",
     "href": "02-Cleaning-Carson-County.html#export",
     "title": "Carson County",
     "section": "Export",
-    "text": "Export\n\ncarson_clean |&gt; write_rds(\"data-processed/Carson-County.rds\")"
+    "text": "Export\n\ncarson_clean |&gt; write_csv(\"data-processed/Carson-County.csv\")"
   },
   {
     "objectID": "13-Cleaning-SlatonCity.html",
     "href": "13-Cleaning-SlatonCity.html",
     "title": "Slaton City",
     "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)\nlibrary(eeptools)"
   },
   {
     "objectID": "13-Cleaning-SlatonCity.html#setup",
     "href": "13-Cleaning-SlatonCity.html#setup",
     "title": "Slaton City",
     "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)\nlibrary(eeptools)"
   },
   {
     "objectID": "13-Cleaning-SlatonCity.html#import",
@@ -60,14 +60,14 @@
     "href": "13-Cleaning-SlatonCity.html#clean",
     "title": "Slaton City",
     "section": "Clean",
-    "text": "Clean\nJust need to change dates to dttm types.\n\nslaton_clean &lt;- slaton |&gt; mutate(\n  date_arrest = mdy(date_arrest),\n  DOB = mdy(DOB))\n\nslaton_clean"
+    "text": "Clean\nJust need to change dates to dttm types.\n\nslaton_clean &lt;- slaton |&gt; mutate(\n  date_arrest = mdy(date_arrest),\n  DOB = mdy(DOB),\n  age = age_calc(DOB, enddate = date_arrest,units = \"years\", precise = TRUE)) |&gt; select(\n    -DOB\n  ) |&gt; cbind(datetime_arrest = NA, agency_arrest = NA, ethnicity = NA)\n\nslaton_clean |&gt; glimpse()\n\nRows: 34\nColumns: 10\n$ date_arrest     &lt;date&gt; 2018-03-25, 2018-04-06, 2018-05-08, 2018-06-03, 2018-…\n$ name            &lt;chr&gt; \"HERNANDEZ, TAMY\", \"GARCIA, FRANK  JR\", \"BROOME, KEVIN…\n$ sex             &lt;chr&gt; \"F\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\",…\n$ race            &lt;chr&gt; \"W\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\",…\n$ address_arrest  &lt;chr&gt; \"800 BLK S 13TH STREET\", \"1000 BLK S 11TH STREET\", \"60…\n$ charges         &lt;chr&gt; \"POSS MARIJUANA &lt;= 2 OZ\", \"POSSESSION OF MARIJUANA &lt; 2…\n$ age             &lt;dbl&gt; 36.73699, 17.94795, 36.74247, 35.14247, 24.92603, 26.5…\n$ datetime_arrest &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
   },
   {
     "objectID": "13-Cleaning-SlatonCity.html#export",
     "href": "13-Cleaning-SlatonCity.html#export",
     "title": "Slaton City",
     "section": "Export",
-    "text": "Export\n\nslaton_clean |&gt; write_rds(\"data-processed/Slaton-City.rds\")"
+    "text": "Export\n\nslaton_clean |&gt; write_csv(\"data-processed/Slaton-City.csv\")"
   },
   {
     "objectID": "12-Cleaning-RandallCounty.html",
@@ -95,14 +95,14 @@
     "href": "12-Cleaning-RandallCounty.html#clean",
     "title": "Randall County",
     "section": "Clean",
-    "text": "Clean\nGet rid of extra columns and make date_arrest and time_arrest into one column.\n\nrandall_clean &lt;- randall |&gt; mutate(\n  datetime_arrest = paste(date_arrest,substr(time_arrest,12,19)),\n  datetime_arrest = ymd_hms(datetime_arrest)\n) |&gt; select(\n  -\"SO #\",\n  -date_arrest,\n  -time_arrest,\n  -agency_arrest,\n  -warrant_ref\n)\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `datetime_arrest = ymd_hms(datetime_arrest)`.\nCaused by warning:\n!  54 failed to parse.\n\nrandall_clean"
+    "text": "Clean\nGet rid of extra columns and make date_arrest and time_arrest into one column.\n\nrandall_clean &lt;- randall |&gt; mutate(\n  datetime_arrest = paste(date_arrest,substr(time_arrest,12,19)),\n  datetime_arrest = ymd_hms(datetime_arrest),\n) |&gt; select(\n  -\"SO #\",\n  -time_arrest,\n  -agency_arrest,\n  -warrant_ref,\n  -height_ft,\n  -height_in,\n  -weight,\n  -address\n) |&gt; cbind(address_arrest = NA, agency_arrest = NA, ethnicity = NA)\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `datetime_arrest = ymd_hms(datetime_arrest)`.\nCaused by warning:\n!  54 failed to parse.\n\nrandall_clean |&gt; glimpse()\n\nRows: 904\nColumns: 10\n$ name            &lt;chr&gt; \"DUBIOS, JOSHUA WAYNE\", \"FLORES, RODRIGO LEE\", \"UST, C…\n$ age             &lt;dbl&gt; 22, 50, 21, 22, 39, 28, 24, 23, 23, 42, 60, 34, 23, 31…\n$ sex             &lt;chr&gt; \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"F\",…\n$ race            &lt;chr&gt; \"W\", \"W\", \"W\", \"B\", \"B\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\",…\n$ date_arrest     &lt;dttm&gt; 2018-01-02, 2018-01-02, 2018-01-02, 2018-01-03, 2018-…\n$ charges         &lt;chr&gt; \"POSS MARIJ &lt;=2OZ\", \"POSS MARIJ &lt;=2OZ\", \"POSS CS PG 2 …\n$ datetime_arrest &lt;dttm&gt; 2018-01-02 11:30:00, 2018-01-02 00:45:00, 2018-01-02 …\n$ address_arrest  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
   },
   {
     "objectID": "12-Cleaning-RandallCounty.html#export",
     "href": "12-Cleaning-RandallCounty.html#export",
     "title": "Randall County",
     "section": "Export",
-    "text": "Export\n\nrandall_clean |&gt; write_rds(\"data-processed/Randall-County.rds\")"
+    "text": "Export\n\nrandall_clean |&gt; write_csv(\"data-processed/Randall-County.csv\")"
   },
   {
     "objectID": "06-Cleaning-MonahansCity.html",
@@ -130,14 +130,14 @@
     "href": "06-Cleaning-MonahansCity.html#clean",
     "title": "Monahans City",
     "section": "Clean",
-    "text": "Clean\nChange date_arrest to a date type and split race_sex column into two.\n\nmonahans_clean &lt;- monahans |&gt; mutate(\n  race = substr(race_sex, 1, 1),\n  sex = substr(race_sex, 3, 3),\n  date_arrest = mdy(date_arrest)\n  ) |&gt; select( -race_sex)\n\nmonahans_clean"
+    "text": "Clean\nChange date_arrest to a date type and split race_sex column into two.\n\nmonahans_clean &lt;- monahans |&gt; mutate(\n  race = substr(race_sex, 1, 1),\n  sex = substr(race_sex, 3, 3),\n  date_arrest = mdy(date_arrest)\n  ) |&gt; select( -race_sex, -city_zip) |&gt; \n  cbind(datetime_arrest = NA, agency_arrest = NA, ethnicity = NA)\n\nmonahans_clean |&gt; glimpse()\n\nRows: 98\nColumns: 10\n$ date_arrest     &lt;date&gt; 2018-01-31, 2018-02-05, 2018-02-09, 2018-02-14, 2018-…\n$ name            &lt;chr&gt; \"TALANO, ELIZABETH ROCHELLE\", \"REYES, GABRIEL VILLESCA…\n$ age             &lt;dbl&gt; 18, 24, 23, 37, 43, 23, 18, 19, 35, 37, 27, 38, 18, 17…\n$ address_arrest  &lt;chr&gt; \"1210 E SEALY APARTMENT 108\", \"200 BLK W 10TH\", \"100 B…\n$ charges         &lt;chr&gt; \"POSS MARIJ &lt;2OZ MB\", \"POSS MARIJ &lt;2OZ MB\", \"POSS MARI…\n$ race            &lt;chr&gt; \"W\", \"H\", \"B\", \"B\", \"B\", \"H\", \"H\", \"H\", \"B\", \"H\", \"H\",…\n$ sex             &lt;chr&gt; \"F\", \"M\", \"M\", \"F\", \"F\", \"F\", \"M\", \"F\", \"M\", \"M\", \"M\",…\n$ datetime_arrest &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
   },
   {
     "objectID": "06-Cleaning-MonahansCity.html#export",
     "href": "06-Cleaning-MonahansCity.html#export",
     "title": "Monahans City",
     "section": "Export",
-    "text": "Export\n\nmonahans_clean |&gt; write_rds(\"data-processed/Monahans-City.rds\")"
+    "text": "Export\n\nmonahans_clean |&gt; write_csv(\"data-processed/Monahans-City.csv\")"
   },
   {
     "objectID": "07-Cleaning-MooreCounty.html",
@@ -165,14 +165,14 @@
     "href": "07-Cleaning-MooreCounty.html#clean",
     "title": "Moore County",
     "section": "Clean",
-    "text": "Clean\nChange date and time to correct types.\n\nmoore_clean &lt;- moore |&gt; mutate(\n  datetime_arrest = paste(date_arrest,time_arrest),\n  datetime_arrest = mdy_hm(datetime_arrest)\n) |&gt; select (-date_arrest, -time_arrest)\n\nmoore_clean"
+    "text": "Clean\nChange date and time to correct types.\n\nmoore_clean &lt;- moore |&gt; mutate(\n  datetime_arrest = paste(date_arrest,time_arrest),\n  datetime_arrest = mdy_hm(datetime_arrest),\n  date_arrest = mdy(date_arrest)\n) |&gt; select (-time_arrest) |&gt; \n  cbind(age = NA, agency_arrest = NA, ethnicity = NA)\n\nmoore_clean |&gt; glimpse()\n\nRows: 62\nColumns: 10\n$ name            &lt;chr&gt; \"Jesus Rodriguez\", \"Julian Carrasco\", \"Billy Massengal…\n$ race            &lt;chr&gt; \"WH\", \"WH\", \"w\", \"WH\", \"WH\", \"w.\", \"B\", \"w\", \"WH\", \"w\"…\n$ sex             &lt;chr&gt; \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"F\", \"M\", \"M\", \"M\",…\n$ address_arrest  &lt;chr&gt; \"us 87/ 287 79029.\", \"608 Elm St 79029\", \"396 Mitchell…\n$ date_arrest     &lt;date&gt; 2018-04-21, 2018-07-22, 2018-08-03, 2018-08-20, 2018-…\n$ charges         &lt;chr&gt; \"Poss Marij &gt;4oz&lt;=5lbs\", \"Poss Marij u/2oz\", \"Poss Dru…\n$ datetime_arrest &lt;dttm&gt; 2018-04-21 23:21:00, 2018-07-22 07:32:00, 2018-08-03 …\n$ age             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
   },
   {
     "objectID": "07-Cleaning-MooreCounty.html#export",
     "href": "07-Cleaning-MooreCounty.html#export",
     "title": "Moore County",
     "section": "Export",
-    "text": "Export\n\nmoore_clean |&gt; write_rds(\"data-processed/Moore-County.rds\")"
+    "text": "Export\n\nmoore_clean |&gt; write_csv(\"data-processed/Moore-County.csv\")"
   },
   {
     "objectID": "01-Cleaning-AmarilloCity.html",
@@ -200,14 +200,14 @@
     "href": "01-Cleaning-AmarilloCity.html#clean-up-columns",
     "title": "Amarillo City",
     "section": "Clean up columns",
-    "text": "Clean up columns\nNow I want to clean up the columns so the date and times are separate and there is no extra columns. First change the date/time to a date type.\n\namarillo_date &lt;- amarillo |&gt; mutate (\n  datetime_arrest = mdy_hm(datetime_arrest)\n)\n\namarillo_date |&gt; glimpse()\n\nRows: 649\nColumns: 5\n$ `Incident #s`   &lt;chr&gt; \"20220521758\", \"20220521183\", \"20220521123\", \"20220521…\n$ datetime_arrest &lt;dttm&gt; 2022-12-21 15:39:00, 2022-12-16 18:37:00, 2022-12-11 …\n$ name            &lt;chr&gt; \"GUEVARA, LAURA\", \"TOLER, NICHOLAS DON\", \"CARRILLO SAL…\n$ charges         &lt;chr&gt; \"POSS MARIJ &lt; 2OZDRUG PARA-POSS CL C\", \"WARRANT-HOLD F…\n$ address_arrest  &lt;chr&gt; \"7200 SW 34TH AVE, AMAR\", \"SE 10TH AVE / ROSS ST, AMAR…\n\n\nDone!\nNow I want to get rid of the Incident #’s column and make the date and time separate columns.\n\namarillo_clean &lt;- amarillo_date |&gt;  select(\n  -'Incident #s'\n)\n\namarillo_clean |&gt; glimpse()\n\nRows: 649\nColumns: 4\n$ datetime_arrest &lt;dttm&gt; 2022-12-21 15:39:00, 2022-12-16 18:37:00, 2022-12-11 …\n$ name            &lt;chr&gt; \"GUEVARA, LAURA\", \"TOLER, NICHOLAS DON\", \"CARRILLO SAL…\n$ charges         &lt;chr&gt; \"POSS MARIJ &lt; 2OZDRUG PARA-POSS CL C\", \"WARRANT-HOLD F…\n$ address_arrest  &lt;chr&gt; \"7200 SW 34TH AVE, AMAR\", \"SE 10TH AVE / ROSS ST, AMAR…\n\n\nHow do I get the date separated??? Try pasting the separate pieces together."
+    "text": "Clean up columns\nNow I want to clean up the columns so the date and times are separate and there is no extra columns. First change the date/time to a date type.\n\namarillo_date &lt;- amarillo |&gt; mutate (\n  datetime_arrest = mdy_hm(datetime_arrest)\n)\n\namarillo_date |&gt; glimpse()\n\nRows: 649\nColumns: 5\n$ `Incident #s`   &lt;chr&gt; \"20220521758\", \"20220521183\", \"20220521123\", \"20220521…\n$ datetime_arrest &lt;dttm&gt; 2022-12-21 15:39:00, 2022-12-16 18:37:00, 2022-12-11 …\n$ name            &lt;chr&gt; \"GUEVARA, LAURA\", \"TOLER, NICHOLAS DON\", \"CARRILLO SAL…\n$ charges         &lt;chr&gt; \"POSS MARIJ &lt; 2OZDRUG PARA-POSS CL C\", \"WARRANT-HOLD F…\n$ address_arrest  &lt;chr&gt; \"7200 SW 34TH AVE, AMAR\", \"SE 10TH AVE / ROSS ST, AMAR…\n\n\nDone!\nNow I want to get rid of the Incident #’s column and make the date and time separate columns.\n\namarillo_clean &lt;- amarillo_date |&gt;  mutate(\n  date_arrest = date(datetime_arrest)) |&gt; select(\n  -'Incident #s') |&gt; cbind(\n    age = NA, race = NA, sex = NA, agency_arrest = NA,  ethnicity = NA)\n\namarillo_clean |&gt; glimpse()\n\nRows: 649\nColumns: 10\n$ datetime_arrest &lt;dttm&gt; 2022-12-21 15:39:00, 2022-12-16 18:37:00, 2022-12-11 …\n$ name            &lt;chr&gt; \"GUEVARA, LAURA\", \"TOLER, NICHOLAS DON\", \"CARRILLO SAL…\n$ charges         &lt;chr&gt; \"POSS MARIJ &lt; 2OZDRUG PARA-POSS CL C\", \"WARRANT-HOLD F…\n$ address_arrest  &lt;chr&gt; \"7200 SW 34TH AVE, AMAR\", \"SE 10TH AVE / ROSS ST, AMAR…\n$ date_arrest     &lt;date&gt; 2022-12-21, 2022-12-16, 2022-12-11, 2022-12-10, 2022-…\n$ age             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ race            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ sex             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n\n\nHow do I get the date separated??? Try pasting the separate pieces together."
   },
   {
     "objectID": "01-Cleaning-AmarilloCity.html#export",
     "href": "01-Cleaning-AmarilloCity.html#export",
     "title": "Amarillo City",
     "section": "Export",
-    "text": "Export\n\namarillo_clean |&gt; write_rds(\"data-processed/Amarillo-City.rds\")"
+    "text": "Export\n\namarillo_clean |&gt; write_csv(\"data-processed/Amarillo-City.csv\")"
   },
   {
     "objectID": "index.html",
@@ -215,195 +215,6 @@
     "title": "Marijuana Data Deep Dive",
     "section": "",
     "text": "This data project is exploring the data collected by RWD students in Prof. McDonald’s class in Spring 2023 from police stations in Texas near the New Mexico border. The data includes all the arrests related to marijuana possession at each station."
-  },
-  {
-    "objectID": "16-analysis.html",
-    "href": "16-analysis.html",
-    "title": "Analysis",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "16-analysis.html#setup",
-    "href": "16-analysis.html#setup",
-    "title": "Analysis",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "16-analysis.html#import",
-    "href": "16-analysis.html#import",
-    "title": "Analysis",
-    "section": "Import",
-    "text": "Import\nRead in all the cleaned data from cities/counties.\n\namarillo &lt;- read_rds(\"data-processed/Amarillo-City.rds\")\ncarson &lt;- read_rds(\"data-processed/Carson-County.rds\")\nhoward &lt;- read_rds(\"data-processed/Howard-County.rds\")\nmidland &lt;- read_rds(\"data-processed/Midland-City.rds\")\nlubbock &lt;- read_rds(\"data-processed/Lubbock-County.rds\")\nmonahans &lt;- read_rds(\"data-processed/Monahans-City.rds\")\nmoore &lt;- read_rds(\"data-processed/Moore-County.rds\")\nnolan &lt;- read_rds(\"data-processed/Nolan-County.rds\")\nodessa &lt;- read_rds(\"data-processed/Odessa-City.rds\")\npecos &lt;- read_rds(\"data-processed/Pecos-City.rds\")\nplainview &lt;- read_rds(\"data-processed/Plainview-City.rds\")\nrandall &lt;- read_rds(\"data-processed/Randall-County.rds\")\nslaton &lt;- read_rds(\"data-processed/Slaton-City.rds\")\nsnyder &lt;- read_rds(\"data-processed/Snyder-City.rds\")\nwheeler &lt;- read_rds(\"data-processed/Wheeler-County.rds\")"
-  },
-  {
-    "objectID": "16-analysis.html#nolan-county",
-    "href": "16-analysis.html#nolan-county",
-    "title": "Analysis",
-    "section": "Nolan County",
-    "text": "Nolan County\n\nnolan_age &lt;- nolan |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\n\nnolan_age\n\n\n\n  \n\n\nnolan_sex &lt;- nolan |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\n\nnolan_sex\n\n\n\n  \n\n\nnolan_race &lt;- nolan |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\n\nnolan_race"
-  },
-  {
-    "objectID": "16-analysis.html#plainview-city",
-    "href": "16-analysis.html#plainview-city",
-    "title": "Analysis",
-    "section": "Plainview City",
-    "text": "Plainview City\n\nplainview_age &lt;- plainview |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nplainview_age\n\n\n\n  \n\n\nplainview_sex &lt;- plainview |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nplainview_sex\n\n\n\n  \n\n\nplainview_race &lt;- plainview |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nplainview_race"
-  },
-  {
-    "objectID": "16-analysis.html#slaton-city",
-    "href": "16-analysis.html#slaton-city",
-    "title": "Analysis",
-    "section": "Slaton City",
-    "text": "Slaton City\n\nslaton_sex &lt;- slaton |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nslaton_sex\n\n\n\n  \n\n\nslaton_race &lt;- slaton |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nslaton_race"
-  },
-  {
-    "objectID": "16-analysis.html#carson-county",
-    "href": "16-analysis.html#carson-county",
-    "title": "Analysis",
-    "section": "Carson County",
-    "text": "Carson County\n\ncarson_age &lt;- carson |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\ncarson_age\n\n\n\n  \n\n\ncarson_sex &lt;- carson |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\ncarson_sex\n\n\n\n  \n\n\ncarson_race &lt;- carson |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\ncarson_race"
-  },
-  {
-    "objectID": "16-analysis.html#howard-county",
-    "href": "16-analysis.html#howard-county",
-    "title": "Analysis",
-    "section": "Howard County",
-    "text": "Howard County\n\nhoward_age &lt;- howard |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nhoward_age\n\n\n\n  \n\n\nhoward_sex &lt;- howard |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nhoward_sex"
-  },
-  {
-    "objectID": "16-analysis.html#midland-city",
-    "href": "16-analysis.html#midland-city",
-    "title": "Analysis",
-    "section": "Midland City",
-    "text": "Midland City\n\nmidland_age &lt;- midland |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nmidland_age\n\n\n\n  \n\n\nmidland_sex &lt;- midland |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nmidland_sex\n\n\n\n  \n\n\nmidland_race &lt;- midland |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nmidland_race"
-  },
-  {
-    "objectID": "16-analysis.html#monahans-city",
-    "href": "16-analysis.html#monahans-city",
-    "title": "Analysis",
-    "section": "Monahans City",
-    "text": "Monahans City\n\nmonahans_age &lt;- monahans |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nmonahans_age\n\n\n\n  \n\n\nmonahans_sex &lt;- monahans |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nmonahans_sex\n\n\n\n  \n\n\nmonahans_race &lt;- monahans |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nmonahans_race"
-  },
-  {
-    "objectID": "16-analysis.html#moore-county",
-    "href": "16-analysis.html#moore-county",
-    "title": "Analysis",
-    "section": "Moore County",
-    "text": "Moore County\n\nmoore_sex &lt;- moore |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nmoore_sex\n\n\n\n  \n\n\nmoore_race &lt;- moore |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nmoore_race"
-  },
-  {
-    "objectID": "16-analysis.html#randall-county",
-    "href": "16-analysis.html#randall-county",
-    "title": "Analysis",
-    "section": "Randall County",
-    "text": "Randall County\n\nrandall_age &lt;- randall |&gt; group_by(age) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nrandall_age\n\n\n\n  \n\n\nrandall_sex &lt;- randall |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nrandall_sex\n\n\n\n  \n\n\nrandall_race &lt;- randall |&gt; group_by(race) |&gt; \n  summarize(appearances = n())\nrandall_race"
-  },
-  {
-    "objectID": "16-analysis.html#odessa-city",
-    "href": "16-analysis.html#odessa-city",
-    "title": "Analysis",
-    "section": "Odessa City",
-    "text": "Odessa City\n\nodessa_race &lt;- odessa |&gt; group_by(race) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nodessa_race\n\n\n\n  \n\n\nodessa_sex &lt;- odessa |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nodessa_sex\n\n\n\n  \n\n\nodessa_ethnicity &lt;- odessa |&gt; group_by(ethnicity) |&gt; \n  summarize(appearances = n())\nodessa_ethnicity"
-  },
-  {
-    "objectID": "10-Cleaning-PecosCity.html",
-    "href": "10-Cleaning-PecosCity.html",
-    "title": "Pecos City",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "10-Cleaning-PecosCity.html#setup",
-    "href": "10-Cleaning-PecosCity.html#setup",
-    "title": "Pecos City",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "10-Cleaning-PecosCity.html#import",
-    "href": "10-Cleaning-PecosCity.html#import",
-    "title": "Pecos City",
-    "section": "Import",
-    "text": "Import\nSame process as before\n\npecos &lt;- read_excel(\"data-raw/PecosCity.xls\")\n\npecos |&gt; glimpse()\n\nRows: 70\nColumns: 8\n$ officer         &lt;chr&gt; \"MARQUEZ, AA\", \"MARQUEZ, AA\", \"MARQUEZ, AA\", \"MARQUEZ,…\n$ datetime_arrest &lt;chr&gt; \"01/15/2018 10:47\", \"01/19/2018 16:39\", \"01/20/2018 07…\n$ charge_desc     &lt;chr&gt; \"POSSESSION OF MARIJUANA\", \"TRAFFIC STOP/VIOLATION\", \"…\n$ address_arrest  &lt;chr&gt; \"300 S ROSS BOULEVARD\", \"1200 S PLUM\", \"2600 STATE HIG…\n$ city_zip        &lt;chr&gt; \"PECOS, TX 79772\", \"PECOS, TX 79772\", \"PECOS, TX 79772…\n$ charges         &lt;chr&gt; \"POSS MARIJ &lt;2OZ\", \"POSS MARIJ &lt;2OZ\", \"POSS MARIJ &lt;2OZ…\n$ offense_status  &lt;chr&gt; \"ACTIVE\", \"ACTIVE\", \"ACTIVE\", \"ACTIVE\", \"ACTIVE\", \"ACT…\n$ case_status     &lt;chr&gt; NA, \"ACTIVE\", \"ACTIVE\", \"ACTIVE\", \"ACTIVE\", \"CLEARED B…"
-  },
-  {
-    "objectID": "10-Cleaning-PecosCity.html#clean",
-    "href": "10-Cleaning-PecosCity.html#clean",
-    "title": "Pecos City",
-    "section": "Clean",
-    "text": "Clean\nChange datetime_arrest to datetime object. Get rid of columns officer, offense_status, case_status.\n\npecos_clean &lt;- pecos |&gt; mutate(\n  datetime_arrest = mdy_hm(datetime_arrest)\n) |&gt; select(\n  -officer,\n  -offense_status,\n  -case_status\n)\n\npecos_clean"
-  },
-  {
-    "objectID": "10-Cleaning-PecosCity.html#export",
-    "href": "10-Cleaning-PecosCity.html#export",
-    "title": "Pecos City",
-    "section": "Export",
-    "text": "Export\n\npecos_clean |&gt; write_rds(\"data-processed/Pecos-City.rds\")"
-  },
-  {
-    "objectID": "04-Cleaning-MidlandCity.html",
-    "href": "04-Cleaning-MidlandCity.html",
-    "title": "Midland City",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "04-Cleaning-MidlandCity.html#setup",
-    "href": "04-Cleaning-MidlandCity.html#setup",
-    "title": "Midland City",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "04-Cleaning-MidlandCity.html#import",
-    "href": "04-Cleaning-MidlandCity.html#import",
-    "title": "Midland City",
-    "section": "Import",
-    "text": "Import\nSame process as before\n\nmidland &lt;- read_excel(\"data-raw/MidlandCity.xlsx\")\n\nmidland |&gt; glimpse()\n\nRows: 2,704\nColumns: 29\n$ age         &lt;chr&gt; \"39\", \"39\", \"25\", \"29\", \"36\", \"37\", \"17\", \"19\", \"31\", \"21\"…\n$ officer     &lt;dbl&gt; 196, 26, 593, 523, 587, 46, 597, 597, 596, 58, 142, 504, 1…\n$ charges     &lt;chr&gt; \"POSS CS PG 1 &gt;= 1G &lt; 4G\", \"POSS CS PG 1 &gt;= 1G &lt; 4G\", \"ASS…\n$ date_arrest &lt;dttm&gt; 2019-07-25, 2019-07-25, 2019-07-29, 2019-07-31, 2019-07-3…\n$ district    &lt;chr&gt; \"P5\", \"P5\", \"P2\", \"P2\", \"P7\", \"P6\", \"P2\", \"P2\", \"P4\", \"P2\"…\n$ gangrelat   &lt;chr&gt; NA, NA, \"NO\", NA, \"NO\", NA, NA, NA, \"NO\", \"NO\", \"NO\", NA, …\n$ geox        &lt;dbl&gt; 1756171, 1756171, 1738124, 1743033, 1734635, 1735286, 1741…\n$ geoy        &lt;dbl&gt; 10701051, 10701051, 10690065, 10696034, 10706882, 10676229…\n$ name_id     &lt;dbl&gt; 10286735, 10286735, 10193951, 10137556, 10064002, 10304231…\n$ race        &lt;chr&gt; \"W\", \"W\", \"W\", \"W\", \"B\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\"…\n$ reportarea  &lt;chr&gt; \"0437\", \"0437\", \"0543\", \"0533\", \"0309\", \"0204\", \"0556\", \"0…\n$ sex         &lt;chr&gt; \"M\", \"M\", \"F\", \"F\", \"F\", \"F\", \"F\", \"M\", \"M\", \"M\", \"M\", \"M\"…\n$ time_arrest &lt;chr&gt; \"1339\", \"1338\", \"2256\", \"0206\", \"1821\", \"1242\", \"0121\", \"0…\n$ arr_chrg    &lt;chr&gt; \"HSC 481.115(c)  F3\", \"HSC 481.115(c)  F3\", \"HSC 483.041(d…\n$ chrg_cnt    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ charge_desc &lt;chr&gt; \"POSS CS PG 1 &gt;= 1G &lt; 4G\", \"POSS CS PG 1 &gt;= 1G &lt; 4G\", \"POS…\n$ fel_misd    &lt;chr&gt; \"F\", \"F\", \"M\", \"M\", \"F\", \"F\", \"F\", \"F\", \"M\", \"M\", \"F\", \"M\"…\n$ ucr_code    &lt;chr&gt; \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"3…\n$ ibr_code    &lt;chr&gt; \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"3…\n$ firstname   &lt;chr&gt; \"CARLTON\", \"CARLTON\", \"CHRISTINA\", \"KATELYN\", \"LATOYA\", \"H…\n$ gangaffil   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ hair        &lt;chr&gt; \"GRY\", \"GRY\", NA, \"BRO\", \"BRO\", \"BRO\", \"BRO\", \"BLK\", \"BLD\"…\n$ height      &lt;chr&gt; \"507\", \"507\", NA, \"505\", \"507\", \"506\", \"505\", \"502\", \"507\"…\n$ lastname    &lt;chr&gt; \"BLACKWELL\", \"BLACKWELL\", \"BALDERRAMA\", \"SANDERSON\", \"WILL…\n$ middlename  &lt;chr&gt; NA, NA, NA, \"MARIE\", \"DENISE\", \"DAWN\", \"ELIZABETH\", NA, NA…\n$ street      &lt;chr&gt; \"N LORAINE ST\", \"N LORAINE ST\", \"ROOSEVELT DR\", \"AIRLINE R…\n$ streetnbr   &lt;chr&gt; \"601\", \"601\", \"4428\", \"7100\", \"1212\", NA, \"4715\", \"4309\", …\n$ weight      &lt;dbl&gt; 180, 180, 0, 155, 240, 200, 160, 130, 140, 180, 150, 100, …\n$ age_group   &lt;chr&gt; \"35 to 44\", \"35 to 44\", \"25 to 34\", \"25 to 34\", \"35 to 44\"…"
-  },
-  {
-    "objectID": "04-Cleaning-MidlandCity.html#select-columns",
-    "href": "04-Cleaning-MidlandCity.html#select-columns",
-    "title": "Midland City",
-    "section": "Select Columns",
-    "text": "Select Columns\n\nmidland_clean &lt;- midland |&gt; select(\n  -officer,\n  -reportarea,\n  -arr_chrg,\n  -chrg_cnt,\n  -ucr_code,\n  -ibr_code,\n  -name_id\n)\n\nmidland_clean"
-  },
-  {
-    "objectID": "04-Cleaning-MidlandCity.html#export",
-    "href": "04-Cleaning-MidlandCity.html#export",
-    "title": "Midland City",
-    "section": "Export",
-    "text": "Export\n\nmidland_clean |&gt; write_rds(\"data-processed/Midland-City.rds\")"
-  },
-  {
-    "objectID": "08-Cleaning-NolanCounty.html",
-    "href": "08-Cleaning-NolanCounty.html",
-    "title": "Nolan County",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "08-Cleaning-NolanCounty.html#setup",
-    "href": "08-Cleaning-NolanCounty.html#setup",
-    "title": "Nolan County",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "08-Cleaning-NolanCounty.html#import",
-    "href": "08-Cleaning-NolanCounty.html#import",
-    "title": "Nolan County",
-    "section": "Import",
-    "text": "Import\nSame process as before\n\nnolan &lt;- read_excel(\"data-raw/NolanCounty.xlsx\")\n\nnolan |&gt; glimpse()\n\nRows: 38\nColumns: 7\n$ name           &lt;chr&gt; \"Michael Glen Mulleneaux Jr\", \"Christopher Gonzalez\", \"…\n$ age            &lt;dbl&gt; 33, 24, 21, 26, 18, 17, 19, 29, 25, 27, 28, 37, 24, 25,…\n$ race           &lt;chr&gt; \"W\", \"H\", \"H\", \"H\", \"W\", \"W\", \"W\", \"H\", \"W\", \"W\", \"W\", …\n$ sex            &lt;chr&gt; \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"F\", \"F\", \"M\", …\n$ date_arrest    &lt;dttm&gt; 2018-08-21, 2020-05-16, 2020-06-17, 2020-06-17, 2020-0…\n$ charges        &lt;chr&gt; \"Possession Marijuana &gt; 2oz &lt; 4oz\", \"Possession Marijua…\n$ address_arrest &lt;chr&gt; \"2926 N Highway 70, 79556\", \"CR 175 and Hwy 153, 79537\"…"
-  },
-  {
-    "objectID": "08-Cleaning-NolanCounty.html#export",
-    "href": "08-Cleaning-NolanCounty.html#export",
-    "title": "Nolan County",
-    "section": "Export",
-    "text": "Export\nNothing to clean, now we export.\n\nnolan |&gt; write_rds(\"data-processed/Nolan-County.rds\")"
   },
   {
     "objectID": "14-Cleaning-SnyderCity.html",
@@ -431,196 +242,14 @@
     "href": "14-Cleaning-SnyderCity.html#clean",
     "title": "Snyder City",
     "section": "Clean",
-    "text": "Clean\n\nsnyder_clean &lt;- snyder |&gt; mutate(\n  datetime_arrest = mdy_hm(datetime_arrest)\n)\nsnyder_clean"
+    "text": "Clean\n\nsnyder_clean &lt;- snyder |&gt; mutate(\n  datetime_arrest = mdy_hm(datetime_arrest),\n  date_arrest = date(datetime_arrest)\n) |&gt; select(\n  -officer,\n  -charge_desc,\n  -city_zip\n) |&gt; cbind(age = NA, race = NA, sex = NA, ethnicity = NA, agency_arrest = NA)\n\nsnyder_clean |&gt; glimpse()\n\nRows: 75\nColumns: 10\n$ datetime_arrest &lt;dttm&gt; 2018-01-28 03:06:00, 2018-03-10 01:20:00, 2018-03-10 …\n$ address_arrest  &lt;chr&gt; \"2800 BLOCK AVE F\", \"2800 COLLEGE AVENUE\", \"2800 COLLE…\n$ name            &lt;chr&gt; \"BREWSTER, KENDALL KAY\", \"FEASTER, BRIGHTON\", \"MORENO,…\n$ charges         &lt;chr&gt; \"DRIVING WHILE LIC  SUSPENDED/INVALID M*, POSS MARIJ &lt;…\n$ date_arrest     &lt;date&gt; 2018-01-28, 2018-03-10, 2018-03-10, 2018-03-19, 2018-…\n$ age             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ race            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ sex             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
   },
   {
     "objectID": "14-Cleaning-SnyderCity.html#export",
     "href": "14-Cleaning-SnyderCity.html#export",
     "title": "Snyder City",
     "section": "Export",
-    "text": "Export\n\nsnyder_clean |&gt; write_rds(\"data-processed/Snyder-City.rds\")"
-  },
-  {
-    "objectID": "05-Cleaning-Lubbock-County.html",
-    "href": "05-Cleaning-Lubbock-County.html",
-    "title": "Lubbock County",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "05-Cleaning-Lubbock-County.html#setup",
-    "href": "05-Cleaning-Lubbock-County.html#setup",
-    "title": "Lubbock County",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "05-Cleaning-Lubbock-County.html#import",
-    "href": "05-Cleaning-Lubbock-County.html#import",
-    "title": "Lubbock County",
-    "section": "Import",
-    "text": "Import\nSame process as before\n\nlubbock &lt;- read_excel(\"data-raw/LubbockCounty.xlsx\")\n\nWarning: Coercing text to numeric in A1016 / R1016C1: '2018011602'\n\nlubbock |&gt; glimpse()\n\nRows: 5,937\nColumns: 6\n$ `1`           &lt;dbl&gt; 2.018e+09, 2.018e+09, 2.018e+09, 2.018e+09, 2.018e+09, 2…\n$ `2`           &lt;dbl&gt; 198683, 159828, 176378, 150934, 158861, 137255, 193295, …\n$ name          &lt;chr&gt; \"ROBISON, DMOREA Q\", \"RAMIREZ, SIERRA\", \"MOSES, XAVIER J…\n$ date_arrest   &lt;chr&gt; \"2018-01-01\", \"2018-01-02\", \"2018-01-02\", \"2018-01-03\", …\n$ date_released &lt;chr&gt; \"2018-03-02\", \"2018-01-06\", \"2018-01-29\", \"2018-01-03\", …\n$ agency_arrest &lt;chr&gt; \"LPD-Rampy, Lloyd Brent\", \"LSO-MCGLONE,  KRISTINA HOPE\",…"
-  },
-  {
-    "objectID": "05-Cleaning-Lubbock-County.html#cleaning",
-    "href": "05-Cleaning-Lubbock-County.html#cleaning",
-    "title": "Lubbock County",
-    "section": "Cleaning",
-    "text": "Cleaning\nJust removing first two columns and making dates actual date types.\n\nlubbock_clean &lt;- lubbock |&gt; select( \n  -\"1\",\n  -\"2\"\n) |&gt; mutate(\n  date_arrest = ymd(date_arrest),\n  date_released = ymd(date_released)\n)\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `date_released = ymd(date_released)`.\nCaused by warning:\n!  1 failed to parse.\n\nlubbock_clean"
-  },
-  {
-    "objectID": "05-Cleaning-Lubbock-County.html#export",
-    "href": "05-Cleaning-Lubbock-County.html#export",
-    "title": "Lubbock County",
-    "section": "Export",
-    "text": "Export\n\nlubbock_clean |&gt; write_rds(\"data-processed/Lubbock-County.rds\")"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "09-Cleaning-OdessaCity.html",
-    "href": "09-Cleaning-OdessaCity.html",
-    "title": "Odessa City",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "09-Cleaning-OdessaCity.html#setup",
-    "href": "09-Cleaning-OdessaCity.html#setup",
-    "title": "Odessa City",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "09-Cleaning-OdessaCity.html#import",
-    "href": "09-Cleaning-OdessaCity.html#import",
-    "title": "Odessa City",
-    "section": "Import",
-    "text": "Import\nSame process as before\n\nodessa &lt;- read_excel(\"data-raw/OdessaCity.xlsx\")\n\nodessa |&gt; glimpse()\n\nRows: 2,974\nColumns: 8\n$ date_arrest    &lt;chr&gt; \"1/1/2018\", \"1/1/2018\", \"1/2/2018\", \"1/2/2018\", \"1/3/20…\n$ name           &lt;chr&gt; \"Prnce, Cameron\", \"TALLEY, JESSI MARIE\", \"Hendrix, Jess…\n$ race           &lt;chr&gt; \"B - Black or African American\", \"W - White\", \"W - Whit…\n$ ethnicity      &lt;chr&gt; \"N - Not Hispanic or Latino\", \"N - Not Hispanic or Lati…\n$ sex            &lt;chr&gt; \"M - Male\", \"F - Female\", \"F - Female\", \"M - Male\", \"M …\n$ `Case No`      &lt;chr&gt; \"18-0000022\", \"18-0000018\", \"18-0000091\", \"18-0000083\",…\n$ charges        &lt;chr&gt; \"35620008 - POSS MARIJ 2OZ\", \"35620008 - POSS MARIJ 2OZ…\n$ address_arrest &lt;chr&gt; \"1900 Blk. E. 6th\", \"1st/Sam Houston\", \"Carolyn/ Andrew…"
-  },
-  {
-    "objectID": "09-Cleaning-OdessaCity.html#clean",
-    "href": "09-Cleaning-OdessaCity.html#clean",
-    "title": "Odessa City",
-    "section": "Clean",
-    "text": "Clean\nNeed to change date_arrest to date type. Need to get rid of extra words in race and sex. And fet rid of Case No altogether.\n\nodessa_clean &lt;- odessa |&gt; mutate(\n  date_arrest = mdy(date_arrest),\n  race = substr(race, 1, 1),\n  sex = substr(sex, 1, 1)\n) |&gt; select(-\"Case No\")\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `date_arrest = mdy(date_arrest)`.\nCaused by warning:\n!  2 failed to parse.\n\nodessa_clean"
-  },
-  {
-    "objectID": "09-Cleaning-OdessaCity.html#export",
-    "href": "09-Cleaning-OdessaCity.html#export",
-    "title": "Odessa City",
-    "section": "Export",
-    "text": "Export\n\nodessa_clean |&gt; write_rds(\"data-processed/Odessa-City.rds\")"
-  },
-  {
-    "objectID": "11-Cleaning-PlainviewCity.html",
-    "href": "11-Cleaning-PlainviewCity.html",
-    "title": "Plainview City",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "11-Cleaning-PlainviewCity.html#setup",
-    "href": "11-Cleaning-PlainviewCity.html#setup",
-    "title": "Plainview City",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "11-Cleaning-PlainviewCity.html#import",
-    "href": "11-Cleaning-PlainviewCity.html#import",
-    "title": "Plainview City",
-    "section": "Import",
-    "text": "Import\nSame process as before\n\nplainview &lt;- read_excel(\"data-raw/PlainviewCity.xlsx\")\n\nplainview |&gt; glimpse()\n\nRows: 468\nColumns: 14\n$ `UCR/NCIC`       &lt;chr&gt; NA, \"35A,3562\", NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ `Event Number`   &lt;chr&gt; NA, \"1800524\", \"1800553\", \"1801115\", \"1801116\", \"1801…\n$ name             &lt;chr&gt; NA, \"Indrebo, Chase Kendall\", \"Tonche Enriquez, Emman…\n$ charges          &lt;chr&gt; NA, \"CONTROLLED SUBSTANCE - Marijuana, Possession\", \"…\n$ geox             &lt;chr&gt; NA, \"34.198\", \"34.197000000000003\", \"34.1910000000000…\n$ geoy             &lt;dbl&gt; NA, -101.749, -101.720, -101.723, -101.694, -101.748,…\n$ address_arrest   &lt;chr&gt; NA, \"1601 N I 27\", \"1700 W 15TH\", \"1700 W 11TH\", \"700…\n$ date_arrest      &lt;dttm&gt; NA, 2018-01-07, 2018-01-08, 2018-01-14, 2018-01-14, …\n$ time_arrest      &lt;dttm&gt; NA, 1899-12-31 18:42:00, 1899-12-31 01:14:00, 1899-1…\n$ `Dispatch Dispo` &lt;chr&gt; NA, \"ARR\", \"ARR\", \"ARR\", \"ARR\", \"ARR\", \"ARR\", \"ARR\", …\n$ case_status      &lt;chr&gt; NA, \"CLEARED ADULT ARREST\", \"CLEARED ADULT ARREST\", \"…\n$ age              &lt;dbl&gt; NA, 23, 24, 30, 27, 31, 18, 23, NA, 33, 17, 18, 17, 3…\n$ race             &lt;chr&gt; NA, \"w\", \"h\", \"b\", \"h\", \"w\", \"h\", \"h\", NA, \"h\", \"h\", …\n$ sex              &lt;chr&gt; NA, \"m\", \"m\", \"m\", \"f\", \"f\", \"m\", \"f\", NA, \"f\", \"m\", …"
-  },
-  {
-    "objectID": "11-Cleaning-PlainviewCity.html#clean",
-    "href": "11-Cleaning-PlainviewCity.html#clean",
-    "title": "Plainview City",
-    "section": "Clean",
-    "text": "Clean\nNeed to get rid of extra columns and change date_arrest and time_arrest to datetime_arrest and datetime object.\n\nplainview_clean &lt;- plainview |&gt; mutate(\n  datetime_arrest = paste(date_arrest,substr(time_arrest,12,19) )\n  ) |&gt; select(\n    -\"UCR/NCIC\", \n    -\"Event Number\", \n    -date_arrest, \n    -time_arrest,\n    -\"Dispatch Dispo\",\n    -case_status\n) |&gt; mutate( datetime_arrest = ymd_hms(datetime_arrest))\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `datetime_arrest = ymd_hms(datetime_arrest)`.\nCaused by warning:\n!  1 failed to parse.\n\nplainview_clean"
-  },
-  {
-    "objectID": "11-Cleaning-PlainviewCity.html#export",
-    "href": "11-Cleaning-PlainviewCity.html#export",
-    "title": "Plainview City",
-    "section": "Export",
-    "text": "Export\n\nplainview_clean |&gt; write_rds(\"data-processed/Plainview-City.rds\")"
-  },
-  {
-    "objectID": "03-Cleaning-Howard.html",
-    "href": "03-Cleaning-Howard.html",
-    "title": "Howard County",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "03-Cleaning-Howard.html#setup",
-    "href": "03-Cleaning-Howard.html#setup",
-    "title": "Howard County",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "03-Cleaning-Howard.html#import",
-    "href": "03-Cleaning-Howard.html#import",
-    "title": "Howard County",
-    "section": "Import",
-    "text": "Import\nSame process as before\n\nhoward &lt;- read_excel(\"data-raw/HowardCounty.xls\")\n\nNew names:\n• `` -&gt; `...4`\n\nhoward |&gt; glimpse()\n\nRows: 661\nColumns: 8\n$ date_arrest   &lt;dttm&gt; 2018-01-05, 2018-01-06, 2018-01-07, 2018-01-07, 2018-01…\n$ name          &lt;chr&gt; \"CHILDS, DEVONTAY TRAYVON\", \"HILGER, BRITTNEY JO\", \"CARR…\n$ age           &lt;dbl&gt; 31, 28, 42, 24, 53, 57, 24, 46, 25, 46, 26, 50, 33, 27, …\n$ ...4          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ sex           &lt;chr&gt; \"M\", \"F\", \"M\", \"M\", \"F\", \"M\", \"M\", \"F\", \"M\", \"M\", \"F\", \"…\n$ time_arrest   &lt;dttm&gt; 1899-12-31 09:37:00, 1899-12-31 02:23:00, 1899-12-31 11…\n$ agency_arrest &lt;chr&gt; \"GLASS\", \"BSPD\", \"BSPD\", \"BSPD\", \"BSPD\", \"BSPD\", \"HCSO\",…\n$ charges       &lt;chr&gt; \"POSS MARIJ &lt;2OZ\", \"MTRP/POSS MARIJ &lt;2OZ\", \"BOB/POSS MAR…"
-  },
-  {
-    "objectID": "03-Cleaning-Howard.html#clean-columns",
-    "href": "03-Cleaning-Howard.html#clean-columns",
-    "title": "Howard County",
-    "section": "Clean Columns",
-    "text": "Clean Columns\nputting together the date and time and getting rid of the blank column\n\nhoward_col &lt;- howard |&gt; mutate(\n  datetime_arrest = paste(date_arrest, paste(hour(time_arrest), minute(time_arrest), second(time_arrest), sep = \":\"))\n)\n\nhoward_clean &lt;- howard_col |&gt; mutate(\n  datetime_arrest = ymd_hms(datetime_arrest)\n) |&gt; select(\n  -date_arrest,\n  -time_arrest,\n  -...4\n)\n\nhoward_clean"
-  },
-  {
-    "objectID": "03-Cleaning-Howard.html#export",
-    "href": "03-Cleaning-Howard.html#export",
-    "title": "Howard County",
-    "section": "Export",
-    "text": "Export\n\nhoward_clean |&gt; write_rds(\"data-processed/Howard-County.rds\")"
-  },
-  {
-    "objectID": "15-Cleaning-WheelerCounty.html",
-    "href": "15-Cleaning-WheelerCounty.html",
-    "title": "Wheeler County",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "15-Cleaning-WheelerCounty.html#setup",
-    "href": "15-Cleaning-WheelerCounty.html#setup",
-    "title": "Wheeler County",
-    "section": "",
-    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
-  },
-  {
-    "objectID": "15-Cleaning-WheelerCounty.html#import",
-    "href": "15-Cleaning-WheelerCounty.html#import",
-    "title": "Wheeler County",
-    "section": "Import",
-    "text": "Import\nSame process as before\n\nwheeler &lt;- read_excel(\"data-raw/WheelerCounty.xlsx\")\n\nwheeler |&gt; glimpse()\n\nRows: 116\nColumns: 22\n$ inc_index     &lt;dbl&gt; 1953118, 1931092, 1907492, 1894481, 1899162, 1890396, 18…\n$ incident_no   &lt;chr&gt; \"22-12-466C\", \"22-11-435C\", \"22-10-384C\", \"22-09-330C\", …\n$ other_no      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ event_no      &lt;chr&gt; \"2212250001\", \"2211290022\", \"2210090012\", \"2209030002\", …\n$ date_arrest   &lt;chr&gt; \"25-Dec-22 00:00:00\", \"29-Nov-22 00:00:00\", \"09-Oct-22 0…\n$ time_arrest   &lt;chr&gt; \"00:23\", \"23:21\", \"11:23\", \"01:43\", \"18:48\", \"22:26\", \"1…\n$ offense       &lt;chr&gt; \"481.121(b)(3)\", \"481.121(b)(3)\", \"481.121(b)(1)\", \"481.…\n$ date_1        &lt;chr&gt; \"25-Dec-22 00:00:00\", \"29-Nov-22 00:00:00\", \"09-Oct-22 0…\n$ agency_arrest &lt;chr&gt; \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", …\n$ officer_id    &lt;chr&gt; \"ET0910\", \"908\", \"908\", \"PYLE\", \"ET0910\", \"909TJK\", \"908…\n$ dispo         &lt;chr&gt; \"31ST\", \"31ST\", \"CO\", \"BOTH\", \"BOTH\", \"CO\", \"CO\", \"31ST\"…\n$ streetnbr     &lt;chr&gt; NA, NA, NA, \"176 E\", NA, NA, NA, NA, NA, \"161\", \"120\", N…\n$ street_prfx   &lt;chr&gt; NA, \"E\", NA, NA, NA, NA, \"E\", NA, \"E\", \"E\", \"S\", NA, NA,…\n$ street        &lt;chr&gt; \"CEFCO PARKING LT\", \"ROUTE 66\", \"NORTH MAIN STREET 83\", …\n$ street_type   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, \"ST\", NA, NA, NA, NA, \"S…\n$ suffix        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ city          &lt;chr&gt; \"SHAMROCK\", \"SHAMROCK\", \"SHAMROCK\", \"WHEELER\", \"SHAMROCK…\n$ state         &lt;chr&gt; \"TX\", \"TX\", \"TX\", \"TX\", \"TX\", \"TX\", \"TX\", \"TX\", \"TX\", \"T…\n$ zip_code      &lt;chr&gt; \"79079\", \"79096\", \"79096\", \"79096\", \"79096\", \"79079\", \"7…\n$ geox          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ geoy          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ charges       &lt;chr&gt; \"POSS MARIJ &gt;4OZ&lt;=5LBS\", \"POSS MARIJ &gt;4OZ&lt;=5LBS\", \"POSS …"
-  },
-  {
-    "objectID": "15-Cleaning-WheelerCounty.html#clean",
-    "href": "15-Cleaning-WheelerCounty.html#clean",
-    "title": "Wheeler County",
-    "section": "Clean",
-    "text": "Clean\n\nwheeler_clean &lt;- wheeler |&gt; mutate(\n  date_arrest = dmy_hms(date_arrest)\n) |&gt; select(\n  -inc_index,\n  -incident_no,\n  -other_no,\n  -event_no,\n  -time_arrest,\n  -offense,\n  -date_1,\n  -suffix,\n  -geox,\n  -geoy,\n)\nwheeler_clean"
-  },
-  {
-    "objectID": "15-Cleaning-WheelerCounty.html#export",
-    "href": "15-Cleaning-WheelerCounty.html#export",
-    "title": "Wheeler County",
-    "section": "Export",
-    "text": "Export\n\nwheeler_clean |&gt; write_rds(\"data-processed/Wheeler-County.rds\")"
+    "text": "Export\n\nsnyder_clean |&gt; write_csv(\"data-processed/Snyder-City.csv\")"
   },
   {
     "objectID": "16-analysis-1.html",
@@ -641,7 +270,7 @@
     "href": "16-analysis-1.html#import",
     "title": "Analysis v1",
     "section": "Import",
-    "text": "Import\nRead in all the cleaned data from cities/counties.\n\namarillo &lt;- read_rds(\"data-processed/Amarillo-City.csv\")\ncarson &lt;- read_rds(\"data-processed/Carson-County.rds\")\nhoward &lt;- read_rds(\"data-processed/Howard-County.rds\")\nmidland &lt;- read_rds(\"data-processed/Midland-City.rds\")\nlubbock &lt;- read_rds(\"data-processed/Lubbock-County.rds\")\nmonahans &lt;- read_rds(\"data-processed/Monahans-City.rds\")\nmoore &lt;- read_rds(\"data-processed/Moore-County.rds\")\nnolan &lt;- read_rds(\"data-processed/Nolan-County.rds\")\nodessa &lt;- read_rds(\"data-processed/Odessa-City.rds\")\npecos &lt;- read_rds(\"data-processed/Pecos-City.rds\")\nplainview &lt;- read_rds(\"data-processed/Plainview-City.rds\")\nrandall &lt;- read_rds(\"data-processed/Randall-County.rds\")\nslaton &lt;- read_rds(\"data-processed/Slaton-City.rds\")\nsnyder &lt;- read_rds(\"data-processed/Snyder-City.rds\")\nwheeler &lt;- read_rds(\"data-processed/Wheeler-County.rds\")"
+    "text": "Import\nRead in all the cleaned data from cities/counties.\n\namarillo &lt;- read_csv(\"data-processed/Amarillo-City.csv\")\n\nRows: 649 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (3): name, charges, address_arrest\nlgl  (5): age, race, sex, agency_arrest, ethnicity\ndttm (1): datetime_arrest\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ncarson &lt;- read_csv(\"data-processed/Carson-County.csv\")\n\nRows: 729 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): address_arrest, charges, name, race, sex\ndbl  (1): age\nlgl  (2): agency_arrest, ethnicity\ndttm (2): date_arrest, datetime_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nhoward &lt;- read_csv(\"data-processed/Howard-County.csv\")\n\nRows: 661 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (4): name, sex, agency_arrest, charges\ndbl  (1): age\nlgl  (3): ethnicity, race, address_arrest\ndttm (2): date_arrest, datetime_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nmidland &lt;- read_csv(\"data-processed/Midland-City.csv\")\n\nRows: 2704 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): charges, race, sex, datetime_arrest, name\ndbl  (1): age\nlgl  (3): address_arrest, agency_arrest, ethnicity\ndttm (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nlubbock &lt;- read_csv(\"data-processed/Lubbock-County.csv\")\n\nRows: 5937 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (2): name, agency_arrest\nlgl  (7): datetime_arrest, charges, address_arrest, age, race, sex, ethnicity\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nmonahans &lt;- read_csv(\"data-processed/Monahans-City.csv\")\n\nRows: 98 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): name, address_arrest, charges, race, sex\ndbl  (1): age\nlgl  (3): datetime_arrest, agency_arrest, ethnicity\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nmoore &lt;- read_csv(\"data-processed/Moore-County.csv\")\n\nRows: 62 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): name, race, sex, address_arrest, charges\nlgl  (3): age, agency_arrest, ethnicity\ndttm (1): datetime_arrest\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nnolan &lt;- read_csv(\"data-processed/Nolan-County.csv\")\n\nRows: 38 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): name, race, sex, charges, address_arrest\ndbl  (1): age\nlgl  (3): datetime_arrest, agency_arrest, ethnicity\ndttm (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nodessa &lt;- read_csv(\"data-processed/Odessa-City.csv\")\n\nRows: 2974 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (6): name, race, ethnicity, sex, charges, address_arrest\nlgl  (3): datetime_arrest, agency_arrest, age\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\npecos &lt;- read_csv(\"data-processed/Pecos-City.csv\")\n\nRows: 70 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (2): address_arrest, charges\nlgl  (6): name, age, race, sex, ethnicity, agency_arrest\ndttm (1): datetime_arrest\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nplainview &lt;- read_csv(\"data-processed/Plainview-City.csv\")\n\nRows: 468 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): name, charges, address_arrest, race, sex\ndbl  (1): age\nlgl  (2): agency_arrest, ethnicity\ndttm (2): date_arrest, datetime_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nrandall &lt;- read_csv(\"data-processed/Randall-County.csv\")\n\nRows: 904 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (4): name, sex, race, charges\ndbl  (1): age\nlgl  (3): address_arrest, agency_arrest, ethnicity\ndttm (2): date_arrest, datetime_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nslaton &lt;- read_csv(\"data-processed/Slaton-City.csv\")\n\nRows: 34 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): name, sex, race, address_arrest, charges\ndbl  (1): age\nlgl  (3): datetime_arrest, agency_arrest, ethnicity\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nsnyder &lt;- read_csv(\"data-processed/Snyder-City.csv\")\n\nRows: 75 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (3): address_arrest, name, charges\nlgl  (5): age, race, sex, ethnicity, agency_arrest\ndttm (1): datetime_arrest\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nwheeler &lt;- read_csv(\"data-processed/Wheeler-County.csv\")\n\nRows: 116 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (3): agency_arrest, charges, address_arrest\nlgl  (6): datetime_arrest, age, race, sex, ethnicity, name\ndttm (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
   },
   {
     "objectID": "16-analysis-1.html#nolan-county",
@@ -712,5 +341,320 @@
     "title": "Analysis v1",
     "section": "Odessa City",
     "text": "Odessa City\n\nodessa_race &lt;- odessa |&gt; group_by(race) |&gt; \n  summarize(appearances = n()) |&gt; \n  arrange(desc(appearances))\nodessa_race\n\n\n\n  \n\n\nodessa_sex &lt;- odessa |&gt; group_by(sex) |&gt; \n  summarize(appearances = n())\nodessa_sex\n\n\n\n  \n\n\nodessa_ethnicity &lt;- odessa |&gt; group_by(ethnicity) |&gt; \n  summarize(appearances = n())\nodessa_ethnicity"
+  },
+  {
+    "objectID": "04-Cleaning-MidlandCity.html",
+    "href": "04-Cleaning-MidlandCity.html",
+    "title": "Midland City",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "04-Cleaning-MidlandCity.html#setup",
+    "href": "04-Cleaning-MidlandCity.html#setup",
+    "title": "Midland City",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "04-Cleaning-MidlandCity.html#import",
+    "href": "04-Cleaning-MidlandCity.html#import",
+    "title": "Midland City",
+    "section": "Import",
+    "text": "Import\nSame process as before\n\nmidland &lt;- read_excel(\"data-raw/MidlandCity.xlsx\")\n\nmidland |&gt; glimpse()\n\nRows: 2,704\nColumns: 29\n$ age         &lt;chr&gt; \"39\", \"39\", \"25\", \"29\", \"36\", \"37\", \"17\", \"19\", \"31\", \"21\"…\n$ officer     &lt;dbl&gt; 196, 26, 593, 523, 587, 46, 597, 597, 596, 58, 142, 504, 1…\n$ charges     &lt;chr&gt; \"POSS CS PG 1 &gt;= 1G &lt; 4G\", \"POSS CS PG 1 &gt;= 1G &lt; 4G\", \"ASS…\n$ date_arrest &lt;dttm&gt; 2019-07-25, 2019-07-25, 2019-07-29, 2019-07-31, 2019-07-3…\n$ district    &lt;chr&gt; \"P5\", \"P5\", \"P2\", \"P2\", \"P7\", \"P6\", \"P2\", \"P2\", \"P4\", \"P2\"…\n$ gangrelat   &lt;chr&gt; NA, NA, \"NO\", NA, \"NO\", NA, NA, NA, \"NO\", \"NO\", \"NO\", NA, …\n$ geox        &lt;dbl&gt; 1756171, 1756171, 1738124, 1743033, 1734635, 1735286, 1741…\n$ geoy        &lt;dbl&gt; 10701051, 10701051, 10690065, 10696034, 10706882, 10676229…\n$ name_id     &lt;dbl&gt; 10286735, 10286735, 10193951, 10137556, 10064002, 10304231…\n$ race        &lt;chr&gt; \"W\", \"W\", \"W\", \"W\", \"B\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\"…\n$ reportarea  &lt;chr&gt; \"0437\", \"0437\", \"0543\", \"0533\", \"0309\", \"0204\", \"0556\", \"0…\n$ sex         &lt;chr&gt; \"M\", \"M\", \"F\", \"F\", \"F\", \"F\", \"F\", \"M\", \"M\", \"M\", \"M\", \"M\"…\n$ time_arrest &lt;chr&gt; \"1339\", \"1338\", \"2256\", \"0206\", \"1821\", \"1242\", \"0121\", \"0…\n$ arr_chrg    &lt;chr&gt; \"HSC 481.115(c)  F3\", \"HSC 481.115(c)  F3\", \"HSC 483.041(d…\n$ chrg_cnt    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ charge_desc &lt;chr&gt; \"POSS CS PG 1 &gt;= 1G &lt; 4G\", \"POSS CS PG 1 &gt;= 1G &lt; 4G\", \"POS…\n$ fel_misd    &lt;chr&gt; \"F\", \"F\", \"M\", \"M\", \"F\", \"F\", \"F\", \"F\", \"M\", \"M\", \"F\", \"M\"…\n$ ucr_code    &lt;chr&gt; \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"3…\n$ ibr_code    &lt;chr&gt; \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"35A\", \"3…\n$ firstname   &lt;chr&gt; \"CARLTON\", \"CARLTON\", \"CHRISTINA\", \"KATELYN\", \"LATOYA\", \"H…\n$ gangaffil   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ hair        &lt;chr&gt; \"GRY\", \"GRY\", NA, \"BRO\", \"BRO\", \"BRO\", \"BRO\", \"BLK\", \"BLD\"…\n$ height      &lt;chr&gt; \"507\", \"507\", NA, \"505\", \"507\", \"506\", \"505\", \"502\", \"507\"…\n$ lastname    &lt;chr&gt; \"BLACKWELL\", \"BLACKWELL\", \"BALDERRAMA\", \"SANDERSON\", \"WILL…\n$ middlename  &lt;chr&gt; NA, NA, NA, \"MARIE\", \"DENISE\", \"DAWN\", \"ELIZABETH\", NA, NA…\n$ street      &lt;chr&gt; \"N LORAINE ST\", \"N LORAINE ST\", \"ROOSEVELT DR\", \"AIRLINE R…\n$ streetnbr   &lt;chr&gt; \"601\", \"601\", \"4428\", \"7100\", \"1212\", NA, \"4715\", \"4309\", …\n$ weight      &lt;dbl&gt; 180, 180, 0, 155, 240, 200, 160, 130, 140, 180, 150, 100, …\n$ age_group   &lt;chr&gt; \"35 to 44\", \"35 to 44\", \"25 to 34\", \"25 to 34\", \"35 to 44\"…"
+  },
+  {
+    "objectID": "04-Cleaning-MidlandCity.html#select-columns",
+    "href": "04-Cleaning-MidlandCity.html#select-columns",
+    "title": "Midland City",
+    "section": "Select Columns",
+    "text": "Select Columns\n\nmidland_clean &lt;- midland |&gt; mutate(\n  datetime_arrest = paste(date_arrest, time_arrest), \n  name = paste(firstname, lastname)) |&gt; select(\n  -officer,\n  -reportarea,\n  -arr_chrg,\n  -chrg_cnt,\n  -ucr_code,\n  -ibr_code,\n  -name_id,\n  -district,\n  -age_group,\n  -charge_desc,\n  -fel_misd,\n  -gangaffil,\n  -height,\n  -hair,\n  -weight,\n  -time_arrest,\n  -firstname,\n  -lastname,\n  -middlename,\n  -street,\n  -streetnbr,\n  -gangrelat,\n  -geox,\n  -geoy\n) |&gt; cbind(address_arrest = NA, agency_arrest = NA, ethnicity = NA)\n\nmidland_clean |&gt; glimpse()\n\nRows: 2,704\nColumns: 10\n$ age             &lt;chr&gt; \"39\", \"39\", \"25\", \"29\", \"36\", \"37\", \"17\", \"19\", \"31\", …\n$ charges         &lt;chr&gt; \"POSS CS PG 1 &gt;= 1G &lt; 4G\", \"POSS CS PG 1 &gt;= 1G &lt; 4G\", …\n$ date_arrest     &lt;dttm&gt; 2019-07-25, 2019-07-25, 2019-07-29, 2019-07-31, 2019-…\n$ race            &lt;chr&gt; \"W\", \"W\", \"W\", \"W\", \"B\", \"W\", \"W\", \"W\", \"W\", \"W\", \"W\",…\n$ sex             &lt;chr&gt; \"M\", \"M\", \"F\", \"F\", \"F\", \"F\", \"F\", \"M\", \"M\", \"M\", \"M\",…\n$ datetime_arrest &lt;chr&gt; \"2019-07-25 1339\", \"2019-07-25 1338\", \"2019-07-29 2256…\n$ name            &lt;chr&gt; \"CARLTON BLACKWELL\", \"CARLTON BLACKWELL\", \"CHRISTINA B…\n$ address_arrest  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
+  },
+  {
+    "objectID": "04-Cleaning-MidlandCity.html#export",
+    "href": "04-Cleaning-MidlandCity.html#export",
+    "title": "Midland City",
+    "section": "Export",
+    "text": "Export\n\nmidland_clean |&gt; write_csv(\"data-processed/Midland-City.csv\")"
+  },
+  {
+    "objectID": "10-Cleaning-PecosCity.html",
+    "href": "10-Cleaning-PecosCity.html",
+    "title": "Pecos City",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "10-Cleaning-PecosCity.html#setup",
+    "href": "10-Cleaning-PecosCity.html#setup",
+    "title": "Pecos City",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "10-Cleaning-PecosCity.html#import",
+    "href": "10-Cleaning-PecosCity.html#import",
+    "title": "Pecos City",
+    "section": "Import",
+    "text": "Import\nSame process as before\n\npecos &lt;- read_excel(\"data-raw/PecosCity.xls\")\n\npecos |&gt; glimpse()\n\nRows: 70\nColumns: 8\n$ officer         &lt;chr&gt; \"MARQUEZ, AA\", \"MARQUEZ, AA\", \"MARQUEZ, AA\", \"MARQUEZ,…\n$ datetime_arrest &lt;chr&gt; \"01/15/2018 10:47\", \"01/19/2018 16:39\", \"01/20/2018 07…\n$ charge_desc     &lt;chr&gt; \"POSSESSION OF MARIJUANA\", \"TRAFFIC STOP/VIOLATION\", \"…\n$ address_arrest  &lt;chr&gt; \"300 S ROSS BOULEVARD\", \"1200 S PLUM\", \"2600 STATE HIG…\n$ city_zip        &lt;chr&gt; \"PECOS, TX 79772\", \"PECOS, TX 79772\", \"PECOS, TX 79772…\n$ charges         &lt;chr&gt; \"POSS MARIJ &lt;2OZ\", \"POSS MARIJ &lt;2OZ\", \"POSS MARIJ &lt;2OZ…\n$ offense_status  &lt;chr&gt; \"ACTIVE\", \"ACTIVE\", \"ACTIVE\", \"ACTIVE\", \"ACTIVE\", \"ACT…\n$ case_status     &lt;chr&gt; NA, \"ACTIVE\", \"ACTIVE\", \"ACTIVE\", \"ACTIVE\", \"CLEARED B…"
+  },
+  {
+    "objectID": "10-Cleaning-PecosCity.html#clean",
+    "href": "10-Cleaning-PecosCity.html#clean",
+    "title": "Pecos City",
+    "section": "Clean",
+    "text": "Clean\nChange datetime_arrest to datetime object. Get rid of columns officer, offense_status, case_status.\n\npecos_clean &lt;- pecos |&gt; mutate(\n  datetime_arrest = mdy_hm(datetime_arrest),\n  date_arrest = date(datetime_arrest)\n) |&gt; select(\n  -officer,\n  -offense_status,\n  -case_status,\n  -charge_desc,-city_zip\n) |&gt; cbind(name = NA, age = NA, race = NA, sex = NA, ethnicity = NA, agency_arrest = NA)\n\npecos_clean |&gt; glimpse()\n\nRows: 70\nColumns: 10\n$ datetime_arrest &lt;dttm&gt; 2018-01-15 10:47:00, 2018-01-19 16:39:00, 2018-01-20 …\n$ address_arrest  &lt;chr&gt; \"300 S ROSS BOULEVARD\", \"1200 S PLUM\", \"2600 STATE HIG…\n$ charges         &lt;chr&gt; \"POSS MARIJ &lt;2OZ\", \"POSS MARIJ &lt;2OZ\", \"POSS MARIJ &lt;2OZ…\n$ date_arrest     &lt;date&gt; 2018-01-15, 2018-01-19, 2018-01-20, 2018-01-24, 2019-…\n$ name            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ age             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ race            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ sex             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
+  },
+  {
+    "objectID": "10-Cleaning-PecosCity.html#export",
+    "href": "10-Cleaning-PecosCity.html#export",
+    "title": "Pecos City",
+    "section": "Export",
+    "text": "Export\n\npecos_clean |&gt; write_csv(\"data-processed/Pecos-City.csv\")"
+  },
+  {
+    "objectID": "08-Cleaning-NolanCounty.html",
+    "href": "08-Cleaning-NolanCounty.html",
+    "title": "Nolan County",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "08-Cleaning-NolanCounty.html#setup",
+    "href": "08-Cleaning-NolanCounty.html#setup",
+    "title": "Nolan County",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "08-Cleaning-NolanCounty.html#import",
+    "href": "08-Cleaning-NolanCounty.html#import",
+    "title": "Nolan County",
+    "section": "Import",
+    "text": "Import\nSame process as before\n\nnolan &lt;- read_excel(\"data-raw/NolanCounty.xlsx\")\n\nnolan |&gt; glimpse()\n\nRows: 38\nColumns: 7\n$ name           &lt;chr&gt; \"Michael Glen Mulleneaux Jr\", \"Christopher Gonzalez\", \"…\n$ age            &lt;dbl&gt; 33, 24, 21, 26, 18, 17, 19, 29, 25, 27, 28, 37, 24, 25,…\n$ race           &lt;chr&gt; \"W\", \"H\", \"H\", \"H\", \"W\", \"W\", \"W\", \"H\", \"W\", \"W\", \"W\", …\n$ sex            &lt;chr&gt; \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"F\", \"F\", \"M\", …\n$ date_arrest    &lt;dttm&gt; 2018-08-21, 2020-05-16, 2020-06-17, 2020-06-17, 2020-0…\n$ charges        &lt;chr&gt; \"Possession Marijuana &gt; 2oz &lt; 4oz\", \"Possession Marijua…\n$ address_arrest &lt;chr&gt; \"2926 N Highway 70, 79556\", \"CR 175 and Hwy 153, 79537\"…"
+  },
+  {
+    "objectID": "08-Cleaning-NolanCounty.html#clean",
+    "href": "08-Cleaning-NolanCounty.html#clean",
+    "title": "Nolan County",
+    "section": "Clean",
+    "text": "Clean\n\nnolan_clean &lt;- nolan |&gt; cbind(datetime_arrest = NA, agency_arrest = NA, ethnicity = NA)\n\nnolan_clean |&gt; glimpse()\n\nRows: 38\nColumns: 10\n$ name            &lt;chr&gt; \"Michael Glen Mulleneaux Jr\", \"Christopher Gonzalez\", …\n$ age             &lt;dbl&gt; 33, 24, 21, 26, 18, 17, 19, 29, 25, 27, 28, 37, 24, 25…\n$ race            &lt;chr&gt; \"W\", \"H\", \"H\", \"H\", \"W\", \"W\", \"W\", \"H\", \"W\", \"W\", \"W\",…\n$ sex             &lt;chr&gt; \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"M\", \"F\", \"F\", \"M\",…\n$ date_arrest     &lt;dttm&gt; 2018-08-21, 2020-05-16, 2020-06-17, 2020-06-17, 2020-…\n$ charges         &lt;chr&gt; \"Possession Marijuana &gt; 2oz &lt; 4oz\", \"Possession Mariju…\n$ address_arrest  &lt;chr&gt; \"2926 N Highway 70, 79556\", \"CR 175 and Hwy 153, 79537…\n$ datetime_arrest &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
+  },
+  {
+    "objectID": "08-Cleaning-NolanCounty.html#export",
+    "href": "08-Cleaning-NolanCounty.html#export",
+    "title": "Nolan County",
+    "section": "Export",
+    "text": "Export\nNothing to clean, now we export.\n\nnolan_clean |&gt; write_csv(\"data-processed/Nolan-County.csv\")"
+  },
+  {
+    "objectID": "17-Analysis-2.html",
+    "href": "17-Analysis-2.html",
+    "title": "Analysis v2",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(clipr)\n\nWelcome to clipr. See ?write_clip for advisories on writing to the clipboard in R."
+  },
+  {
+    "objectID": "17-Analysis-2.html#setup",
+    "href": "17-Analysis-2.html#setup",
+    "title": "Analysis v2",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(clipr)\n\nWelcome to clipr. See ?write_clip for advisories on writing to the clipboard in R."
+  },
+  {
+    "objectID": "17-Analysis-2.html#import-and-combine",
+    "href": "17-Analysis-2.html#import-and-combine",
+    "title": "Analysis v2",
+    "section": "Import and Combine",
+    "text": "Import and Combine\nWe will use list.files(), map() and list_rbind() to import and combine our files in one fell swoop.\nFirst I am making a list of all my files from the data processed folder.\n\nwx_files_list &lt;- list.files(\n  \"data-processed\",\n  pattern = \"\\\\.csv\",\n  full.names = TRUE\n)\n\nwx_files_list\n\n [1] \"data-processed/Amarillo-City.csv\"  \"data-processed/Carson-County.csv\" \n [3] \"data-processed/Howard-County.csv\"  \"data-processed/Lubbock-County.csv\"\n [5] \"data-processed/Midland-City.csv\"   \"data-processed/Monahans-City.csv\" \n [7] \"data-processed/Moore-County.csv\"   \"data-processed/Nolan-County.csv\"  \n [9] \"data-processed/Odessa-City.csv\"    \"data-processed/Pecos-City.csv\"    \n[11] \"data-processed/Plainview-City.csv\" \"data-processed/Randall-County.csv\"\n[13] \"data-processed/Slaton-City.csv\"    \"data-processed/Snyder-City.csv\"   \n[15] \"data-processed/Wheeler-County.csv\"\n\n\nNow I am going to combine all the files into one tibble using rbind.\n\nwx_all &lt;- wx_files_list |&gt; \n  set_names(basename) |&gt; #what does this do?\n  map(\n  read_csv, \n  col_select = c(name, charges, address_arrest, age, race, sex, agency_arrest, date_arrest, ethnicity)\n  )|&gt; \n    list_rbind(names_to = \"source\") |&gt; #names_to gives me a column with the source file so I can parse it later\n    clean_names()\n\nRows: 649 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (3): name, charges, address_arrest\nlgl  (5): age, race, sex, agency_arrest, ethnicity\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 729 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): address_arrest, charges, name, race, sex\ndbl  (1): age\nlgl  (2): agency_arrest, ethnicity\ndttm (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 661 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (4): name, sex, agency_arrest, charges\ndbl  (1): age\nlgl  (3): ethnicity, race, address_arrest\ndttm (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 5937 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (2): name, agency_arrest\nlgl  (6): charges, address_arrest, age, race, sex, ethnicity\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 2704 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (4): charges, race, sex, name\ndbl  (1): age\nlgl  (3): address_arrest, agency_arrest, ethnicity\ndttm (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 98 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): name, address_arrest, charges, race, sex\ndbl  (1): age\nlgl  (2): agency_arrest, ethnicity\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 62 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): name, race, sex, address_arrest, charges\nlgl  (3): age, agency_arrest, ethnicity\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 38 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): name, race, sex, charges, address_arrest\ndbl  (1): age\nlgl  (2): agency_arrest, ethnicity\ndttm (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 2974 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (6): name, race, ethnicity, sex, charges, address_arrest\nlgl  (2): agency_arrest, age\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 70 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (2): address_arrest, charges\nlgl  (6): name, age, race, sex, ethnicity, agency_arrest\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 468 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): name, charges, address_arrest, race, sex\ndbl  (1): age\nlgl  (2): agency_arrest, ethnicity\ndttm (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 904 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (4): name, sex, race, charges\ndbl  (1): age\nlgl  (3): address_arrest, agency_arrest, ethnicity\ndttm (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 34 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (5): name, sex, race, address_arrest, charges\ndbl  (1): age\nlgl  (2): agency_arrest, ethnicity\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 75 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (3): address_arrest, name, charges\nlgl  (5): age, race, sex, ethnicity, agency_arrest\ndate (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\nRows: 116 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (3): agency_arrest, charges, address_arrest\nlgl  (5): age, race, sex, ethnicity, name\ndttm (1): date_arrest\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nwx_all\n\n\n\n  \n\n\n\nNow I am going to break up the source column so I have a column with the city or county name and if it’s a city or county, and I will make the date_arrest column a date type.\n\nall_data &lt;- wx_all |&gt; mutate(\n  city_county_name = str_split_i(source, \"-\", 1),\n  city_county1 = str_split_i(source,\"-\", -1),\n  city_county = if_else(city_county1 == \"City.csv\", \"City\", \"County\"),\n  date_arrest = date(date_arrest)\n  ) |&gt; select(-city_county1, -source)\n\nall_data"
+  },
+  {
+    "objectID": "17-Analysis-2.html#analysis",
+    "href": "17-Analysis-2.html#analysis",
+    "title": "Analysis v2",
+    "section": "Analysis",
+    "text": "Analysis\nNow we get to do the analysis of all the data together. First, I am going to group by each month.\n\nall_data_month &lt;- all_data |&gt; group_by(month = floor_date(date_arrest, 'month')) |&gt; \n  summarize(arrests = n())\n\nall_data_month\n\n\n\n  \n\n\n\nNow I want to graph this.\n\nall_data_month |&gt; \n  ggplot(aes(x = month, y = arrests)) +\n  geom_point() \n\nWarning: Removed 1 rows containing missing values (`geom_point()`).\n\n\n\n\n\n\nall_data_region &lt;- all_data |&gt; group_by(city_county_name, date_arrest) |&gt; \n  summarize(arrests = n())\n\n`summarise()` has grouped output by 'city_county_name'. You can override using\nthe `.groups` argument.\n\nall_data_region\n\n\n\n  \n\n\n\n\nall_data_region |&gt; \n  ggplot(aes(x = date_arrest, y = arrests)) +\n  geom_point(size = 0.25) +\n  ylim(0,20) +\n  facet_wrap(~city_county_name)\n\nWarning: Removed 5 rows containing missing values (`geom_point()`)."
+  },
+  {
+    "objectID": "05-Cleaning-Lubbock-County.html",
+    "href": "05-Cleaning-Lubbock-County.html",
+    "title": "Lubbock County",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "05-Cleaning-Lubbock-County.html#setup",
+    "href": "05-Cleaning-Lubbock-County.html#setup",
+    "title": "Lubbock County",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "05-Cleaning-Lubbock-County.html#import",
+    "href": "05-Cleaning-Lubbock-County.html#import",
+    "title": "Lubbock County",
+    "section": "Import",
+    "text": "Import\nSame process as before\n\nlubbock &lt;- read_excel(\"data-raw/LubbockCounty.xlsx\")\n\nWarning: Coercing text to numeric in A1016 / R1016C1: '2018011602'\n\nlubbock |&gt; glimpse()\n\nRows: 5,937\nColumns: 6\n$ `1`           &lt;dbl&gt; 2.018e+09, 2.018e+09, 2.018e+09, 2.018e+09, 2.018e+09, 2…\n$ `2`           &lt;dbl&gt; 198683, 159828, 176378, 150934, 158861, 137255, 193295, …\n$ name          &lt;chr&gt; \"ROBISON, DMOREA Q\", \"RAMIREZ, SIERRA\", \"MOSES, XAVIER J…\n$ date_arrest   &lt;chr&gt; \"2018-01-01\", \"2018-01-02\", \"2018-01-02\", \"2018-01-03\", …\n$ date_released &lt;chr&gt; \"2018-03-02\", \"2018-01-06\", \"2018-01-29\", \"2018-01-03\", …\n$ agency_arrest &lt;chr&gt; \"LPD-Rampy, Lloyd Brent\", \"LSO-MCGLONE,  KRISTINA HOPE\",…"
+  },
+  {
+    "objectID": "05-Cleaning-Lubbock-County.html#cleaning",
+    "href": "05-Cleaning-Lubbock-County.html#cleaning",
+    "title": "Lubbock County",
+    "section": "Cleaning",
+    "text": "Cleaning\nJust removing first two columns and making dates actual date types.\n\nlubbock_clean &lt;- lubbock |&gt; select( \n  -\"1\",\n  -\"2\",\n  -date_released\n) |&gt; mutate(\n  date_arrest = ymd(date_arrest)\n) |&gt; cbind(datetime_arrest = NA, charges = NA, address_arrest = NA, age = NA, race = NA, sex = NA, ethnicity = NA)\n\nlubbock_clean |&gt; glimpse()\n\nRows: 5,937\nColumns: 10\n$ name            &lt;chr&gt; \"ROBISON, DMOREA Q\", \"RAMIREZ, SIERRA\", \"MOSES, XAVIER…\n$ date_arrest     &lt;date&gt; 2018-01-01, 2018-01-02, 2018-01-02, 2018-01-03, 2018-…\n$ agency_arrest   &lt;chr&gt; \"LPD-Rampy, Lloyd Brent\", \"LSO-MCGLONE,  KRISTINA HOPE…\n$ datetime_arrest &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ charges         &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ address_arrest  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ age             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ race            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ sex             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
+  },
+  {
+    "objectID": "05-Cleaning-Lubbock-County.html#export",
+    "href": "05-Cleaning-Lubbock-County.html#export",
+    "title": "Lubbock County",
+    "section": "Export",
+    "text": "Export\n\nlubbock_clean |&gt; write_csv(\"data-processed/Lubbock-County.csv\")"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "09-Cleaning-OdessaCity.html",
+    "href": "09-Cleaning-OdessaCity.html",
+    "title": "Odessa City",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "09-Cleaning-OdessaCity.html#setup",
+    "href": "09-Cleaning-OdessaCity.html#setup",
+    "title": "Odessa City",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "09-Cleaning-OdessaCity.html#import",
+    "href": "09-Cleaning-OdessaCity.html#import",
+    "title": "Odessa City",
+    "section": "Import",
+    "text": "Import\nSame process as before\n\nodessa &lt;- read_excel(\"data-raw/OdessaCity.xlsx\")\n\nodessa |&gt; glimpse()\n\nRows: 2,974\nColumns: 8\n$ date_arrest    &lt;chr&gt; \"1/1/2018\", \"1/1/2018\", \"1/2/2018\", \"1/2/2018\", \"1/3/20…\n$ name           &lt;chr&gt; \"Prnce, Cameron\", \"TALLEY, JESSI MARIE\", \"Hendrix, Jess…\n$ race           &lt;chr&gt; \"B - Black or African American\", \"W - White\", \"W - Whit…\n$ ethnicity      &lt;chr&gt; \"N - Not Hispanic or Latino\", \"N - Not Hispanic or Lati…\n$ sex            &lt;chr&gt; \"M - Male\", \"F - Female\", \"F - Female\", \"M - Male\", \"M …\n$ `Case No`      &lt;chr&gt; \"18-0000022\", \"18-0000018\", \"18-0000091\", \"18-0000083\",…\n$ charges        &lt;chr&gt; \"35620008 - POSS MARIJ 2OZ\", \"35620008 - POSS MARIJ 2OZ…\n$ address_arrest &lt;chr&gt; \"1900 Blk. E. 6th\", \"1st/Sam Houston\", \"Carolyn/ Andrew…"
+  },
+  {
+    "objectID": "09-Cleaning-OdessaCity.html#clean",
+    "href": "09-Cleaning-OdessaCity.html#clean",
+    "title": "Odessa City",
+    "section": "Clean",
+    "text": "Clean\nNeed to change date_arrest to date type. Need to get rid of extra words in race and sex. And fet rid of Case No altogether.\n\nodessa_clean &lt;- odessa |&gt; mutate(\n  date_arrest = mdy(date_arrest),\n  race = substr(race, 1, 1),\n  sex = substr(sex, 1, 1)\n) |&gt; select(-\"Case No\") |&gt; \n  cbind(datetime_arrest = NA, agency_arrest = NA, age = NA)\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `date_arrest = mdy(date_arrest)`.\nCaused by warning:\n!  2 failed to parse.\n\nodessa_clean |&gt; glimpse()\n\nRows: 2,974\nColumns: 10\n$ date_arrest     &lt;date&gt; 2018-01-01, 2018-01-01, 2018-01-02, 2018-01-02, 2018-…\n$ name            &lt;chr&gt; \"Prnce, Cameron\", \"TALLEY, JESSI MARIE\", \"Hendrix, Jes…\n$ race            &lt;chr&gt; \"B\", \"W\", \"W\", \"W\", \"B\", \"W\", \"W\", \"W\", \"W\", \"W\", \"B\",…\n$ ethnicity       &lt;chr&gt; \"N - Not Hispanic or Latino\", \"N - Not Hispanic or Lat…\n$ sex             &lt;chr&gt; \"M\", \"F\", \"F\", \"M\", \"M\", \"M\", \"F\", \"M\", \"M\", \"M\", \"F\",…\n$ charges         &lt;chr&gt; \"35620008 - POSS MARIJ 2OZ\", \"35620008 - POSS MARIJ 2O…\n$ address_arrest  &lt;chr&gt; \"1900 Blk. E. 6th\", \"1st/Sam Houston\", \"Carolyn/ Andre…\n$ datetime_arrest &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ age             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
+  },
+  {
+    "objectID": "09-Cleaning-OdessaCity.html#export",
+    "href": "09-Cleaning-OdessaCity.html#export",
+    "title": "Odessa City",
+    "section": "Export",
+    "text": "Export\n\nodessa_clean |&gt; write_csv(\"data-processed/Odessa-City.csv\")"
+  },
+  {
+    "objectID": "11-Cleaning-PlainviewCity.html",
+    "href": "11-Cleaning-PlainviewCity.html",
+    "title": "Plainview City",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "11-Cleaning-PlainviewCity.html#setup",
+    "href": "11-Cleaning-PlainviewCity.html#setup",
+    "title": "Plainview City",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "11-Cleaning-PlainviewCity.html#import",
+    "href": "11-Cleaning-PlainviewCity.html#import",
+    "title": "Plainview City",
+    "section": "Import",
+    "text": "Import\nSame process as before\n\nplainview &lt;- read_excel(\"data-raw/PlainviewCity.xlsx\")\n\nplainview |&gt; glimpse()\n\nRows: 468\nColumns: 14\n$ `UCR/NCIC`       &lt;chr&gt; NA, \"35A,3562\", NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ `Event Number`   &lt;chr&gt; NA, \"1800524\", \"1800553\", \"1801115\", \"1801116\", \"1801…\n$ name             &lt;chr&gt; NA, \"Indrebo, Chase Kendall\", \"Tonche Enriquez, Emman…\n$ charges          &lt;chr&gt; NA, \"CONTROLLED SUBSTANCE - Marijuana, Possession\", \"…\n$ geox             &lt;chr&gt; NA, \"34.198\", \"34.197000000000003\", \"34.1910000000000…\n$ geoy             &lt;dbl&gt; NA, -101.749, -101.720, -101.723, -101.694, -101.748,…\n$ address_arrest   &lt;chr&gt; NA, \"1601 N I 27\", \"1700 W 15TH\", \"1700 W 11TH\", \"700…\n$ date_arrest      &lt;dttm&gt; NA, 2018-01-07, 2018-01-08, 2018-01-14, 2018-01-14, …\n$ time_arrest      &lt;dttm&gt; NA, 1899-12-31 18:42:00, 1899-12-31 01:14:00, 1899-1…\n$ `Dispatch Dispo` &lt;chr&gt; NA, \"ARR\", \"ARR\", \"ARR\", \"ARR\", \"ARR\", \"ARR\", \"ARR\", …\n$ case_status      &lt;chr&gt; NA, \"CLEARED ADULT ARREST\", \"CLEARED ADULT ARREST\", \"…\n$ age              &lt;dbl&gt; NA, 23, 24, 30, 27, 31, 18, 23, NA, 33, 17, 18, 17, 3…\n$ race             &lt;chr&gt; NA, \"w\", \"h\", \"b\", \"h\", \"w\", \"h\", \"h\", NA, \"h\", \"h\", …\n$ sex              &lt;chr&gt; NA, \"m\", \"m\", \"m\", \"f\", \"f\", \"m\", \"f\", NA, \"f\", \"m\", …"
+  },
+  {
+    "objectID": "11-Cleaning-PlainviewCity.html#clean",
+    "href": "11-Cleaning-PlainviewCity.html#clean",
+    "title": "Plainview City",
+    "section": "Clean",
+    "text": "Clean\nNeed to get rid of extra columns and change date_arrest and time_arrest to datetime_arrest and datetime object.\n\nplainview_clean &lt;- plainview |&gt; mutate(\n  datetime_arrest = paste(date_arrest,substr(time_arrest,12,19) )\n  ) |&gt; select(\n    -\"UCR/NCIC\", \n    -\"Event Number\", \n    -time_arrest,\n    -\"Dispatch Dispo\",\n    -case_status,\n    -geox,\n    -geoy,\n) |&gt; mutate( datetime_arrest = ymd_hms(datetime_arrest)) |&gt; \n  cbind(agency_arrest = NA, ethnicity = NA)\n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `datetime_arrest = ymd_hms(datetime_arrest)`.\nCaused by warning:\n!  1 failed to parse.\n\nplainview_clean |&gt; glimpse()\n\nRows: 468\nColumns: 10\n$ name            &lt;chr&gt; NA, \"Indrebo, Chase Kendall\", \"Tonche Enriquez, Emmanu…\n$ charges         &lt;chr&gt; NA, \"CONTROLLED SUBSTANCE - Marijuana, Possession\", \"C…\n$ address_arrest  &lt;chr&gt; NA, \"1601 N I 27\", \"1700 W 15TH\", \"1700 W 11TH\", \"700 …\n$ date_arrest     &lt;dttm&gt; NA, 2018-01-07, 2018-01-08, 2018-01-14, 2018-01-14, 2…\n$ age             &lt;dbl&gt; NA, 23, 24, 30, 27, 31, 18, 23, NA, 33, 17, 18, 17, 31…\n$ race            &lt;chr&gt; NA, \"w\", \"h\", \"b\", \"h\", \"w\", \"h\", \"h\", NA, \"h\", \"h\", \"…\n$ sex             &lt;chr&gt; NA, \"m\", \"m\", \"m\", \"f\", \"f\", \"m\", \"f\", NA, \"f\", \"m\", \"…\n$ datetime_arrest &lt;dttm&gt; NA, 2018-01-07 18:42:00, 2018-01-08 01:14:00, 2018-01…\n$ agency_arrest   &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
+  },
+  {
+    "objectID": "11-Cleaning-PlainviewCity.html#export",
+    "href": "11-Cleaning-PlainviewCity.html#export",
+    "title": "Plainview City",
+    "section": "Export",
+    "text": "Export\n\nplainview_clean |&gt; write_csv(\"data-processed/Plainview-City.csv\")"
+  },
+  {
+    "objectID": "03-Cleaning-Howard.html",
+    "href": "03-Cleaning-Howard.html",
+    "title": "Howard County",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "03-Cleaning-Howard.html#setup",
+    "href": "03-Cleaning-Howard.html#setup",
+    "title": "Howard County",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "03-Cleaning-Howard.html#import",
+    "href": "03-Cleaning-Howard.html#import",
+    "title": "Howard County",
+    "section": "Import",
+    "text": "Import\nSame process as before\n\nhoward &lt;- read_excel(\"data-raw/HowardCounty.xls\")\n\nNew names:\n• `` -&gt; `...4`\n\nhoward |&gt; glimpse()\n\nRows: 661\nColumns: 8\n$ date_arrest   &lt;dttm&gt; 2018-01-05, 2018-01-06, 2018-01-07, 2018-01-07, 2018-01…\n$ name          &lt;chr&gt; \"CHILDS, DEVONTAY TRAYVON\", \"HILGER, BRITTNEY JO\", \"CARR…\n$ age           &lt;dbl&gt; 31, 28, 42, 24, 53, 57, 24, 46, 25, 46, 26, 50, 33, 27, …\n$ ...4          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ sex           &lt;chr&gt; \"M\", \"F\", \"M\", \"M\", \"F\", \"M\", \"M\", \"F\", \"M\", \"M\", \"F\", \"…\n$ time_arrest   &lt;dttm&gt; 1899-12-31 09:37:00, 1899-12-31 02:23:00, 1899-12-31 11…\n$ agency_arrest &lt;chr&gt; \"GLASS\", \"BSPD\", \"BSPD\", \"BSPD\", \"BSPD\", \"BSPD\", \"HCSO\",…\n$ charges       &lt;chr&gt; \"POSS MARIJ &lt;2OZ\", \"MTRP/POSS MARIJ &lt;2OZ\", \"BOB/POSS MAR…"
+  },
+  {
+    "objectID": "03-Cleaning-Howard.html#clean-columns",
+    "href": "03-Cleaning-Howard.html#clean-columns",
+    "title": "Howard County",
+    "section": "Clean Columns",
+    "text": "Clean Columns\nputting together the date and time and getting rid of the blank column\n\nhoward_col &lt;- howard |&gt; mutate(\n  datetime_arrest = paste(date_arrest, paste(hour(time_arrest), minute(time_arrest), second(time_arrest), sep = \":\"))\n)\n\nhoward_clean &lt;- howard_col |&gt; mutate(\n  datetime_arrest = ymd_hms(datetime_arrest)\n) |&gt; select(\n  -time_arrest,\n  -...4\n) |&gt; cbind(ethnicity = NA, race = NA, address_arrest = NA)\n\nhoward_clean |&gt; glimpse()\n\nRows: 661\nColumns: 10\n$ date_arrest     &lt;dttm&gt; 2018-01-05, 2018-01-06, 2018-01-07, 2018-01-07, 2018-…\n$ name            &lt;chr&gt; \"CHILDS, DEVONTAY TRAYVON\", \"HILGER, BRITTNEY JO\", \"CA…\n$ age             &lt;dbl&gt; 31, 28, 42, 24, 53, 57, 24, 46, 25, 46, 26, 50, 33, 27…\n$ sex             &lt;chr&gt; \"M\", \"F\", \"M\", \"M\", \"F\", \"M\", \"M\", \"F\", \"M\", \"M\", \"F\",…\n$ agency_arrest   &lt;chr&gt; \"GLASS\", \"BSPD\", \"BSPD\", \"BSPD\", \"BSPD\", \"BSPD\", \"HCSO…\n$ charges         &lt;chr&gt; \"POSS MARIJ &lt;2OZ\", \"MTRP/POSS MARIJ &lt;2OZ\", \"BOB/POSS M…\n$ datetime_arrest &lt;dttm&gt; 2018-01-05 09:37:00, 2018-01-06 02:23:00, 2018-01-07 …\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ race            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ address_arrest  &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
+  },
+  {
+    "objectID": "03-Cleaning-Howard.html#export",
+    "href": "03-Cleaning-Howard.html#export",
+    "title": "Howard County",
+    "section": "Export",
+    "text": "Export\n\nhoward_clean |&gt; write_csv(\"data-processed/Howard-County.csv\")"
+  },
+  {
+    "objectID": "15-Cleaning-WheelerCounty.html",
+    "href": "15-Cleaning-WheelerCounty.html",
+    "title": "Wheeler County",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "15-Cleaning-WheelerCounty.html#setup",
+    "href": "15-Cleaning-WheelerCounty.html#setup",
+    "title": "Wheeler County",
+    "section": "",
+    "text": "library(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(janitor)\n\n\nAttaching package: 'janitor'\n\nThe following objects are masked from 'package:stats':\n\n    chisq.test, fisher.test\n\nlibrary(readxl)\nlibrary(lubridate)"
+  },
+  {
+    "objectID": "15-Cleaning-WheelerCounty.html#import",
+    "href": "15-Cleaning-WheelerCounty.html#import",
+    "title": "Wheeler County",
+    "section": "Import",
+    "text": "Import\nSame process as before\n\nwheeler &lt;- read_excel(\"data-raw/WheelerCounty.xlsx\")\n\nwheeler |&gt; glimpse()\n\nRows: 116\nColumns: 22\n$ inc_index     &lt;dbl&gt; 1953118, 1931092, 1907492, 1894481, 1899162, 1890396, 18…\n$ incident_no   &lt;chr&gt; \"22-12-466C\", \"22-11-435C\", \"22-10-384C\", \"22-09-330C\", …\n$ other_no      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ event_no      &lt;chr&gt; \"2212250001\", \"2211290022\", \"2210090012\", \"2209030002\", …\n$ date_arrest   &lt;chr&gt; \"25-Dec-22 00:00:00\", \"29-Nov-22 00:00:00\", \"09-Oct-22 0…\n$ time_arrest   &lt;chr&gt; \"00:23\", \"23:21\", \"11:23\", \"01:43\", \"18:48\", \"22:26\", \"1…\n$ offense       &lt;chr&gt; \"481.121(b)(3)\", \"481.121(b)(3)\", \"481.121(b)(1)\", \"481.…\n$ date_1        &lt;chr&gt; \"25-Dec-22 00:00:00\", \"29-Nov-22 00:00:00\", \"09-Oct-22 0…\n$ agency_arrest &lt;chr&gt; \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", …\n$ officer_id    &lt;chr&gt; \"ET0910\", \"908\", \"908\", \"PYLE\", \"ET0910\", \"909TJK\", \"908…\n$ dispo         &lt;chr&gt; \"31ST\", \"31ST\", \"CO\", \"BOTH\", \"BOTH\", \"CO\", \"CO\", \"31ST\"…\n$ streetnbr     &lt;chr&gt; NA, NA, NA, \"176 E\", NA, NA, NA, NA, NA, \"161\", \"120\", N…\n$ street_prfx   &lt;chr&gt; NA, \"E\", NA, NA, NA, NA, \"E\", NA, \"E\", \"E\", \"S\", NA, NA,…\n$ street        &lt;chr&gt; \"CEFCO PARKING LT\", \"ROUTE 66\", \"NORTH MAIN STREET 83\", …\n$ street_type   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, \"ST\", NA, NA, NA, NA, \"S…\n$ suffix        &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ city          &lt;chr&gt; \"SHAMROCK\", \"SHAMROCK\", \"SHAMROCK\", \"WHEELER\", \"SHAMROCK…\n$ state         &lt;chr&gt; \"TX\", \"TX\", \"TX\", \"TX\", \"TX\", \"TX\", \"TX\", \"TX\", \"TX\", \"T…\n$ zip_code      &lt;chr&gt; \"79079\", \"79096\", \"79096\", \"79096\", \"79096\", \"79079\", \"7…\n$ geox          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ geoy          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …\n$ charges       &lt;chr&gt; \"POSS MARIJ &gt;4OZ&lt;=5LBS\", \"POSS MARIJ &gt;4OZ&lt;=5LBS\", \"POSS …"
+  },
+  {
+    "objectID": "15-Cleaning-WheelerCounty.html#clean",
+    "href": "15-Cleaning-WheelerCounty.html#clean",
+    "title": "Wheeler County",
+    "section": "Clean",
+    "text": "Clean\n\nwheeler_clean &lt;- wheeler |&gt; mutate(\n  date_arrest = dmy_hms(date_arrest),\n  address_arrest = paste(streetnbr, street_prfx, street, street_type)\n) |&gt; select(\n  -inc_index,\n  -incident_no,\n  -other_no,\n  -event_no,\n  -time_arrest,\n  -offense,\n  -date_1,\n  -suffix,\n  -geox,\n  -geoy,\n  -officer_id,\n  -dispo,\n  -streetnbr,\n  -street_prfx,\n  -street,\n  -street_type,\n  -city,\n  -zip_code,\n  -state\n) |&gt; cbind(datetime_arrest = NA, age = NA, race = NA, sex = NA, ethnicity = NA, name = NA)\n\nwheeler_clean |&gt; glimpse()\n\nRows: 116\nColumns: 10\n$ date_arrest     &lt;dttm&gt; 2022-12-25, 2022-11-29, 2022-10-09, 2022-09-03, 2022-…\n$ agency_arrest   &lt;chr&gt; \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\", \"WSO\"…\n$ charges         &lt;chr&gt; \"POSS MARIJ &gt;4OZ&lt;=5LBS\", \"POSS MARIJ &gt;4OZ&lt;=5LBS\", \"POS…\n$ address_arrest  &lt;chr&gt; \"NA NA CEFCO PARKING LT NA\", \"NA E ROUTE 66 NA\", \"NA N…\n$ datetime_arrest &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ age             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ race            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ sex             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ ethnicity       &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…\n$ name            &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…"
+  },
+  {
+    "objectID": "15-Cleaning-WheelerCounty.html#export",
+    "href": "15-Cleaning-WheelerCounty.html#export",
+    "title": "Wheeler County",
+    "section": "Export",
+    "text": "Export\n\nwheeler_clean |&gt; write_csv(\"data-processed/Wheeler-County.csv\")"
   }
 ]
