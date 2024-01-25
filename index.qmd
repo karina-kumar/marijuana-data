@@ -2,7 +2,7 @@
 title: "Marijuana Data Deep Dive"
 ---
 
-This data project is exploring the data collected by Reporting with Data students in Professor McDonald's class in Spring 2023 from police stations in Texas near the New Mexico border. The data includes all the arrests related to marijuana possession at each station. 
+This data project is exploring the data collected by Reporting with Data students in Professor McDonald's class in Spring 2023 from police stations in Texas near the New Mexico border. The data includes all the arrests related to marijuana possession at each station. View the code here at my github: https://github.com/karina-kumar/marijuana-data 
 
 ## Overview
 For each city our county police station, there is a page for cleaning that stations data on the left. For each station that had data related to age, sex, race or ethnicity that data is analyzed in Analysis v1. In Analysis v2 all the data was combined and analyzed over time. 
