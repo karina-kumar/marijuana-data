@@ -4,7 +4,7 @@ title: "Analysis v2"
 
 ## Setup
 
-```{r}
+```{r setup}
 
 library(tidyverse)
 library(janitor)
@@ -71,10 +71,31 @@ all_data_month
 Now I want to graph this. 
 
 ```{r}
-all_data_month |> 
+all_data_plot <- all_data_month |> 
   ggplot(aes(x = month, y = arrests)) +
-  geom_point() 
+  geom_point() +
+  geom_smooth(method = 'lm') +
+  labs(
+    title = str_wrap("Marijuana-related arrests in Texas decrease slowly since the Jan. 2018."),
+       subtitle = str_wrap("Since 2018, the number of arrests per month related to the possession of marijuana has slowly decreased in Texas. This data is for 16 cities/counties in Texas near the New Mexico border and was collected by Professor Christian McDonald's Reporting with Data class at UT in Spring 2023."),
+    x = "Date (three months)", y = "Number of arrests") +
+  scale_x_date(date_breaks = "3 months", date_labels = "%b %G") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+ggsave("figures/marijuana-all-plot.png")
+
 ```
+Now I'm going to show the graph. 
+
+![](figures/marijuana-all-plot.png)
+
+Here it is as an object.
+
+```{r}
+all_data_plot
+```
+
+Now I want to group the data by city/county and then do a facet wrap chart so I can see if there is a decrease over time in number of arrests for each region. First, I will do a group_by and summarize.
 
 ```{r}
 all_data_region <- all_data |> group_by(city_county_name, date_arrest) |> 
@@ -82,6 +103,8 @@ all_data_region <- all_data |> group_by(city_county_name, date_arrest) |>
 
 all_data_region
 ```
+
+Now I'm going to graph it. 
 
 ```{r}
 all_data_region |> 
