@@ -214,7 +214,7 @@
     "href": "index.html",
     "title": "Marijuana Data Deep Dive",
     "section": "",
-    "text": "This data project is exploring the data collected by RWD students in Prof. McDonald’s class in Spring 2023 from police stations in Texas near the New Mexico border. The data includes all the arrests related to marijuana possession at each station."
+    "text": "This data project is exploring the data collected by Reporting with Data students in Professor McDonald’s class in Spring 2023 from police stations in Texas near the New Mexico border. The data includes all the arrests related to marijuana possession at each station."
   },
   {
     "objectID": "14-Cleaning-SnyderCity.html",
@@ -473,7 +473,7 @@
     "href": "17-Analysis-2.html#analysis",
     "title": "Analysis v2",
     "section": "Analysis",
-    "text": "Analysis\nNow we get to do the analysis of all the data together. First, I am going to group by each month.\n\nall_data_month &lt;- all_data |&gt; group_by(month = floor_date(date_arrest, 'month')) |&gt; \n  summarize(arrests = n())\n\nall_data_month\n\n\n\n  \n\n\n\nNow I want to graph this.\n\nall_data_plot &lt;- all_data_month |&gt; \n  ggplot(aes(x = month, y = arrests)) +\n  geom_point() +\n  geom_smooth(method = 'lm') +\n  labs(\n    title = str_wrap(\"Marijuana-related arrests in Texas decrease slowly since the Jan. 2018.\"),\n       subtitle = str_wrap(\"Since 2018, the number of arrests per month related to the possession of marijuana has slowly decreased in Texas. This data is for 16 cities/counties in Texas near the New Mexico border and was collected by Professor Christian McDonald's Reporting with Data class at UT in Spring 2023.\"),\n    x = \"Date (three months)\", y = \"Number of arrests\") +\n  scale_x_date(date_breaks = \"3 months\", date_labels = \"%b %G\") +\n  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))\n\nggsave(\"figures/marijuana-all-plot.png\")\n\nSaving 7 x 5 in image\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 1 rows containing non-finite values (`stat_smooth()`).\n\n\nWarning: Removed 1 rows containing missing values (`geom_point()`).\n\n\nNow I’m going to show the graph.\n\nHere it is as an object.\n\nall_data_plot\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 1 rows containing non-finite values (`stat_smooth()`).\n\n\nWarning: Removed 1 rows containing missing values (`geom_point()`).\n\n\n\n\n\nNow I want to group the data by city/county and then do a facet wrap chart so I can see if there is a decrease over time in number of arrests for each region. First, I will do a group_by and summarize.\n\nall_data_region &lt;- all_data |&gt; group_by(city_county_name, date_arrest) |&gt; \n  summarize(arrests = n())\n\n`summarise()` has grouped output by 'city_county_name'. You can override using\nthe `.groups` argument.\n\nall_data_region\n\n\n\n  \n\n\n\nNow I’m going to graph it.\n\nall_data_region |&gt; \n  ggplot(aes(x = date_arrest, y = arrests)) +\n  geom_point(size = 0.25) +\n  ylim(0,20) +\n  facet_wrap(~city_county_name)\n\nWarning: Removed 5 rows containing missing values (`geom_point()`)."
+    "text": "Analysis\nNow we get to do the analysis of all the data together. First, I am going to group by each month.\n\nall_data_month &lt;- all_data |&gt; group_by(month = floor_date(date_arrest, 'month')) |&gt; \n  summarize(arrests = n())\n\nall_data_month\n\n\n\n  \n\n\n\nNow I want to graph this.\n\nall_data_plot &lt;- all_data_month |&gt; \n  ggplot(aes(x = month, y = arrests)) +\n  geom_point() +\n  geom_smooth(method = 'lm') +\n  labs(\n    title = str_wrap(\"Marijuana-related arrests in Texas decrease slowly since the Jan. 2018.\"),\n       subtitle = str_wrap(\"Since 2018, the number of arrests per month related to the possession of marijuana has slowly decreased in Texas. This data is for 16 cities/counties in Texas near the New Mexico border and was collected by Professor Christian McDonald's Reporting with Data class at UT in Spring 2023.\"),\n    x = \"Date (three months)\", y = \"Number of arrests\") +\n  scale_x_date(date_breaks = \"3 months\", date_labels = \"%b %G\") +\n  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))\n\nggsave(\"figures/marijuana-all-plot.png\")\n\nSaving 7 x 5 in image\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 1 rows containing non-finite values (`stat_smooth()`).\n\n\nWarning: Removed 1 rows containing missing values (`geom_point()`).\n\n\nNow I’m going to show the graph.\n\nHere it is as an object.\n\nall_data_plot\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 1 rows containing non-finite values (`stat_smooth()`).\n\n\nWarning: Removed 1 rows containing missing values (`geom_point()`).\n\n\n\n\n\nNow I want to group the data by city/county and then do a facet wrap chart so I can see if there is a decrease over time in number of arrests for each region. First, I will do a group_by and summarize.\n\nall_data_region &lt;- all_data |&gt; group_by(city_county_name, date_arrest) |&gt; \n  summarize(arrests = n())\n\n`summarise()` has grouped output by 'city_county_name'. You can override using\nthe `.groups` argument.\n\nall_data_region\n\n\n\n  \n\n\n\nNow I’m going to graph it and save it.\n\nby_station_plot &lt;- all_data_region |&gt; \n  ggplot(aes(x = date_arrest, y = arrests)) +\n  geom_point(size = 0.25) +\n  ylim(0,20) +\n  facet_wrap(~city_county_name) + \n  labs(title = \"Marijuana-related arrests in 16 cities/counties since Jan. 2018.\",\n       x = \"Date (days)\", y = \"Number of arrests\") +\n  scale_x_date(date_breaks = \"years\", date_labels = \"%G\") +\n  theme(axis.text.x = element_text(angle = -45, vjust = 0.75, hjust = 0))\n\nggsave(\"figures/by_station_plot.png\")\n\nSaving 7 x 5 in image\n\n\nWarning: Removed 5 rows containing missing values (`geom_point()`).\n\n\nShowing the graph.\n\nNow printing the object.\n\nby_station_plot\n\nWarning: Removed 5 rows containing missing values (`geom_point()`)."
   },
   {
     "objectID": "05-Cleaning-Lubbock-County.html",
@@ -656,5 +656,19 @@
     "title": "Wheeler County",
     "section": "Export",
     "text": "Export\n\nwheeler_clean |&gt; write_csv(\"data-processed/Wheeler-County.csv\")"
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "Marijuana Data Deep Dive",
+    "section": "Overview",
+    "text": "Overview\nFor each city our county police station, there is a page for cleaning that stations data on the left. For each station that had data related to age, sex, race or ethnicity that data is analyzed in Analysis v1. In Analysis v2 all the data was combined and analyzed over time."
+  },
+  {
+    "objectID": "index.html#results",
+    "href": "index.html#results",
+    "title": "Marijuana Data Deep Dive",
+    "section": "Results",
+    "text": "Results\nI found that since Jan. 2018 the number of arrests related to possession of marijuana in these cities/counties has gone down slowly. This can be seen by the following graph.\n\nThere are a few things to note about certain cities or counties as shown in the graph below. Midland City has a large gap from Jan. 2018 until about halfway through 2019, and Monahans city’s reports end at the beginning of 2020. There does seem to be a very slow decline in arrests in Slaton City and Lubbock county, two of the stations with more reports in general. Amarillo City and Randall County seem to show the decline in arrests the most."
   }
 ]

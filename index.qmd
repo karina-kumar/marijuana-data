@@ -2,4 +2,16 @@
 title: "Marijuana Data Deep Dive"
 ---
 
-This data project is exploring the data collected by RWD students in Prof. McDonald's class in Spring 2023 from police stations in Texas near the New Mexico border. The data includes all the arrests related to marijuana possession at each station. 
+This data project is exploring the data collected by Reporting with Data students in Professor McDonald's class in Spring 2023 from police stations in Texas near the New Mexico border. The data includes all the arrests related to marijuana possession at each station. 
+
+## Overview
+For each city our county police station, there is a page for cleaning that stations data on the left. For each station that had data related to age, sex, race or ethnicity that data is analyzed in Analysis v1. In Analysis v2 all the data was combined and analyzed over time. 
+
+## Results
+I found that since Jan. 2018 the number of arrests related to possession of marijuana in these cities/counties has gone down slowly. This can be seen by the following graph. 
+
+![](figures/marijuana-all-plot.png)
+
+There are a few things to note about certain cities or counties as shown in the graph below. Midland City has a large gap from Jan. 2018 until about halfway through 2019, and Monahans city's reports end at the beginning of 2020. There does seem to be a very slow decline in arrests in Slaton City and Lubbock county, two of the stations with more reports in general. Amarillo City and Randall County seem to show the decline in arrests the most. 
+
+![](figures/by_station_plot.png)

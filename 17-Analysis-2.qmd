@@ -104,17 +104,32 @@ all_data_region <- all_data |> group_by(city_county_name, date_arrest) |>
 all_data_region
 ```
 
-Now I'm going to graph it. 
+Now I'm going to graph it and save it. 
 
 ```{r}
-all_data_region |> 
+by_station_plot <- all_data_region |> 
   ggplot(aes(x = date_arrest, y = arrests)) +
   geom_point(size = 0.25) +
   ylim(0,20) +
-  facet_wrap(~city_county_name)
+  facet_wrap(~city_county_name) + 
+  labs(title = "Marijuana-related arrests in 16 cities/counties since Jan. 2018.",
+       x = "Date (days)", y = "Number of arrests") +
+  scale_x_date(date_breaks = "years", date_labels = "%G") +
+  theme(axis.text.x = element_text(angle = -45, vjust = 0.75, hjust = 0))
+
+ggsave("figures/by_station_plot.png")
+  
+
   
 ```
 
+Showing the graph.
 
+![](figures/by_station_plot.png)
 
+Now printing the object. 
+
+```{r}
+by_station_plot
+```
 
